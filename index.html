@@ -57,36 +57,6 @@
             white-space: nowrap;
         }
 
-        .mcq-toggles {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 2px;
-        }
-
-        .toggle-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 9px;
-            border-radius: 999px;
-            background-color: var(--bg-elevated-soft);
-            border: 1px solid var(--border-subtle);
-            font-size: 12px;
-            color: var(--text-soft);
-            cursor: pointer;
-        }
-
-        .toggle-chip input[type="checkbox"] {
-            width: 14px;
-            height: 14px;
-            accent-color: var(--accent);
-        }
-
-        .toggle-label {
-            user-select: none;
-        }
-
         .breadcrumbs {
             font-size: 12px;
             color: var(--text-soft);
@@ -357,6 +327,15 @@
                 >
                     🌗
                 </button>
+                <button
+                    id="openSidebarBtn"
+                    class="icon-button sidebar-toggle"
+                    type="button"
+                    aria-label="Quiz options"
+                    title="Quiz options"
+                >
+                    ⚙
+                </button>
                 <!-- Optional link back to the main Revision Randomiser app -->
                 <a
                     href="#"
@@ -383,18 +362,6 @@
                     <div class="mcq-pill" id="pill-right"></div>
                 </div>
 
-                <!-- New toggles -->
-                <div class="mcq-toggles">
-                    <label class="toggle-chip">
-                        <input type="checkbox" id="toggle-shuffle" />
-                        <span class="toggle-label">Shuffle question order</span>
-                    </label>
-                    <label class="toggle-chip">
-                        <input type="checkbox" id="toggle-hide-feedback" />
-                        <span class="toggle-label">Hide correct answers until the end</span>
-                    </label>
-                </div>
-
                 <div class="breadcrumbs" id="breadcrumbs"></div>
 
                 <div class="progress-bar" id="progress-container">
@@ -407,6 +374,60 @@
             </section>
         </main>
     </div>
+
+    <!-- Sidebar: matches Revision Randomiser structure -->
+    <aside class="sidebar" id="optionsSidebar">
+        <div class="sidebar-inner">
+            <div class="sidebar-header">
+                <div>
+                    <h2>Quiz options</h2>
+                    <p class="sidebar-subtitle">
+                        Adjust question order and feedback behaviour for this session.
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    class="icon-button"
+                    id="closeSidebarBtn"
+                    aria-label="Close options"
+                >
+                    ✕
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <p class="sidebar-section-title">Question order</p>
+                </div>
+                <div class="sidebar-section-controls">
+                    <label class="inline-checkbox">
+                        <input type="checkbox" id="toggle-shuffle" />
+                        <span>Shuffle question order</span>
+                    </label>
+                    <p class="sidebar-text">
+                        When enabled, the questions in each quiz will appear in a random order.
+                    </p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <p class="sidebar-section-title">Feedback mode</p>
+                </div>
+                <div class="sidebar-section-controls">
+                    <label class="inline-checkbox">
+                        <input type="checkbox" id="toggle-hide-feedback" />
+                        <span>Hide correct answers until the end</span>
+                    </label>
+                    <p class="sidebar-text">
+                        When enabled, you won’t see which answers are correct as you go.
+                        All answers are revealed on the results screen at the end.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
     <script>
         // ================================
@@ -443,7 +464,30 @@
         }
 
         // ================================
-        // MCQ APP LOGIC (with new toggles)
+        // Sidebar open/close
+        // ================================
+
+        const sidebarEl = document.getElementById("optionsSidebar");
+        const sidebarBackdropEl = document.getElementById("sidebarBackdrop");
+        const openSidebarBtn = document.getElementById("openSidebarBtn");
+        const closeSidebarBtn = document.getElementById("closeSidebarBtn");
+
+        function openSidebar() {
+            sidebarEl.classList.add("open");
+            if (sidebarBackdropEl) sidebarBackdropEl.style.display = "block";
+        }
+
+        function closeSidebar() {
+            sidebarEl.classList.remove("open");
+            if (sidebarBackdropEl) sidebarBackdropEl.style.display = "none";
+        }
+
+        if (openSidebarBtn) openSidebarBtn.addEventListener("click", openSidebar);
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebar);
+        if (sidebarBackdropEl) sidebarBackdropEl.addEventListener("click", closeSidebar);
+
+        // ================================
+        // MCQ APP LOGIC
         // ================================
 
         let modules = [];
@@ -460,9 +504,8 @@
         // New state for toggles
         let shuffleQuestionsEnabled = false;
         let hideFeedbackEnabled = false;
-        let questionOrder = []; // array of original question indices
-
-        let currentOptionOrder = []; // holds shuffled option indices for the current question
+        let questionOrder = [];      // array of original question indices
+        let currentOptionOrder = []; // shuffled option indices for the current question
 
         const quizContentEl = document.getElementById("quiz-content");
         const cardTitleEl = document.getElementById("card-title");
@@ -713,7 +756,7 @@
               )
               .join("")}
         </div>
-        <div class="controls" style="justify-content:flex-start%;">
+        <div class="controls" style="justify-content:flex-start;">
           <button class="secondary-button" id="back-units">Back to units</button>
         </div>
       `;
@@ -783,48 +826,46 @@
             }
         }
 
-function renderQuestion() {
-    const questions = currentQuizData.questions || [];
+        // ===== Render a question (with SHUFFLED OPTIONS) =====
+        function renderQuestion() {
+            const questions = currentQuizData.questions || [];
 
-    // Which *original* question are we on (handles question shuffling)
-    const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
-    const q = questions[orderIndex];
-    if (!q) return;
+            // Which original question are we on (handles question-order shuffle)
+            const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
+            const q = questions[orderIndex];
+            if (!q) return;
 
-    selectedOptionIndex = null;
+            selectedOptionIndex = null;
 
-    // === NEW: build and shuffle option order for this question ===
-    currentOptionOrder = q.options.map((_, i) => i); // [0,1,2,...]
-    shuffleArray(currentOptionOrder);                // in-place Fisher–Yates shuffle
+            // Build and shuffle option order for this question
+            currentOptionOrder = q.options.map((_, i) => i); // [0,1,2,...]
+            shuffleArray(currentOptionOrder);
 
-    setBreadcrumbs("quiz");
+            setBreadcrumbs("quiz");
+            pillRightEl.textContent = `Question ${
+                currentQuestionIndex + 1
+            } of ${questions.length}`;
 
-    pillRightEl.textContent = `Question ${
-        currentQuestionIndex + 1
-    } of ${questions.length}`;
+            const progressPercent = (currentQuestionIndex / questions.length) * 100;
+            progressFillEl.style.width = `${progressPercent}%`;
 
-    const progressPercent = (currentQuestionIndex / questions.length) * 100;
-    progressFillEl.style.width = `${progressPercent}%`;
+            const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
 
-    const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+            // Build buttons in shuffled order; data-index stores ORIGINAL option index
+            const optionsHtml = currentOptionOrder
+                .map((optIdx, displayIdx) => {
+                    const label = optionLetters[displayIdx] ?? "";
+                    const text = q.options[optIdx];
+                    return `
+          <button class="option-btn" data-index="${optIdx}">
+            <span class="option-label">${label}.</span>
+            <span class="option-text">${text}</span>
+          </button>
+        `;
+                })
+                .join("");
 
-    // Build the buttons in the shuffled order
-    const optionsHtml = currentOptionOrder
-        .map((optIdx, displayIdx) => {
-            const label = optionLetters[displayIdx] ?? "";
-            const text = q.options[optIdx];
-
-            // data-index = ORIGINAL option index, so correctness check still works
-            return `
-                <button class="option-btn" data-index="${optIdx}">
-                    <span class="option-label">${label}.</span>
-                    <span class="option-text">${text}</span>
-                </button>
-            `;
-        })
-        .join("");
-
-    quizContentEl.innerHTML = `
+            quizContentEl.innerHTML = `
         <div class="question-text">${q.question}</div>
         <p class="question-meta">${
             currentQuizData.description || "Choose one answer."
@@ -840,23 +881,21 @@ function renderQuestion() {
             Next →
           </button>
         </div>
-    `;
+      `;
 
-    // Wire up events
-    document
-        .querySelectorAll(".option-btn")
-        .forEach((btn) => btn.addEventListener("click", onOptionClick));
-
-    document.getElementById("next-btn").addEventListener("click", onNext);
-    document.getElementById("skip-btn").addEventListener("click", onSkip);
-    document
-        .getElementById("back-to-quizzes")
-        .addEventListener("click", () => renderQuizList(currentUnit.id));
-}
+            document
+                .querySelectorAll(".option-btn")
+                .forEach((btn) => btn.addEventListener("click", onOptionClick));
+            document.getElementById("next-btn").addEventListener("click", onNext);
+            document.getElementById("skip-btn").addEventListener("click", onSkip);
+            document
+                .getElementById("back-to-quizzes")
+                .addEventListener("click", () => renderQuizList(currentUnit.id));
+        }
 
         function onOptionClick(e) {
             const btn = e.currentTarget;
-            const index = Number(btn.getAttribute("data-index"));
+            const index = Number(btn.getAttribute("data-index")); // ORIGINAL option index
             selectedOptionIndex = index;
 
             document.querySelectorAll(".option-btn").forEach((b) => {
@@ -915,7 +954,6 @@ function renderQuestion() {
             });
 
             if (hideFeedbackEnabled) {
-                // No per-question feedback: move straight on
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
                     renderQuestion();
@@ -923,7 +961,6 @@ function renderQuestion() {
                     renderResult();
                 }
             } else {
-                // Show feedback & highlight correct/incorrect before moving on
                 lockOptionsAndShowFeedback(isCorrect, correctIndex);
                 setTimeout(() => {
                     currentQuestionIndex++;
@@ -1037,7 +1074,7 @@ function renderQuestion() {
                 });
         }
 
-        // Hook up the new toggle controls
+        // Hook up sidebar toggles
         const shuffleToggleEl = document.getElementById("toggle-shuffle");
         const hideFeedbackToggleEl = document.getElementById("toggle-hide-feedback");
 
@@ -1057,4 +1094,3 @@ function renderQuestion() {
     </script>
 </body>
 </html>
-
