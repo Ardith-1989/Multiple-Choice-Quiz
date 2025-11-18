@@ -110,30 +110,30 @@
         .list-item {
             width: 100%;
             text-align: left;
-            padding: 10px 12px;
-            border-radius: 14px;
-            border: 1px solid var(--list-border);
-            background: var(--list-bg);
+            padding: 12px 14px;
+            border-radius: 16px;
+            border: 1px solid var(--border-subtle);
+            background-color: var(--bg-card);
             cursor: pointer;
             display: flex;
             flex-direction: column;
             gap: 4px;
+            font-family: inherit;      /* match rest of the app */
+            color: var(--text);        /* match body text colour */
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.25); /* card-style look */
             transition:
-                background-color 0.18s ease,
-                border-color 0.18s ease,
-                box-shadow 0.18s ease,
-                transform 0.08s ease;
+                box-shadow 0.18s ease; /* subtle only */
         }
+        
+        /* Keep a tiny bit of feedback, but no colour/transform highlight */
         .list-item:hover {
-            background: var(--list-bg-hover);
-            border-color: var(--accent);
-            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.35);
-            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(15, 23, 42, 0.30);
         }
 
         .list-title {
             font-size: 15px;
             font-weight: 600;
+            font-family: inherit;
         }
 
         .list-meta {
@@ -142,6 +142,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            font-family: inherit:
         }
 
         .helper-text {
@@ -1119,3 +1120,4 @@
     </script>
 </body>
 </html>
+
