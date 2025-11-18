@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MCQ Quiz Hub</title>
+  <title>MCQ Quiz Hub – Modules & Units</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
@@ -36,7 +36,7 @@
 
     .app {
       width: 100%;
-      max-width: 680px;
+      max-width: 720px;
       padding: 16px;
     }
 
@@ -58,6 +58,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
+      gap: 10px;
     }
 
     .title {
@@ -76,6 +77,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      white-space: nowrap;
+    }
+
+    .breadcrumbs {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .breadcrumbs span {
+      cursor: pointer;
+    }
+
+    .breadcrumbs span:hover {
+      text-decoration: underline;
     }
 
     .progress-bar {
@@ -290,14 +306,14 @@
       color: var(--danger);
     }
 
-    .quiz-list {
+    .list {
       display: flex;
       flex-direction: column;
       gap: 10px;
       margin-bottom: 10px;
     }
 
-    .quiz-list-item {
+    .list-item {
       width: 100%;
       text-align: left;
       padding: 10px 12px;
@@ -311,18 +327,18 @@
       transition: border-color 0.15s ease, background 0.15s ease, transform 0.05s ease;
     }
 
-    .quiz-list-item:hover {
+    .list-item:hover {
       border-color: var(--accent);
       background: #f3f6ff;
       transform: translateY(-1px);
     }
 
-    .quiz-list-title {
+    .list-title {
       font-size: 1rem;
       font-weight: 550;
     }
 
-    .quiz-list-meta {
+    .list-meta {
       font-size: 0.85rem;
       color: var(--text-muted);
       display: flex;
@@ -351,6 +367,8 @@
         <div class="pill" id="pill-right"></div>
       </div>
 
+      <div class="breadcrumbs" id="breadcrumbs"></div>
+
       <div class="progress-bar" id="progress-container">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
@@ -362,74 +380,126 @@
   </div>
 
   <script>
-    // ====== 1. State ======
-    let quizzes = [];
-    let currentQuiz = null;
+    // ====== State ======
+    let modules = [];
+    let currentModule = null;
+    let currentUnit = null;
+    let currentQuizMeta = null;
+    let currentQuizData = null;
+
     let currentQuestionIndex = 0;
     let selectedOptionIndex = null;
     let score = 0;
     const answers = [];
 
-    // ====== 2. DOM refs ======
+    // DOM refs
     const quizContentEl = document.getElementById("quiz-content");
     const cardTitleEl = document.getElementById("card-title");
     const pillRightEl = document.getElementById("pill-right");
     const progressContainerEl = document.getElementById("progress-container");
     const progressFillEl = document.getElementById("progress-fill");
+    const breadcrumbsEl = document.getElementById("breadcrumbs");
 
-    // ====== 3. Load quizzes from quizzes.json ======
-    async function loadQuizzes() {
+    // ====== Load modules.json ======
+    async function loadModules() {
       try {
-        const res = await fetch("quizzes.json");
-        if (!res.ok) {
-          throw new Error("Failed to load quizzes.json");
-        }
-        quizzes = await res.json();
-        renderQuizList();
+        const res = await fetch("modules.json");
+        if (!res.ok) throw new Error("Failed to load modules.json");
+        modules = await res.json();
+        renderModuleList();
       } catch (err) {
         console.error(err);
         cardTitleEl.textContent = "MCQ Quiz Hub";
-        pillRightEl.textContent = "Error loading quizzes";
+        pillRightEl.textContent = "Error loading modules";
         progressContainerEl.style.display = "none";
+        breadcrumbsEl.textContent = "";
         quizContentEl.innerHTML = `
-          <p class="error-text">Could not load <code>quizzes.json</code>.</p>
+          <p class="error-text">Could not load <code>modules.json</code>.</p>
           <p class="helper-text">
-            Make sure <strong>quizzes.json</strong> is in the same folder as <strong>index.html</strong>
-            and that you're running this through a local web server (not opening the file directly).
+            Make sure <strong>modules.json</strong> is in the same folder as <strong>index.html</strong>
+            and that you're running this via a local web server (not opening the file directly).
           </p>
         `;
       }
     }
 
-    // ====== 4. Quiz list view ======
-    function renderQuizList() {
-      currentQuiz = null;
+    // ====== Helpers ======
+    function setBreadcrumbs(level) {
+      // level: "modules" | "units" | "quizzes" | "quiz"
+      const bits = [];
+
+      bits.push(`<span data-level="modules">Modules</span>`);
+
+      if (currentModule && level !== "modules") {
+        bits.push("›");
+        bits.push(
+          `<span data-level="units">${currentModule.name}</span>`
+        );
+      }
+      if (currentUnit && (level === "quizzes" || level === "quiz")) {
+        bits.push("›");
+        bits.push(
+          `<span data-level="quizzes">${currentUnit.name}</span>`
+        );
+      }
+      if (currentQuizMeta && level === "quiz") {
+        bits.push("›");
+        bits.push(`<span>${currentQuizMeta.title}</span>`);
+      }
+
+      breadcrumbsEl.innerHTML = bits.join(" ");
+
+      // Attach breadcrumb click handlers
+      Array.from(breadcrumbsEl.querySelectorAll("span[data-level]")).forEach(
+        (el) => {
+          el.addEventListener("click", () => {
+            const lvl = el.getAttribute("data-level");
+            if (lvl === "modules") {
+              renderModuleList();
+            } else if (lvl === "units") {
+              renderUnitList(currentModule.id);
+            } else if (lvl === "quizzes") {
+              renderQuizList(currentUnit.id);
+            }
+          });
+        }
+      );
+    }
+
+    // ====== Views: Modules / Units / Quizzes ======
+    function renderModuleList() {
+      currentModule = null;
+      currentUnit = null;
+      currentQuizMeta = null;
+      currentQuizData = null;
+
+      cardTitleEl.textContent = "MCQ Quiz Hub";
       progressContainerEl.style.display = "none";
       progressFillEl.style.width = "0";
-      cardTitleEl.textContent = "MCQ Quiz Hub";
+      setBreadcrumbs("modules");
 
-      if (!quizzes || !quizzes.length) {
-        pillRightEl.textContent = "0 quizzes";
+      if (!modules || !modules.length) {
+        pillRightEl.textContent = "0 modules";
         quizContentEl.innerHTML = `
-          <p>No quizzes found in <code>quizzes.json</code>.</p>
-          <p class="helper-text">Add quiz objects to the JSON file to see them listed here.</p>
+          <p>No modules found in <code>modules.json</code>.</p>
+          <p class="helper-text">Add modules, units and quizzes to the JSON file to see them listed here.</p>
         `;
         return;
       }
 
       pillRightEl.textContent =
-        quizzes.length === 1 ? "1 quiz available" : `${quizzes.length} quizzes available`;
+        modules.length === 1 ? "1 module" : `${modules.length} modules`;
 
-      const listHtml = `
-        <div class="quiz-list">
-          ${quizzes
+      const html = `
+        <div class="list">
+          ${modules
             .map(
-              (q) => `
-            <button class="quiz-list-item" data-id="${q.id}">
-              <div class="quiz-list-title">${q.title}</div>
-              <div class="quiz-list-meta">
-                <span>${q.questions?.length || 0} question${(q.questions?.length || 0) !== 1 ? "s" : ""}</span>
-                ${q.description ? `<span>• ${q.description}</span>` : ""}
+              (m) => `
+            <button class="list-item" data-id="${m.id}">
+              <div class="list-title">${m.name}</div>
+              <div class="list-meta">
+                <span>${m.units?.length || 0} unit${(m.units?.length || 0) !== 1 ? "s" : ""}</span>
+                ${m.description ? `<span>• ${m.description}</span>` : ""}
               </div>
             </button>
           `
@@ -437,42 +507,204 @@
             .join("")}
         </div>
         <div class="helper-text">
-          Select a quiz to begin. Edit <strong>quizzes.json</strong> to add or update quizzes.
+          Select a module to view its units and quizzes. Edit <strong>modules.json</strong> to organise your content.
         </div>
       `;
 
-      quizContentEl.innerHTML = listHtml;
+      quizContentEl.innerHTML = html;
 
-      document.querySelectorAll(".quiz-list-item").forEach((btn) => {
+      document.querySelectorAll(".list-item").forEach((btn) => {
         btn.addEventListener("click", () => {
           const id = btn.getAttribute("data-id");
-          startQuiz(id);
+          renderUnitList(id);
         });
       });
     }
 
-    // ====== 5. Quiz flow ======
-    function startQuiz(quizId) {
-      const quiz = quizzes.find((q) => q.id === quizId);
-      if (!quiz) return;
+    function renderUnitList(moduleId) {
+      const mod = modules.find((m) => m.id === moduleId);
+      if (!mod) return;
 
-      currentQuiz = quiz;
+      currentModule = mod;
+      currentUnit = null;
+      currentQuizMeta = null;
+      currentQuizData = null;
+
+      cardTitleEl.textContent = mod.name;
+      progressContainerEl.style.display = "none";
+      progressFillEl.style.width = "0";
+      setBreadcrumbs("units");
+
+      const units = mod.units || [];
+      pillRightEl.textContent =
+        units.length === 1 ? "1 unit" : `${units.length} units`;
+
+      if (!units.length) {
+        quizContentEl.innerHTML = `
+          <p>No units found for this module.</p>
+          <div class="controls">
+            <button class="secondary" id="back-modules">Back to modules</button>
+          </div>
+        `;
+        document
+          .getElementById("back-modules")
+          .addEventListener("click", () => renderModuleList());
+        return;
+      }
+
+      const html = `
+        <div class="list">
+          ${units
+            .map(
+              (u) => `
+            <button class="list-item" data-id="${u.id}">
+              <div class="list-title">${u.name}</div>
+              <div class="list-meta">
+                <span>${u.quizzes?.length || 0} quiz${(u.quizzes?.length || 0) !== 1 ? "zes" : ""}</span>
+                ${u.description ? `<span>• ${u.description}</span>` : ""}
+              </div>
+            </button>
+          `
+            )
+            .join("")}
+        </div>
+        <div class="controls" style="justify-content:flex-start;">
+          <button class="secondary" id="back-modules">Back to modules</button>
+        </div>
+      `;
+
+      quizContentEl.innerHTML = html;
+
+      document.querySelectorAll(".list-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          renderQuizList(id);
+        });
+      });
+
+      document
+        .getElementById("back-modules")
+        .addEventListener("click", () => renderModuleList());
+    }
+
+    function renderQuizList(unitId) {
+      if (!currentModule) return;
+      const unit = (currentModule.units || []).find((u) => u.id === unitId);
+      if (!unit) return;
+
+      currentUnit = unit;
+      currentQuizMeta = null;
+      currentQuizData = null;
+
+      cardTitleEl.textContent = unit.name;
+      progressContainerEl.style.display = "none";
+      progressFillEl.style.width = "0";
+      setBreadcrumbs("quizzes");
+
+      const quizzes = unit.quizzes || [];
+      pillRightEl.textContent =
+        quizzes.length === 1 ? "1 quiz" : `${quizzes.length} quizzes`;
+
+      if (!quizzes.length) {
+        quizContentEl.innerHTML = `
+          <p>No quizzes found for this unit.</p>
+          <div class="controls" style="justify-content:flex-start;">
+            <button class="secondary" id="back-units">Back to units</button>
+          </div>
+        `;
+        document
+          .getElementById("back-units")
+          .addEventListener("click", () => renderUnitList(currentModule.id));
+        return;
+      }
+
+      const html = `
+        <div class="list">
+          ${quizzes
+            .map(
+              (q) => `
+            <button class="list-item" data-id="${q.id}">
+              <div class="list-title">${q.title}</div>
+              <div class="list-meta">
+                <span>Quiz file: ${q.path}</span>
+              </div>
+            </button>
+          `
+            )
+            .join("")}
+        </div>
+        <div class="controls" style="justify-content:flex-start;">
+          <button class="secondary" id="back-units">Back to units</button>
+        </div>
+      `;
+
+      quizContentEl.innerHTML = html;
+
+      document.querySelectorAll(".list-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          const meta = quizzes.find((q) => q.id === id);
+          if (meta) startQuiz(meta);
+        });
+      });
+
+      document
+        .getElementById("back-units")
+        .addEventListener("click", () => renderUnitList(currentModule.id));
+    }
+
+    // ====== Quiz flow ======
+    async function startQuiz(quizMeta) {
+      currentQuizMeta = quizMeta;
+      currentQuizData = null;
       currentQuestionIndex = 0;
       selectedOptionIndex = null;
       score = 0;
       answers.length = 0;
 
-      cardTitleEl.textContent = quiz.title;
-      progressContainerEl.style.display = "block";
+      setBreadcrumbs("quiz");
+      pillRightEl.textContent = "Loading quiz…";
+      progressContainerEl.style.display = "none";
+      progressFillEl.style.width = "0";
 
-      renderQuestion();
+      quizContentEl.innerHTML = `
+        <p>Loading quiz <strong>${quizMeta.title}</strong>…</p>
+        <p class="helper-text">File: <code>${quizMeta.path}</code></p>
+      `;
+
+      try {
+        const res = await fetch(quizMeta.path);
+        if (!res.ok) throw new Error("Failed to load quiz JSON");
+        const data = await res.json();
+        currentQuizData = data;
+
+        cardTitleEl.textContent = data.title || quizMeta.title;
+        progressContainerEl.style.display = "block";
+        renderQuestion();
+      } catch (err) {
+        console.error(err);
+        pillRightEl.textContent = "Error loading quiz";
+        progressContainerEl.style.display = "none";
+        quizContentEl.innerHTML = `
+          <p class="error-text">Could not load quiz file <code>${quizMeta.path}</code>.</p>
+          <div class="controls" style="justify-content:flex-start;">
+            <button class="secondary" id="back-quizzes">Back to quizzes</button>
+          </div>
+        `;
+        document
+          .getElementById("back-quizzes")
+          .addEventListener("click", () => renderQuizList(currentUnit.id));
+      }
     }
 
     function renderQuestion() {
-      const questions = currentQuiz.questions;
+      const questions = currentQuizData.questions || [];
       const q = questions[currentQuestionIndex];
+      if (!q) return;
+
       selectedOptionIndex = null;
 
+      setBreadcrumbs("quiz");
       pillRightEl.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
       const progressPercent = (currentQuestionIndex / questions.length) * 100;
       progressFillEl.style.width = `${progressPercent}%`;
@@ -491,13 +723,13 @@
 
       quizContentEl.innerHTML = `
         <div class="question-text">${q.question}</div>
-        <div class="question-meta">Choose one answer.</div>
+        <div class="question-meta">${currentQuizData.description || "Choose one answer."}</div>
         <div class="options">
           ${optionsHtml}
         </div>
         <div class="feedback" id="feedback"></div>
         <div class="controls">
-          <button class="secondary" id="back-to-list-btn">Back to quizzes</button>
+          <button class="secondary" id="back-to-quizzes">Back to quizzes</button>
           <button class="secondary" id="skip-btn">Skip</button>
           <button class="primary" id="next-btn" disabled>
             Next
@@ -511,9 +743,9 @@
         .forEach((btn) => btn.addEventListener("click", onOptionClick));
       document.getElementById("next-btn").addEventListener("click", onNext);
       document.getElementById("skip-btn").addEventListener("click", onSkip);
-      document.getElementById("back-to-list-btn").addEventListener("click", () => {
-        renderQuizList();
-      });
+      document
+        .getElementById("back-to-quizzes")
+        .addEventListener("click", () => renderQuizList(currentUnit.id));
     }
 
     function onOptionClick(e) {
@@ -533,7 +765,7 @@
     }
 
     function lockOptionsAndShowFeedback(isCorrect) {
-      const questions = currentQuiz.questions;
+      const questions = currentQuizData.questions;
       const q = questions[currentQuestionIndex];
       const correctIndex = q.correctIndex;
 
@@ -562,7 +794,7 @@
     }
 
     function onNext() {
-      const questions = currentQuiz.questions;
+      const questions = currentQuizData.questions;
       const q = questions[currentQuestionIndex];
       const correctIndex = q.correctIndex;
       const isCorrect = selectedOptionIndex === correctIndex;
@@ -591,7 +823,7 @@
     }
 
     function onSkip() {
-      const questions = currentQuiz.questions;
+      const questions = currentQuizData.questions;
       const q = questions[currentQuestionIndex];
       const correctIndex = q.correctIndex;
 
@@ -615,12 +847,13 @@
     }
 
     function renderResult() {
-      const questions = currentQuiz.questions;
+      const questions = currentQuizData.questions;
       const total = questions.length;
       const percent = Math.round((score / total) * 100);
 
       progressFillEl.style.width = "100%";
       pillRightEl.textContent = "Quiz complete";
+      setBreadcrumbs("quiz");
 
       const summaryItemsHtml = answers
         .map((ans, i) => {
@@ -650,16 +883,16 @@
         .join("");
 
       quizContentEl.innerHTML = `
-        <div class="result-heading">Your results for "${currentQuiz.title}"</div>
+        <div class="result-heading">Your results for "${currentQuizData.title || currentQuizMeta.title}"</div>
         <div class="result-score">
           You scored <strong>${score}</strong> out of <strong>${total}</strong> (${percent}%)
         </div>
         <div class="result-detail">
-          Review your answers below, or go back to choose another quiz.
+          Review your answers below, or go back to choose another quiz in this unit.
         </div>
 
         <div class="controls" style="margin-bottom: 4px;">
-          <button class="secondary" id="back-btn">Back to quizzes</button>
+          <button class="secondary" id="back-quizzes">Back to quizzes</button>
           <button class="primary" id="restart-btn">Retake this quiz</button>
         </div>
 
@@ -669,16 +902,16 @@
       `;
 
       document.getElementById("restart-btn").addEventListener("click", () => {
-        startQuiz(currentQuiz.id);
+        startQuiz(currentQuizMeta);
       });
 
-      document.getElementById("back-btn").addEventListener("click", () => {
-        renderQuizList();
+      document.getElementById("back-quizzes").addEventListener("click", () => {
+        renderQuizList(currentUnit.id);
       });
     }
 
-    // ====== 6. Initialise ======
-    loadQuizzes();
+    // ====== Init ======
+    loadModules();
   </script>
 </body>
 </html>

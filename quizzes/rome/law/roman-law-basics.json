@@ -1,0 +1,32 @@
+{
+  "id": "roman-law-basics",
+  "title": "Roman Law Basics",
+  "description": "Foundations of the Roman legal system.",
+  "questions": [
+    {
+      "question": "Who was responsible for bringing a charge against a criminal in Rome?",
+      "options": [
+        "Praetors",
+        "Private individuals",
+        "The Senate",
+        "Provincial governors"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What were the quaestiones perpetuae?",
+      "options": [
+        "Temporary war councils",
+        "Standing courts to try specific crimes",
+        "Assemblies of the people",
+        "Committees of the Senate"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Under whom were the quaestiones perpetuae established and reorganised?",
+      "options": ["Caesar", "Pompey", "Sulla", "Cicero"],
+      "correctIndex": 2
+    }
+  ]
+}
