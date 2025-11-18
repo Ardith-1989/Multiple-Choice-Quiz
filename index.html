@@ -57,6 +57,36 @@
             white-space: nowrap;
         }
 
+        .mcq-toggles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 2px;
+        }
+
+        .toggle-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            background-color: var(--bg-elevated-soft);
+            border: 1px solid var(--border-subtle);
+            font-size: 12px;
+            color: var(--text-soft);
+            cursor: pointer;
+        }
+
+        .toggle-chip input[type="checkbox"] {
+            width: 14px;
+            height: 14px;
+            accent-color: var(--accent);
+        }
+
+        .toggle-label {
+            user-select: none;
+        }
+
         .breadcrumbs {
             font-size: 12px;
             color: var(--text-soft);
@@ -329,7 +359,7 @@
                 </button>
                 <!-- Optional link back to the main Revision Randomiser app -->
                 <a
-                    href="https://ardith-1989.github.io/Revision-Randomiser-V2/"
+                    href="#"
                     class="icon-button"
                     title="Open Revision Randomiser"
                 >
@@ -351,6 +381,18 @@
                         </p>
                     </div>
                     <div class="mcq-pill" id="pill-right"></div>
+                </div>
+
+                <!-- New toggles -->
+                <div class="mcq-toggles">
+                    <label class="toggle-chip">
+                        <input type="checkbox" id="toggle-shuffle" />
+                        <span class="toggle-label">Shuffle question order</span>
+                    </label>
+                    <label class="toggle-chip">
+                        <input type="checkbox" id="toggle-hide-feedback" />
+                        <span class="toggle-label">Hide correct answers until the end</span>
+                    </label>
                 </div>
 
                 <div class="breadcrumbs" id="breadcrumbs"></div>
@@ -401,7 +443,7 @@
         }
 
         // ================================
-        // MCQ APP LOGIC (unchanged core)
+        // MCQ APP LOGIC (with new toggles)
         // ================================
 
         let modules = [];
@@ -410,10 +452,15 @@
         let currentQuizMeta = null;
         let currentQuizData = null;
 
-        let currentQuestionIndex = 0;
+        let currentQuestionIndex = 0; // position in order (0..n-1)
         let selectedOptionIndex = null;
         let score = 0;
         const answers = [];
+
+        // New state for toggles
+        let shuffleQuestionsEnabled = false;
+        let hideFeedbackEnabled = false;
+        let questionOrder = []; // array of original question indices
 
         const quizContentEl = document.getElementById("quiz-content");
         const cardTitleEl = document.getElementById("card-title");
@@ -421,6 +468,14 @@
         const progressContainerEl = document.getElementById("progress-container");
         const progressFillEl = document.getElementById("progress-fill");
         const breadcrumbsEl = document.getElementById("breadcrumbs");
+
+        // Shuffle helper (Fisher–Yates)
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+        }
 
         async function loadModules() {
             try {
@@ -484,6 +539,7 @@
             currentUnit = null;
             currentQuizMeta = null;
             currentQuizData = null;
+            questionOrder = [];
 
             cardTitleEl.textContent =
                 "A Level Ancient History – Multiple Choice Quizzes";
@@ -547,6 +603,7 @@
             currentUnit = null;
             currentQuizMeta = null;
             currentQuizData = null;
+            questionOrder = [];
 
             cardTitleEl.textContent = mod.name;
             progressContainerEl.style.display = "none";
@@ -615,6 +672,7 @@
             currentUnit = unit;
             currentQuizMeta = null;
             currentQuizData = null;
+            questionOrder = [];
 
             cardTitleEl.textContent = unit.name;
             progressContainerEl.style.display = "none";
@@ -653,7 +711,7 @@
               )
               .join("")}
         </div>
-        <div class="controls" style="justify-content:flex-start;">
+        <div class="controls" style="justify-content:flex-start%;">
           <button class="secondary-button" id="back-units">Back to units</button>
         </div>
       `;
@@ -680,6 +738,7 @@
             selectedOptionIndex = null;
             score = 0;
             answers.length = 0;
+            questionOrder = [];
 
             setBreadcrumbs("quiz");
             pillRightEl.textContent = "Loading quiz…";
@@ -696,6 +755,12 @@
                 if (!res.ok) throw new Error("Failed to load quiz JSON");
                 const data = await res.json();
                 currentQuizData = data;
+
+                const questions = currentQuizData.questions || [];
+                questionOrder = questions.map((_, i) => i);
+                if (shuffleQuestionsEnabled) {
+                    shuffleArray(questionOrder);
+                }
 
                 cardTitleEl.textContent = data.title || quizMeta.title;
                 progressContainerEl.style.display = "block";
@@ -718,7 +783,8 @@
 
         function renderQuestion() {
             const questions = currentQuizData.questions || [];
-            const q = questions[currentQuestionIndex];
+            const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
+            const q = questions[orderIndex];
             if (!q) return;
 
             selectedOptionIndex = null;
@@ -786,11 +852,7 @@
             feedbackEl.className = "feedback";
         }
 
-        function lockOptionsAndShowFeedback(isCorrect) {
-            const questions = currentQuizData.questions;
-            const q = questions[currentQuestionIndex];
-            const correctIndex = q.correctIndex;
-
+        function lockOptionsAndShowFeedback(isCorrect, correctIndex) {
             const feedbackEl = document.getElementById("feedback");
             feedbackEl.className =
                 "feedback " + (isCorrect ? "correct" : "incorrect");
@@ -818,7 +880,8 @@
 
         function onNext() {
             const questions = currentQuizData.questions;
-            const q = questions[currentQuestionIndex];
+            const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
+            const q = questions[orderIndex];
             const correctIndex = q.correctIndex;
             const isCorrect = selectedOptionIndex === correctIndex;
 
@@ -827,46 +890,65 @@
             }
 
             answers.push({
-                questionIndex: currentQuestionIndex,
+                questionIndex: orderIndex,
                 selected: selectedOptionIndex,
                 correctIndex,
                 isCorrect,
             });
 
-            lockOptionsAndShowFeedback(isCorrect);
-
-            setTimeout(() => {
+            if (hideFeedbackEnabled) {
+                // No per-question feedback: move straight on
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
                     renderQuestion();
                 } else {
                     renderResult();
                 }
-            }, 650);
+            } else {
+                // Show feedback & highlight correct/incorrect before moving on
+                lockOptionsAndShowFeedback(isCorrect, correctIndex);
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.length) {
+                        renderQuestion();
+                    } else {
+                        renderResult();
+                    }
+                }, 650);
+            }
         }
 
         function onSkip() {
             const questions = currentQuizData.questions;
-            const q = questions[currentQuestionIndex];
+            const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
+            const q = questions[orderIndex];
             const correctIndex = q.correctIndex;
 
             answers.push({
-                questionIndex: currentQuestionIndex,
+                questionIndex: orderIndex,
                 selected: null,
                 correctIndex,
                 isCorrect: false,
             });
 
-            lockOptionsAndShowFeedback(false);
-
-            setTimeout(() => {
+            if (hideFeedbackEnabled) {
                 currentQuestionIndex++;
                 if (currentQuestionIndex < questions.length) {
                     renderQuestion();
                 } else {
                     renderResult();
                 }
-            }, 650);
+            } else {
+                lockOptionsAndShowFeedback(false, correctIndex);
+                setTimeout(() => {
+                    currentQuestionIndex++;
+                    if (currentQuestionIndex < questions.length) {
+                        renderQuestion();
+                    } else {
+                        renderResult();
+                    }
+                }, 650);
+            }
         }
 
         function renderResult() {
@@ -937,8 +1019,23 @@
                 });
         }
 
+        // Hook up the new toggle controls
+        const shuffleToggleEl = document.getElementById("toggle-shuffle");
+        const hideFeedbackToggleEl = document.getElementById("toggle-hide-feedback");
+
+        if (shuffleToggleEl) {
+            shuffleToggleEl.addEventListener("change", (e) => {
+                shuffleQuestionsEnabled = e.target.checked;
+            });
+        }
+
+        if (hideFeedbackToggleEl) {
+            hideFeedbackToggleEl.addEventListener("change", (e) => {
+                hideFeedbackEnabled = e.target.checked;
+            });
+        }
+
         loadModules();
     </script>
 </body>
 </html>
-
