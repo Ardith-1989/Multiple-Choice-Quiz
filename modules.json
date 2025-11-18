@@ -1,12 +1,12 @@
 [
   {
-    "id": "rome",
-    "name": "Rome",
-    "description": "Roman history modules.",
+    "id": "greekstates",
+    "name": "Relationships between Greek States and Non-Greek States",
+    "description": "Desc.",
     "units": [
       {
-        "id": "rome-politics",
-        "name": "Politics and Power",
+        "id": "greekstates-persia",
+        "name": "The Challenge of the Persian Empire, 492-479",
         "description": "Caesar, Pompey and the late Republic.",
         "quizzes": [
           {
@@ -17,8 +17,111 @@
         ]
       },
       {
-        "id": "rome-law",
-        "name": "Law and Courts",
+        "id": "greekstates-greeceinconflict",
+        "name": "Greece in Conflict, 479-446",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "greekstates-peaceconflict",
+        "name": "Peace and Conflict, 446-431",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "greekstates-archidamianwar",
+        "name": "The Archidamian War, 431-421",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "greekstates-endofthewar",
+        "name": "The End of the Peloponnesian War, 421-404",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "athens",
+    "name": "The Politics and Culture of Athens, c. 460-399",
+    "description": "Desc.",
+    "units": [
+      {
+        "id": "athens-politics",
+        "name": "Athenian Political and Social Culture",
+        "description": "Caesar, Pompey and the late Republic.",
+        "quizzes": [
+          {
+            "id": "caesar-pompey",
+            "title": "Caesar vs Pompey",
+            "path": "quizzes/rome/politics/caesar-pompey.json"
+          }
+        ]
+      },
+      {
+        "id": "athens-newthinking",
+        "name": "New Thinking and Philosophy",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "athens-art",
+        "name": "Art and Architecture",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "athens-drama",
+        "name": "Drama and Dramatic Festivals",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "athens-religion",
+        "name": "Religion and Religious Festivals",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
@@ -32,21 +135,161 @@
   },
   {
     "id": "republic",
-    "name": "The Roman Republic",
-    "description": "Origins and development of the Republic.",
+    "name": "The Breakdown of the Late Republic, 88-31 BC",
+    "description": "Desc.",
     "units": [
       {
-        "id": "republic-overview",
-        "name": "Overview",
-        "description": "Key dates and conflicts.",
+        "id": "republic-constitution",
+        "name": "The Roman Constitution",
+        "description": "Caesar, Pompey and the late Republic.",
         "quizzes": [
           {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/republic/overview/late-roman-republic.json"
+            "id": "caesar-pompey",
+            "title": "Caesar vs Pompey",
+            "path": "quizzes/rome/politics/caesar-pompey.json"
+          }
+        ]
+      },
+      {
+        "id": "republic-sulla70s",
+        "name": "Sulla and the 70s",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "republic-cicero60s",
+        "name": "Cicero and the 60s",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "republic-caesar50s",
+        "name": "The 50s - A Turbulent Decade",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "republic-civilwar",
+        "name": "Caesar's Civil War and Dictatorships, 49-44",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      }
+      {
+        "id": "republic-secondtrium",
+        "name": "The Second Triumvirate, 44-31",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      }
+      {
+        "id": "republic-socialeconomic",
+        "name": "Social and Economic Relationships",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "julioclaudians",
+    "name": "The Julio-Claudian Emperors, 31 BC-AD 68",
+    "description": "Desc.",
+    "units": [
+      {
+        "id": "julioclaudians-augustus",
+        "name": "Augustus",
+        "description": "Caesar, Pompey and the late Republic.",
+        "quizzes": [
+          {
+            "id": "caesar-pompey",
+            "title": "Caesar vs Pompey",
+            "path": "quizzes/rome/politics/caesar-pompey.json"
+          }
+        ]
+      },
+      {
+        "id": "julioclaudians-tiberius",
+        "name": "Tiberius",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "julioclaudians-Gaius",
+        "name": "Gaius",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "julioclaudians-claudius",
+        "name": "Claudius",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
+          }
+        ]
+      },
+      {
+        "id": "julioclaudians-nero",
+        "name": "Nero",
+        "description": "Structure of the Roman legal system.",
+        "quizzes": [
+          {
+            "id": "roman-law-basics",
+            "title": "Roman Law Basics",
+            "path": "quizzes/rome/law/roman-law-basics.json"
           }
         ]
       }
     ]
   }
 ]
+
