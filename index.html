@@ -462,6 +462,8 @@
         let hideFeedbackEnabled = false;
         let questionOrder = []; // array of original question indices
 
+        let currentOptionOrder = []; // holds shuffled option indices for the current question
+
         const quizContentEl = document.getElementById("quiz-content");
         const cardTitleEl = document.getElementById("card-title");
         const pillRightEl = document.getElementById("pill-right");
@@ -781,34 +783,48 @@
             }
         }
 
-        function renderQuestion() {
-            const questions = currentQuizData.questions || [];
-            const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
-            const q = questions[orderIndex];
-            if (!q) return;
+function renderQuestion() {
+    const questions = currentQuizData.questions || [];
 
-            selectedOptionIndex = null;
+    // Which *original* question are we on (handles question shuffling)
+    const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
+    const q = questions[orderIndex];
+    if (!q) return;
 
-            setBreadcrumbs("quiz");
-            pillRightEl.textContent = `Question ${
-                currentQuestionIndex + 1
-            } of ${questions.length}`;
-            const progressPercent = (currentQuestionIndex / questions.length) * 100;
-            progressFillEl.style.width = `${progressPercent}%`;
+    selectedOptionIndex = null;
 
-            const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-            const optionsHtml = q.options
-                .map(
-                    (opt, i) => `
-          <button class="option-btn" data-index="${i}">
-            <span class="option-label">${optionLetters[i] ?? ""}.</span>
-            <span class="option-text">${opt}</span>
-          </button>
-        `
-                )
-                .join("");
+    // === NEW: build and shuffle option order for this question ===
+    currentOptionOrder = q.options.map((_, i) => i); // [0,1,2,...]
+    shuffleArray(currentOptionOrder);                // in-place Fisher–Yates shuffle
 
-            quizContentEl.innerHTML = `
+    setBreadcrumbs("quiz");
+
+    pillRightEl.textContent = `Question ${
+        currentQuestionIndex + 1
+    } of ${questions.length}`;
+
+    const progressPercent = (currentQuestionIndex / questions.length) * 100;
+    progressFillEl.style.width = `${progressPercent}%`;
+
+    const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+
+    // Build the buttons in the shuffled order
+    const optionsHtml = currentOptionOrder
+        .map((optIdx, displayIdx) => {
+            const label = optionLetters[displayIdx] ?? "";
+            const text = q.options[optIdx];
+
+            // data-index = ORIGINAL option index, so correctness check still works
+            return `
+                <button class="option-btn" data-index="${optIdx}">
+                    <span class="option-label">${label}.</span>
+                    <span class="option-text">${text}</span>
+                </button>
+            `;
+        })
+        .join("");
+
+    quizContentEl.innerHTML = `
         <div class="question-text">${q.question}</div>
         <p class="question-meta">${
             currentQuizData.description || "Choose one answer."
@@ -824,17 +840,19 @@
             Next →
           </button>
         </div>
-      `;
+    `;
 
-            document
-                .querySelectorAll(".option-btn")
-                .forEach((btn) => btn.addEventListener("click", onOptionClick));
-            document.getElementById("next-btn").addEventListener("click", onNext);
-            document.getElementById("skip-btn").addEventListener("click", onSkip);
-            document
-                .getElementById("back-to-quizzes")
-                .addEventListener("click", () => renderQuizList(currentUnit.id));
-        }
+    // Wire up events
+    document
+        .querySelectorAll(".option-btn")
+        .forEach((btn) => btn.addEventListener("click", onOptionClick));
+
+    document.getElementById("next-btn").addEventListener("click", onNext);
+    document.getElementById("skip-btn").addEventListener("click", onSkip);
+    document
+        .getElementById("back-to-quizzes")
+        .addEventListener("click", () => renderQuizList(currentUnit.id));
+}
 
         function onOptionClick(e) {
             const btn = e.currentTarget;
@@ -1039,3 +1057,4 @@
     </script>
 </body>
 </html>
+
