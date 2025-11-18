@@ -231,7 +231,7 @@
         .feedback.correct span {
             color: var(--success);
         }
-        .feedback.incorrect span {
+        .feedback.incorrect span.value {
             color: var(--danger);
         }
 
@@ -293,6 +293,26 @@
             color: var(--danger);
         }
 
+        /* Sidebar footer link */
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .sidebar-footer a.sidebar-footer-link {
+            font-size: 13px;
+            text-decoration: none;
+            color: var(--accent);
+        }
+        .sidebar-footer a.sidebar-footer-link:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .card-panel-mcq {
                 padding: 16px 14px 18px;
@@ -327,6 +347,7 @@
                 >
                     🌗
                 </button>
+                <!-- Sidebar burger icon: rightmost -->
                 <button
                     id="openSidebarBtn"
                     class="icon-button sidebar-toggle"
@@ -334,16 +355,8 @@
                     aria-label="Quiz options"
                     title="Quiz options"
                 >
-                    ⚙
+                    ☰
                 </button>
-                <!-- Optional link back to the main Revision Randomiser app -->
-                <a
-                    href="#"
-                    class="icon-button"
-                    title="Open Revision Randomiser"
-                >
-                    RR
-                </a>
             </div>
         </header>
 
@@ -425,6 +438,18 @@
                     </p>
                 </div>
             </div>
+
+            <!-- Revision Randomiser link moved to bottom of the sidebar -->
+            <div class="sidebar-footer">
+                <span class="sidebar-text">Switch app:</span>
+                <a
+                    href="#"
+                    class="sidebar-footer-link"
+                    title="Open Revision Randomiser"
+                >
+                    Revision Randomiser ↗
+                </a>
+            </div>
         </div>
     </aside>
     <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
@@ -501,7 +526,7 @@
         let score = 0;
         const answers = [];
 
-        // New state for toggles
+        // State for toggles
         let shuffleQuestionsEnabled = false;
         let hideFeedbackEnabled = false;
         let questionOrder = [];      // array of original question indices
