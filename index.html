@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MCQ Quiz Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-soft: #e0edff;
+      --danger: #dc2626;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 680px;
+      padding: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      padding: 24px 24px 20px;
+    }
+
+    @media (min-width: 640px) {
+      .card {
+        padding: 28px 32px 24px;
+      }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 650;
+    }
+
+    .pill {
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 500;
+      min-height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background: #eef0f4;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      display: none;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      font-weight: 550;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .question-meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.05s ease;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .option-btn:hover {
+      border-color: var(--accent);
+      background: #f3f6ff;
+      transform: translateY(-1px);
+    }
+
+    .option-btn.selected {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .option-btn.correct {
+      border-color: #22c55e;
+      background: #ecfdf3;
+    }
+
+    .option-btn.incorrect {
+      border-color: var(--danger);
+      background: #fef2f2;
+    }
+
+    .option-label {
+      font-weight: 600;
+      min-width: 22px;
+    }
+
+    .option-text {
+      flex: 1;
+      white-space: normal;
+    }
+
+    .feedback {
+      min-height: 22px;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .feedback span {
+      font-weight: 500;
+    }
+
+    .feedback.correct span {
+      color: #16a34a;
+    }
+
+    .feedback.incorrect span {
+      color: var(--danger);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    button.primary {
+      padding: 8px 16px;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+      transition: transform 0.05s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+    }
+
+    button.primary:hover:enabled {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(37, 99, 235, 0.45);
+    }
+
+    button.primary:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+    }
+
+    button.secondary {
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .result-heading {
+      font-size: 1.2rem;
+      font-weight: 650;
+      margin-bottom: 6px;
+    }
+
+    .result-score {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+
+    .result-score strong {
+      font-weight: 650;
+    }
+
+    .result-detail {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .summary-list {
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .summary-item {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #e5e7eb;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .summary-question {
+      font-weight: 550;
+      margin-bottom: 2px;
+    }
+
+    .summary-answer {
+      margin-bottom: 2px;
+    }
+
+    .summary-answer span.label {
+      font-weight: 500;
+    }
+
+    .summary-answer.correct span.value {
+      color: #16a34a;
+    }
+
+    .summary-answer.incorrect span.value {
+      color: var(--danger);
+    }
+
+    .quiz-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .quiz-list-item {
+      width: 100%;
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.05s ease;
+    }
+
+    .quiz-list-item:hover {
+      border-color: var(--accent);
+      background: #f3f6ff;
+      transform: translateY(-1px);
+    }
+
+    .quiz-list-title {
+      font-size: 1rem;
+      font-weight: 550;
+    }
+
+    .quiz-list-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .helper-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .error-text {
+      font-size: 0.9rem;
+      color: var(--danger);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="card" id="quiz-card">
+      <div class="card-header">
+        <div class="title" id="card-title">MCQ Quiz Hub</div>
+        <div class="pill" id="pill-right"></div>
+      </div>
+
+      <div class="progress-bar" id="progress-container">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div id="quiz-content">
+        <!-- Content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== 1. State ======
+    let quizzes = [];
+    let currentQuiz = null;
+    let currentQuestionIndex = 0;
+    let selectedOptionIndex = null;
+    let score = 0;
+    const answers = [];
+
+    // ====== 2. DOM refs ======
+    const quizContentEl = document.getElementById("quiz-content");
+    const cardTitleEl = document.getElementById("card-title");
+    const pillRightEl = document.getElementById("pill-right");
+    const progressContainerEl = document.getElementById("progress-container");
+    const progressFillEl = document.getElementById("progress-fill");
+
+    // ====== 3. Load quizzes from quizzes.json ======
+    async function loadQuizzes() {
+      try {
+        const res = await fetch("quizzes.json");
+        if (!res.ok) {
+          throw new Error("Failed to load quizzes.json");
+        }
+        quizzes = await res.json();
+        renderQuizList();
+      } catch (err) {
+        console.error(err);
+        cardTitleEl.textContent = "MCQ Quiz Hub";
+        pillRightEl.textContent = "Error loading quizzes";
+        progressContainerEl.style.display = "none";
+        quizContentEl.innerHTML = `
+          <p class="error-text">Could not load <code>quizzes.json</code>.</p>
+          <p class="helper-text">
+            Make sure <strong>quizzes.json</strong> is in the same folder as <strong>index.html</strong>
+            and that you're running this through a local web server (not opening the file directly).
+          </p>
+        `;
+      }
+    }
+
+    // ====== 4. Quiz list view ======
+    function renderQuizList() {
+      currentQuiz = null;
+      progressContainerEl.style.display = "none";
+      progressFillEl.style.width = "0";
+      cardTitleEl.textContent = "MCQ Quiz Hub";
+
+      if (!quizzes || !quizzes.length) {
+        pillRightEl.textContent = "0 quizzes";
+        quizContentEl.innerHTML = `
+          <p>No quizzes found in <code>quizzes.json</code>.</p>
+          <p class="helper-text">Add quiz objects to the JSON file to see them listed here.</p>
+        `;
+        return;
+      }
+
+      pillRightEl.textContent =
+        quizzes.length === 1 ? "1 quiz available" : `${quizzes.length} quizzes available`;
+
+      const listHtml = `
+        <div class="quiz-list">
+          ${quizzes
+            .map(
+              (q) => `
+            <button class="quiz-list-item" data-id="${q.id}">
+              <div class="quiz-list-title">${q.title}</div>
+              <div class="quiz-list-meta">
+                <span>${q.questions?.length || 0} question${(q.questions?.length || 0) !== 1 ? "s" : ""}</span>
+                ${q.description ? `<span>• ${q.description}</span>` : ""}
+              </div>
+            </button>
+          `
+            )
+            .join("")}
+        </div>
+        <div class="helper-text">
+          Select a quiz to begin. Edit <strong>quizzes.json</strong> to add or update quizzes.
+        </div>
+      `;
+
+      quizContentEl.innerHTML = listHtml;
+
+      document.querySelectorAll(".quiz-list-item").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const id = btn.getAttribute("data-id");
+          startQuiz(id);
+        });
+      });
+    }
+
+    // ====== 5. Quiz flow ======
+    function startQuiz(quizId) {
+      const quiz = quizzes.find((q) => q.id === quizId);
+      if (!quiz) return;
+
+      currentQuiz = quiz;
+      currentQuestionIndex = 0;
+      selectedOptionIndex = null;
+      score = 0;
+      answers.length = 0;
+
+      cardTitleEl.textContent = quiz.title;
+      progressContainerEl.style.display = "block";
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const questions = currentQuiz.questions;
+      const q = questions[currentQuestionIndex];
+      selectedOptionIndex = null;
+
+      pillRightEl.textContent = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+      const progressPercent = (currentQuestionIndex / questions.length) * 100;
+      progressFillEl.style.width = `${progressPercent}%`;
+
+      const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+      const optionsHtml = q.options
+        .map(
+          (opt, i) => `
+          <button class="option-btn" data-index="${i}">
+            <span class="option-label">${optionLetters[i] ?? ""}.</span>
+            <span class="option-text">${opt}</span>
+          </button>
+        `
+        )
+        .join("");
+
+      quizContentEl.innerHTML = `
+        <div class="question-text">${q.question}</div>
+        <div class="question-meta">Choose one answer.</div>
+        <div class="options">
+          ${optionsHtml}
+        </div>
+        <div class="feedback" id="feedback"></div>
+        <div class="controls">
+          <button class="secondary" id="back-to-list-btn">Back to quizzes</button>
+          <button class="secondary" id="skip-btn">Skip</button>
+          <button class="primary" id="next-btn" disabled>
+            Next
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      `;
+
+      document
+        .querySelectorAll(".option-btn")
+        .forEach((btn) => btn.addEventListener("click", onOptionClick));
+      document.getElementById("next-btn").addEventListener("click", onNext);
+      document.getElementById("skip-btn").addEventListener("click", onSkip);
+      document.getElementById("back-to-list-btn").addEventListener("click", () => {
+        renderQuizList();
+      });
+    }
+
+    function onOptionClick(e) {
+      const btn = e.currentTarget;
+      const index = Number(btn.getAttribute("data-index"));
+      selectedOptionIndex = index;
+
+      document.querySelectorAll(".option-btn").forEach((b) => {
+        b.classList.remove("selected");
+      });
+      btn.classList.add("selected");
+
+      document.getElementById("next-btn").disabled = false;
+      const feedbackEl = document.getElementById("feedback");
+      feedbackEl.textContent = "Answer selected.";
+      feedbackEl.className = "feedback";
+    }
+
+    function lockOptionsAndShowFeedback(isCorrect) {
+      const questions = currentQuiz.questions;
+      const q = questions[currentQuestionIndex];
+      const correctIndex = q.correctIndex;
+
+      const feedbackEl = document.getElementById("feedback");
+      feedbackEl.className = "feedback " + (isCorrect ? "correct" : "incorrect");
+
+      document.querySelectorAll(".option-btn").forEach((btn) => {
+        const idx = Number(btn.getAttribute("data-index"));
+        btn.disabled = true;
+        btn.classList.remove("selected");
+
+        if (idx === correctIndex) {
+          btn.classList.add("correct");
+        } else if (idx === selectedOptionIndex && !isCorrect) {
+          btn.classList.add("incorrect");
+        }
+      });
+
+      if (isCorrect) {
+        feedbackEl.innerHTML = `<span>Correct!</span> Nice job.`;
+      } else if (selectedOptionIndex === null) {
+        feedbackEl.innerHTML = `<span>Skipped.</span> The correct answer is highlighted.`;
+      } else {
+        feedbackEl.innerHTML = `<span>Incorrect.</span> The correct answer is highlighted.`;
+      }
+    }
+
+    function onNext() {
+      const questions = currentQuiz.questions;
+      const q = questions[currentQuestionIndex];
+      const correctIndex = q.correctIndex;
+      const isCorrect = selectedOptionIndex === correctIndex;
+
+      if (selectedOptionIndex !== null && isCorrect) {
+        score++;
+      }
+
+      answers.push({
+        questionIndex: currentQuestionIndex,
+        selected: selectedOptionIndex,
+        correctIndex,
+        isCorrect
+      });
+
+      lockOptionsAndShowFeedback(isCorrect);
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          renderQuestion();
+        } else {
+          renderResult();
+        }
+      }, 650);
+    }
+
+    function onSkip() {
+      const questions = currentQuiz.questions;
+      const q = questions[currentQuestionIndex];
+      const correctIndex = q.correctIndex;
+
+      answers.push({
+        questionIndex: currentQuestionIndex,
+        selected: null,
+        correctIndex,
+        isCorrect: false
+      });
+
+      lockOptionsAndShowFeedback(false);
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+          renderQuestion();
+        } else {
+          renderResult();
+        }
+      }, 650);
+    }
+
+    function renderResult() {
+      const questions = currentQuiz.questions;
+      const total = questions.length;
+      const percent = Math.round((score / total) * 100);
+
+      progressFillEl.style.width = "100%";
+      pillRightEl.textContent = "Quiz complete";
+
+      const summaryItemsHtml = answers
+        .map((ans, i) => {
+          const q = questions[ans.questionIndex];
+          const qNumber = i + 1;
+          const userAnswerText =
+            ans.selected === null ? "No answer" : q.options[ans.selected];
+          const correctAnswerText = q.options[ans.correctIndex];
+          const userClass = ans.isCorrect ? "correct" : "incorrect";
+
+          return `
+            <div class="summary-item">
+              <div class="summary-question">
+                ${qNumber}. ${q.question}
+              </div>
+              <div class="summary-answer ${userClass}">
+                <span class="label">Your answer:</span>
+                <span class="value"> ${userAnswerText}</span>
+              </div>
+              <div class="summary-answer">
+                <span class="label">Correct answer:</span>
+                <span class="value"> ${correctAnswerText}</span>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+
+      quizContentEl.innerHTML = `
+        <div class="result-heading">Your results for "${currentQuiz.title}"</div>
+        <div class="result-score">
+          You scored <strong>${score}</strong> out of <strong>${total}</strong> (${percent}%)
+        </div>
+        <div class="result-detail">
+          Review your answers below, or go back to choose another quiz.
+        </div>
+
+        <div class="controls" style="margin-bottom: 4px;">
+          <button class="secondary" id="back-btn">Back to quizzes</button>
+          <button class="primary" id="restart-btn">Retake this quiz</button>
+        </div>
+
+        <div class="summary-list">
+          ${summaryItemsHtml}
+        </div>
+      `;
+
+      document.getElementById("restart-btn").addEventListener("click", () => {
+        startQuiz(currentQuiz.id);
+      });
+
+      document.getElementById("back-btn").addEventListener("click", () => {
+        renderQuizList();
+      });
+    }
+
+    // ====== 6. Initialise ======
+    loadQuizzes();
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+[
+  {
+    "id": "caesar-pompey",
+    "title": "Caesar vs Pompey",
+    "description": "Key events and personalities in the conflict between Caesar and Pompey.",
+    "questions": [
+      {
+        "question": "Who vetoed the Senate's discussion of Caesar's command?",
+        "options": ["Marcellus", "Curio", "Cato", "Pompey"],
+        "correctIndex": 1
+      },
+      {
+        "question": "What did Marcellus do to humiliate Caesar's Transpadane Gauls?",
+        "options": [
+          "Refused them citizenship",
+          "Confiscated their land",
+          "Flogged them",
+          "Expelled them from Rome"
+        ],
+        "correctIndex": 2
+      },
+      {
+        "question": "Pompey compared the idea that Caesar might disobey the Senate's decision to:",
+        "options": [
+          "A storm in a teacup",
+          "A son wanting to beat his father with a stick",
+          "A slave rebelling against his master",
+          "A general losing his army"
+        ],
+        "correctIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "roman-law-basics",
+    "title": "Roman Law Basics",
+    "description": "Foundations of the Roman legal system.",
+    "questions": [
+      {
+        "question": "Who was responsible for bringing a charge against a criminal in Rome?",
+        "options": [
+          "Praetors",
+          "Private individuals",
+          "The Senate",
+          "Provincial governors"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "What were the quaestiones perpetuae?",
+        "options": [
+          "Temporary war councils",
+          "Standing courts to try specific crimes",
+          "Assemblies of the people",
+          "Committees of the Senate"
+        ],
+        "correctIndex": 1
+      },
+      {
+        "question": "Under whom were the quaestiones perpetuae established and reorganised?",
+        "options": ["Caesar", "Pompey", "Sulla", "Cicero"],
+        "correctIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "late-roman-republic",
+    "title": "Late Roman Republic Overview",
+    "description": "Key dates and conflicts in the Late Republic.",
+    "questions": [
+      {
+        "question": "What is the traditional year given for the founding of Rome?",
+        "options": ["509 BCE", "753 BCE", "146 BCE", "31 BCE"],
+        "correctIndex": 1
+      },
+      {
+        "question": "When was Rome made into a Republic?",
+        "options": ["753 BCE", "509 BCE", "287 BCE", "133 BCE"],
+        "correctIndex": 1
+      },
+      {
+        "question": "Who did Rome fight in the Social War?",
+        "options": [
+          "Carthage",
+          "Macedon",
+          "Some of their Italian allies",
+          "Parthia"
+        ],
+        "correctIndex": 2
+      }
+    ]
+  }
+]
