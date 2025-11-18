@@ -77,9 +77,9 @@
         "description": "Caesar, Pompey and the late Republic.",
         "quizzes": [
           {
-            "id": "caesar-pompey",
-            "title": "Caesar vs Pompey",
-            "path": "quizzes/rome/politics/caesar-pompey.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republicy",
+            "path": "quizzes/athens/politics/late-roman-republic.json"
           }
         ]
       },
@@ -89,9 +89,9 @@
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republicy",
+            "path": "quizzes/athens/newthinking/late-roman-republic.json"
           }
         ]
       },
@@ -101,9 +101,9 @@
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republicy",
+            "path": "quizzes/athens/art/late-roman-republic.json"
           }
         ]
       },
@@ -113,9 +113,9 @@
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republicy",
+            "path": "quizzes/athens/drama/late-roman-republic.json"
           }
         ]
       },
@@ -125,9 +125,9 @@
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republicy",
+            "path": "quizzes/athens/religion/late-roman-republic.json"
           }
         ]
       }
@@ -292,4 +292,5 @@
     ]
   }
 ]
+
 
