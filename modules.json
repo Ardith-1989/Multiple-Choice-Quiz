@@ -197,7 +197,7 @@
             "path": "quizzes/rome/law/roman-law-basics.json"
           }
         ]
-      }
+      },
       {
         "id": "republic-secondtrium",
         "name": "The Second Triumvirate, 44-31",
@@ -209,7 +209,7 @@
             "path": "quizzes/rome/law/roman-law-basics.json"
           }
         ]
-      }
+      },
       {
         "id": "republic-socialeconomic",
         "name": "Social and Economic Relationships",
@@ -292,5 +292,6 @@
     ]
   }
 ]
+
 
 
