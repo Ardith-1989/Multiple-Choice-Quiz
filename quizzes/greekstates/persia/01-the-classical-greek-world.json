@@ -1,0 +1,57 @@
+{
+  "id": "01-the-classical-greek-world",
+  "title": "01. The Classical Greek World",
+  "description": "Core features of the Classical Greek world: colonisation, the polis, and shared Greek identity.",
+  "questions": [
+    {
+      "question": "When did the primary period of Greek colonisation take place?",
+      "options": [
+        "10th-8th c. BC",
+        "8th-6th c. BC",
+        "5th-4th c. BC",
+        "7th-5th c. BC"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What is the common translation of polis?",
+      "options": [
+        "City-state",
+        "Empire",
+        "Kingdom-state",
+        "Kingdom"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What are the things that are united in a polis?",
+      "options": [
+        "City, nobility, and military",
+        "Economy, trade, and government",
+        "Religion, art, and philosophy",
+        "City, villages, and countryside, the people, and way of life"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "What things united the Greeks as a people?",
+      "options": [
+        "Military, Politics, Language",
+        "Language, Literature/History, Religion",
+        "Philosophy, Art, Economy",
+        "Trade, Empire, Philosophy"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What was the empire to the east of Greece?",
+      "options": [
+        "The Roman Empire",
+        "The Ottoman Empire",
+        "The Persian Empire",
+        "The Egyptian Empire"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}
