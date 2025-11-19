@@ -1,0 +1,157 @@
+{
+  "id": "29-caesar-s-dictatorship",
+  "title": "29. Caesar's Dictatorship",
+  "description": "29. Caesar's Dictatorship",
+  "questions": [
+    {
+      "question": "How long was Caesar's Dictatorship in 49?",
+      "options": [
+        "30 days",
+        "11 days",
+        "1 year",
+        "6 months"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "In what year was Caesar given a one-year dictatorship?",
+      "options": [
+        "48",
+        "47",
+        "46",
+        "49"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In what year was Caesar elected to all the remaining priestly colleges he was",
+      "options": [
+        "48",
+        "47",
+        "46",
+        "45"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long was the dictatorship Caesar was awarded in 46?",
+      "options": [
+        "1 year",
+        "5 years",
+        "10 years",
+        "15 years"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which other powers was Caesar granted in 46?",
+      "options": [
+        "Powers of an Augur",
+        "Powers of a Censor",
+        "Powers of a Tribune",
+        "Powers of a Praetor"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What position did Caesar hold in 45?",
+      "options": [
+        "Censor",
+        "Tribune",
+        "Dictator",
+        "Sole Consul"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In what year was Caesar appointed dictator for life?",
+      "options": [
+        "43",
+        "44",
+        "45",
+        "46"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What had Caesar done with coins he minted, that was previously unheard of?",
+      "options": [
+        "Added Republican slogans",
+        "Depicted Roman temples",
+        "Used gold exclusively",
+        "Placed his portrait on them"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What right did Caesar get granted when speaking in the Senate?",
+      "options": [
+        "He could speak first",
+        "He could speak last",
+        "He could veto others",
+        "He could dismiss senators"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar place statues of himself?",
+      "options": [
+        "In the Forum only",
+        "In the Temple of Quirinus and near statues of the kings of Rome",
+        "In the Curia",
+        "Atop the Capitoline Hill"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which college of priests were established by him?",
+      "options": [
+        "The Pontifices Maximi",
+        "The Flavian Augurs",
+        "The Claudian Vestals",
+        "The Julian Lupercii"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many triumphs did Caesar celebrate?",
+      "options": [
+        "Four",
+        "Two",
+        "Five",
+        "Three"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who had Caesar appointed as his heir in his will?",
+      "options": [
+        "Marcus Antonius",
+        "Brutus",
+        "Gaius Octavius",
+        "Lepidus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was Caesar planning to campaign in 44?",
+      "options": [
+        "Spain",
+        "Gaul",
+        "Egypt",
+        "Parthia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When was Caesar next planning to leave Rome?",
+      "options": [
+        "Late February 44",
+        "Mid-March 44",
+        "April 44",
+        "January 44"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,147 @@
+{
+  "id": "30-caesar-s-reforms",
+  "title": "30. Caesar's Reforms",
+  "description": "30. Caesar's Reforms",
+  "questions": [
+    {
+      "question": "Which group of Gauls did Caesar grant the Franchise to?",
+      "options": [
+        "Cisalpine",
+        "Narbonese",
+        "Transpadane",
+        "Helvetii"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which professions were also granted franchise?",
+      "options": [
+        "Merchants and Artisans",
+        "Lawyers and Poets",
+        "Teachers and Doctors in Rome",
+        "Farmers and Soldiers"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the towns of Cadiz and Lisbon given?",
+      "options": [
+        "Full Roman Citizenship",
+        "Military Immunity",
+        "Partial Citizenship",
+        "Tax Exemption"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar promote the founding of colonies?",
+      "options": [
+        "Pompeii, Capua, Ariminum, Tarentum",
+        "Carthage, Corinth, Hispalis, Tarraco, Sinope, Cirta",
+        "Athens, Sparta, Ephesus, Pergamon",
+        "Byzantium, Alexandria, Antioch, Rhodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What happened to the Land Tax in Sicily and Africa?",
+      "options": [
+        "It was abolished",
+        "It was collected by private contractors",
+        "It was doubled",
+        "It was fixed"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was added to the Senate?",
+      "options": [
+        "Foreign ambassadors",
+        "Retired soldiers",
+        "Prominent provincials",
+        "Freedmen"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How did Caesar replenish the treasury?",
+      "options": [
+        "By imposing new taxes",
+        "By selling public lands",
+        "By seizing temple wealth",
+        "A uniform system of local government for Italian towns"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the membership of the senate increased to?",
+      "options": [
+        "750",
+        "1000",
+        "900",
+        "600"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many Quaestors, Aediles, and Praetors were now elected each year?",
+      "options": [
+        "30 Quaestors, 8 Aediles, 12 Praetors",
+        "40 Quaestors, 6 Aediles, 16 Praetors",
+        "25 Quaestors, 4 Aediles, 14 Praetors",
+        "50 Quaestors, 10 Aediles, 20 Praetors"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the pay for soldiers increased to?",
+      "options": [
+        "250 denarii",
+        "200 denarii",
+        "300 denarii",
+        "400 denarii"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who were removed from juries, and who did this benefit?",
+      "options": [
+        "Tribune aerarii, benefitting the Senators and Equestrians",
+        "Senators, benefitting the Plebeians",
+        "Freedmen, benefitting the Tribunes",
+        "Equestrians, benefitting the Freedmen"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What public works were planned by Caesar?",
+      "options": [
+        "Creating new markets, renovating the Colosseum, expanding baths",
+        "Draining Pontine marshes, deepening Ostia, cutting a canal at the Isthmus of",
+        "Constructing theatres, repairing bridges, improving harbours",
+        "Building new aqueducts, restoring temples, expanding the Circus Maximus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Caesar do with the collegia?",
+      "options": [
+        "Reorganized them",
+        "Expanded them",
+        "Suppressed them",
+        "Taxed them heavily"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was Caesar's action toward the corn dole?",
+      "options": [
+        "Decreased the number of people receiving it",
+        "Abolished it completely",
+        "Expanded it to all provinces",
+        "Doubled its size and scope"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

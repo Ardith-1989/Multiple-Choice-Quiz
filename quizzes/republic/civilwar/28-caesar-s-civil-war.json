@@ -1,0 +1,237 @@
+{
+  "id": "28-caesar-s-civil-war",
+  "title": "28. Caesar's Civil War",
+  "description": "28. Caesar's Civil War",
+  "questions": [
+    {
+      "question": "Where did the Republicans flee to when Caesar crossed the Rubicon?",
+      "options": [
+        "Tarentum",
+        "Brundisium",
+        "Capua",
+        "Rome"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Who tried and failed to intercept Caesar at Corfinium?",
+      "options": [
+        "Domitius",
+        "Curio",
+        "Cicero",
+        "Ahenobarbus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Pompey and the Senators flee to in order to leave Italy?",
+      "options": [
+        "Capua",
+        "Tarentum",
+        "Ostia",
+        "Brundisium"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long did it take Cicero to join the republicans in Greece?",
+      "options": [
+        "Five months",
+        "Two months",
+        "Six weeks",
+        "Three months"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar gather funds upon arriving in Rome?",
+      "options": [
+        "The Forum",
+        "The Temple of Saturn",
+        "The Treasury",
+        "The Senate House"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar first head after he had taken Rome?",
+      "options": [
+        "Gaul",
+        "Sicily",
+        "Spain",
+        "Greece"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who were the commanders that Caesar defeated to secure this province before",
+      "options": [
+        "Scipio and Domitius",
+        "Afranius and Varro",
+        "Pompey and Crassus",
+        "Labienus and Cato"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar send legates to secure grain supplies?",
+      "options": [
+        "Crete and Cyprus",
+        "Corsica and Gaul",
+        "Sicily and Sardinia",
+        "Macedonia and Egypt"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When did Caesar cross into Greece?",
+      "options": [
+        "46",
+        "49",
+        "48",
+        "47"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did he fail to blockade Pompey's navy?",
+      "options": [
+        "Thessalonica",
+        "Brundisium",
+        "Dyrrhacium",
+        "Pharsalus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Pompey and Caesar meet in battle, with Caesar winning a victory?",
+      "options": [
+        "Pharsalus",
+        "Utica",
+        "Thapsus",
+        "Dyrrhacium"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What happened to Pompey upon his arrival in Egypt?",
+      "options": [
+        "He surrendered to Caesar",
+        "He was imprisoned by Cleopatra",
+        "He was killed by the Egyptians.",
+        "He escaped into Syria"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did Caesar become entangled with when he arrived in Egypt?",
+      "options": [
+        "Cleopatra",
+        "Arsinoe",
+        "Octavia",
+        "Berenice"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Caesar do on his return journey from Egypt to Rome?",
+      "options": [
+        "Reorganised eastern provinces, dealt with Pharnaces (son of Mithridates)",
+        "Defeated Pompey’s sons in Africa",
+        "Rebuilt the Senate",
+        "Fought Parthia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When did Caesar return to Rome after Greece and Egypt?",
+      "options": [
+        "45",
+        "48",
+        "46",
+        "47"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When did Caesar sail to Africa?",
+      "options": [
+        "46",
+        "48",
+        "Late 47",
+        "45"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who were leading the republican forces gathered in Africa?",
+      "options": [
+        "Lepidus, Octavian, Antony",
+        "Bibulus, Domitius, Curio",
+        "Metellus Scipio, Afranius, Labienus, Cato, Pompey's Sons",
+        "Cicero, Brutus, Cassius"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which native king was also aiding the Republicans?",
+      "options": [
+        "King Juba of Numidia",
+        "King Bocchus of Mauretania",
+        "King Ptolemy of Egypt",
+        "King Deiotarus of Galatia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar defeat the majority of the Republicans?",
+      "options": [
+        "Thapsus",
+        "Utica",
+        "Munda",
+        "Pharsalus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Cato commit suicide?",
+      "options": [
+        "Rome",
+        "Alexandria",
+        "Utica",
+        "Thapsus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Caesar go after defeating the Republicans in Africa?",
+      "options": [
+        "Rome",
+        "Sicily",
+        "Greece",
+        "Spain"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was Caesar forced to go in 45 to finish off the remaining Pompeians?",
+      "options": [
+        "Gaul",
+        "Greece",
+        "Africa",
+        "Spain"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In which battle did Caesar finally defeat the republicans?",
+      "options": [
+        "Battle of Dyrrhacium",
+        "Battle of Munda",
+        "Battle of Thapsus",
+        "Battle of Pharsalus"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+{
+  "id": "31-the-assassination-of-caesar",
+  "title": "31. The Assassination of Caesar",
+  "description": "31. The Assassination of Caesar",
+  "questions": [
+    {
+      "question": "How had Caesar provoked the anger of the senate?",
+      "options": [
+        "Failing to rise for a delegation, punishing tribunes who chastised citizens for",
+        "Expelling senators from Rome",
+        "Increasing taxes on senators",
+        "Refusing to address the Senate"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Antony attempt to do at the Lupercalia festival?",
+      "options": [
+        "Declare himself co-consul",
+        "Crown Caesar with a diadem",
+        "Read a speech of loyalty",
+        "Dedicate the games to Venus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was Caesar's response to rumours of assassination plots?",
+      "options": [
+        "Increased his personal guard",
+        "Cancelled public meetings",
+        "Ignored them",
+        "Exiled suspected conspirators"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was Caesar called to a Senate meeting on the Ides of March?",
+      "options": [
+        "The Forum Romanum",
+        "The Curia Julia",
+        "The Capitoline Hill",
+        "The Theatre of Pompey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why may Caesar have not felt that assassination plots were a real threat?",
+      "options": [
+        "The senate swore an oath to protect him, and he had tribunician sacrosanctity.",
+        "He was always accompanied by soldiers",
+        "He believed omens protected him",
+        "He had spies in the Senate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Roughly how many were involved in the plot to assassinate Caesar?",
+      "options": [
+        "100",
+        "25",
+        "60",
+        "30"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why did they plan to strike when they did?",
+      "options": [
+        "They wanted to act before the elections",
+        "Because Caesar was leaving for Parthia soon",
+        "It was the anniversary of his triumph",
+        "They feared he would disband the Senate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who were the three main figures of the plot?",
+      "options": [
+        "Servilia, Cato, Dolabella",
+        "Cicero, Antony, Lepidus",
+        "G. Cassius Longinus, M. Junius Brutus, Decimus Junius Brutus",
+        "Pompey, Crassus, Caesar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which conspirator had joined Caesar after the battle of Pharsalus?",
+      "options": [
+        "Trebonius",
+        "Brutus",
+        "Cassius",
+        "Cimber"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was the figurehead of the plot?",
+      "options": [
+        "Cassius",
+        "Decimus Brutus",
+        "M. Junius Brutus",
+        "Cicero"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the figurehead's relationship to Caesar?",
+      "options": [
+        "He was Caesar’s nephew",
+        "His mother was a lover of Caesar's",
+        "He was Caesar’s cousin",
+        "He was Caesar’s adopted son"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why did the figurehead likely have an allegiance to Cato?",
+      "options": [
+        "He studied under Cato",
+        "He served with Cato in Africa",
+        "He owed Cato a political debt",
+        "He was Cato's nephew, and married to his daughter"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who were the ancestors of the figurehead, who set an important precedent?",
+      "options": [
+        "Romulus and Remus",
+        "Scipio Africanus and Cato the Elder",
+        "Marius and Sulla",
+        "Lucius Brutus and Servilius Ahala"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which conspirator was mentioned in Caesar's will?",
+      "options": [
+        "M. Brutus",
+        "Cimber",
+        "Decimus Brutus",
+        "Cassius"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led Antony away from Caesar when they arrived at the senate meeting?",
+      "options": [
+        "Cassius",
+        "Decimus Brutus",
+        "Casca",
+        "Either Brutus or Trebonius"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who then presented Caesar with a petition?",
+      "options": [
+        "Casca",
+        "Trebonius",
+        "L. Tillius Cimber",
+        "Cinna"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who struck the first blow on Caesar?",
+      "options": [
+        "Cassius",
+        "Brutus",
+        "C. Servilius Casca",
+        "Cimber"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were Caesar's dying words to Brutus (according to Suetonius)?",
+      "options": [
+        "Remember me",
+        "You too, child",
+        "This is treason!",
+        "Et tu, Brute?"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where does Plutarch tell us Caesar's body fell?",
+      "options": [
+        "Atop the Rostra",
+        "The foot of a statue of Pompey",
+        "On the Senate floor",
+        "In the Curia Julia"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
