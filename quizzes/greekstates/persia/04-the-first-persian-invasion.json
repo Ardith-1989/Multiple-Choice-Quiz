@@ -1,0 +1,167 @@
+{
+  "id": "04-the-first-persian-invasion",
+  "title": "04. The First Persian Invasion",
+  "description": "The Persian invasion of 490 BC and the events leading to the Battle of Marathon.",
+  "questions": [
+    {
+      "question": "Who were the commanders leading the Persian invasion of 490?",
+      "options": [
+        "Datis and Artaphernes",
+        "Xerxes and Artaxerxes",
+        "Darius and Xerxes",
+        "Hippias and Miltiades"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which island did they invade, and subsequently enslave the population of?",
+      "options": [
+        "Naxos",
+        "Crete",
+        "Mykonos",
+        "Chios"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How did the Persians behave at the sanctuary of Delos?",
+      "options": [
+        "Hostilely",
+        "Aggressively",
+        "Indifferently",
+        "Respectfully"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Which city on Euboea sought help, unsuccessfully, from Athens?",
+      "options": [
+        "Delphi",
+        "Thebes",
+        "Eritrea",
+        "Plataea"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which Athenian figure was helping the Persians in their invasion?",
+      "options": [
+        "Hippias",
+        "Themistocles",
+        "Pericles",
+        "Miltiades"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Persians land their fleet in Attica?",
+      "options": [
+        "Ephesus",
+        "Athens",
+        "Marathon",
+        "Plataea"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Who was leading the Athenian troops that marched to meet the Persians?",
+      "options": [
+        "Callimachus",
+        "Miltiades",
+        "Pericles",
+        "Themistocles"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Why was Sparta not able to send help?",
+      "options": [
+        "They were preparing for a festival",
+        "They were fighting a battle in the Peloponnese",
+        "They were having internal political conflicts",
+        "They were celebrating the Carnea festival"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Which small town did send troops to aid Athens?",
+      "options": [
+        "Plataea",
+        "Corinth",
+        "Thebes",
+        "Argos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who had the final vote in the Athenian generals' council, and ultimately voted to fight following Miltiades' suggestion?",
+      "options": [
+        "Callimachus (The Polemarchos)",
+        "Miltiades",
+        "Pericles",
+        "Themistocles"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What unusual tactic did the Greeks use against the Persians?",
+      "options": [
+        "They feigned retreat",
+        "They used long-range archery",
+        "They approached at a run",
+        "They fought at night"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "How had the Greeks arranged their forces?",
+      "options": [
+        "Strong centre, weak wings",
+        "Equal strength across all lines",
+        "Flank-based strategy",
+        "Strong wings, weak centre"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "When the Persians fled, what did they try to do?",
+      "options": [
+        "Escape to the Aegean islands",
+        "Return to Asia Minor",
+        "Seek refuge in Sparta",
+        "Sail to the port of Athens"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Why were the Persians not able to approach the city by sea?",
+      "options": [
+        "The Athenians had marched back and were waiting for them",
+        "They were ambushed by the Spartans",
+        "The Athenian fleet had blockaded the coast",
+        "A storm prevented them"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Sparta able to do when they arrived?",
+      "options": [
+        "Negotiate peace with the Persians",
+        "Join the battle and defeat the Persians",
+        "Provide reinforcements to Athens",
+        "Inspect the battlefield"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Darius' response to the failure of this invasion?",
+      "options": [
+        "He was angry, set on revenge, and began preparations for a further invasion immediately",
+        "He ordered a retreat and returned to Persia",
+        "He sent reinforcements to the Ionian cities",
+        "He withdrew and made peace with the Greeks"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
