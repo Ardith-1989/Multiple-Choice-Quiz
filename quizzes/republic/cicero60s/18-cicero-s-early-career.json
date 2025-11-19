@@ -1,0 +1,214 @@
+{
+  "id": "18-cicero-s-early-career",
+  "title": "18. Cicero's Early Career",
+  "description": "18. Cicero's Early Career",
+  "questions": [
+    {
+      "question": "Who did Cicero serve under in the Social War?",
+      "options": [
+        "Pompey and Crassus",
+        "Sulla and Strabo",
+        "Marius and Sulla"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "When did Cicero's legal career begin?",
+      "options": [
+        "84-82",
+        "80-79",
+        "83-81"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What case propelled Cicero into the public eye in 81?",
+      "options": [
+        "Trial of Sextus Roscius",
+        "Trial of Pompey",
+        "Trial of Gaius Verres"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year did Cicero serve as quaestor, and where did he serve?",
+      "options": [
+        "75, Sicily",
+        "70, Sicily",
+        "76, Asia Minor"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who asked Cicero to bring a prosecution against Verres?",
+      "options": [
+        "The Sicilians",
+        "The Senate",
+        "The Equites"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Cicero prosecute Verres for?",
+      "options": [
+        "Provincial Extortion",
+        "Murder",
+        "Corruption in office"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why would Verres expect not to be found guilty of this crime?",
+      "options": [
+        "Because Cicero was inexperienced",
+        "Because the case was weak",
+        "Because the jury was all Senators, and Verres had powerful optimate friends"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did Cicero ensure that the jury did not acquit Verres?",
+      "options": [
+        "Threatened the jury",
+        "Presented a case so strong the jury could only acquit through corruption.",
+        "Bribed the jury"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Verres do as a result of Cicero's speeches?",
+      "options": [
+        "Fled to Athens",
+        "Went into exile before the case was over",
+        "Was acquitted"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How was the case ultimately ruled?",
+      "options": [
+        "Verres was acquitted",
+        "Verres was sentenced to prison",
+        "Verres was charged in absentia"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In which year did Cicero serve as Aedile?",
+      "options": [
+        "68",
+        "70",
+        "69"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In which year did Cicero serve as Praetor?",
+      "options": [
+        "67",
+        "66",
+        "65"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which court did Cicero oversee in his time as Praetor?",
+      "options": [
+        "The Treason Court",
+        "The Extortion Court",
+        "The Corruption Court"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who supposedly wrote the Commentariolum Petitionis to advise Cicero on how to win the consulship?",
+      "options": [
+        "Crassus",
+        "Pompey",
+        "Quintus Cicero"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In which year did Cicero run for consul?",
+      "options": [
+        "64",
+        "62",
+        "63"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who were the supporters of Catiline in his bid for the consulship in the same year?",
+      "options": [
+        "The Plebeians",
+        "The Optimates",
+        "The young, second-rate politicians, the indebted."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Catiline's most popular proposed policy?",
+      "options": [
+        "Novae Tabulae - wiping away all debts.",
+        "Restoration of the Tribunician powers",
+        "Land redistribution"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who got behind Cicero in spite of his status as a novus homo?",
+      "options": [
+        "The Plebs",
+        "The Populares",
+        "The Optimates"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who was Cicero elected alongside as Consul for 63?",
+      "options": [
+        "Pompey",
+        "Crassus",
+        "A. Hybrida"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were the causes of the debt crisis in the late 60s?",
+      "options": [
+        "High taxes, corruption, and bad harvests",
+        "Greed and widespread piracy",
+        "Moneylenders were lending at low rates in Italy, and were now calling in those debts to reinvest in the east, which had been settled by Pompey."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What bill did Cicero speak against early on in his consulship?",
+      "options": [
+        "The Lex Pompeia",
+        "P. Rullus' land bill",
+        "The Lex Gabinia"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What would this bill have done?",
+      "options": [
+        "Reallocate ager publicus and establish colonies.",
+        "Give land to Pompey",
+        "Establish a new army for the Senate"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Cicero's argument against this law?",
+      "options": [
+        "That it would deplete the treasury, it was against Pompey's interests.",
+        "That it was unconstitutional",
+        "That it would cause a rebellion in Italy"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

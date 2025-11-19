@@ -1,0 +1,197 @@
+{
+  "id": "19-the-catilinarian-conspiracy",
+  "title": "19. The Catilinarian Conspiracy",
+  "description": "19. The Catilinarian Conspiracy",
+  "questions": [
+    {
+      "question": "In what year did Catiline run for consul, in spite of rumours of rumours about assassinations and plots swirling?",
+      "options": [
+        "65",
+        "63, for the consulship of 62",
+        "60",
+        "70"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What was Catiline's threat, issued on Cicero challenging him about the rumours?",
+      "options": [
+        "Two bodies: one wasted with a head (Senate) the other strong but with no head (People) he intends to lead the second body",
+        "To destroy all political enemies",
+        "To burn Rome",
+        "A sword for each of his enemies"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Of which group did Catiline present himself as a leader?",
+      "options": [
+        "The plebs",
+        "The miseri",
+        "The optimates",
+        "The patricians"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Cicero do when overseeing the elections for the consuls of 62?",
+      "options": [
+        "Used bribery to control votes",
+        "Wore a breastplate and had a bodyguard around him.",
+        "Stood before the Senate with a sword",
+        "Called for a military presence in the forum"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Was Catiline successful in his bid for the consulship?",
+      "options": [
+        "He was elected consul for life",
+        "No",
+        "He was appointed consul but later removed",
+        "Yes"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Upon hearing the results of the election, what did Catiline send Manlius away to do?",
+      "options": [
+        "Raise troops",
+        "Recruit mercenaries",
+        "Escape to Spain",
+        "Conspire with the Senate"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Cicero warned of by letters he subsequently received 18/19 October?",
+      "options": [
+        "Massacres of key figures?",
+        "Catiline's escape plan",
+        "The movement of troops",
+        "An attack on his house"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In light of this, and reports of a gathering army, what did the senate do?",
+      "options": [
+        "Pass the SCU",
+        "Offer a pardon to the rebels",
+        "Send a peace delegation to Catiline",
+        "Declare martial law"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When he received reports of Manlius gathering troops at Faesulae what did Cicero do?",
+      "options": [
+        "Flee Rome",
+        "Raise his own army",
+        "Ignore the reports",
+        "Send commanders to respond"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How was Cicero warned of a plot to assassinate him?",
+      "options": [
+        "By an anonymous informant",
+        "Through a letter from the Senate",
+        "By one of the conspirators' mistresses",
+        "From a dream he had"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Cicero do in response to this failed assassination?",
+      "options": [
+        "Sent a message to Caesar",
+        "Ordered the arrest of all conspirators",
+        "Made speeches in the Senate",
+        "Fled to the countryside"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Catiline's response to these speeches?",
+      "options": [
+        "He admitted his guilt",
+        "He went into hiding",
+        "He fled Rome to Join Manlius",
+        "He attempted to assassinate Cicero"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What groups does Cicero say were among Catiline's army?",
+      "options": [
+        "Rich senators, nobles, mercenaries",
+        "Banqueters, gamblers, adulterers, filth, murderous",
+        "The ruling class, generals, exiles",
+        "Loyal soldiers, plebeians, gladiators"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What does Catiline's letter to Catulus tell us of his motivations?",
+      "options": [
+        "It was due to being robbed of what he deserved that he rose up, selfishness of others.",
+        "He wanted to create a just and fair government",
+        "He wanted power for the plebs",
+        "He was influenced by foreign powers"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did the conspirators then try to do which resulted in some of them being unmasked?",
+      "options": [
+        "Flee to Gaul",
+        "Recruit a Gallic tribe to their cause",
+        "Plan an assassination attempt on Cicero",
+        "Betray their fellow conspirators"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In the debate on the conspirators' arrest, who proposed they should not be executed?",
+      "options": [
+        "Caesar",
+        "Cato",
+        "Pompey",
+        "Metellus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Whose speech, in favour of execution, swayed the senate to ultimately vote for death?",
+      "options": [
+        "Cicero",
+        "Pompey",
+        "Caesar",
+        "Cato"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What happened to Catiline and his army after the execution of the conspirators in Rome?",
+      "options": [
+        "They retreated into Spain",
+        "Support fell away, and they were defeated early next year",
+        "They were reinforced by foreign soldiers",
+        "They successfully captured Rome"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What title was Cicero awarded for his role in defeating the conspiracy?",
+      "options": [
+        "Princeps Senatus",
+        "Imperator",
+        "Pater Patriae",
+        "Consul"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

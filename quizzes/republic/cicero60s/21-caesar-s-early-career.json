@@ -1,0 +1,117 @@
+{
+  "id": "21-caesar-s-early-career",
+  "title": "21. Caesar's Early Career",
+  "description": "21. Caesar's Early Career",
+  "questions": [
+    {
+      "question": "In what year did Caesar win the civic crown?",
+      "options": [
+        "77",
+        "81",
+        "80",
+        "79"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "When was Caesar captured by pirates while travelling to Rhodes?",
+      "options": [
+        "75",
+        "74",
+        "73",
+        "72"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Against which king did Caesar raise his own troops to fight in 74?",
+      "options": [
+        "Juba",
+        "Pharnaces",
+        "Mithridates",
+        "Pompey"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year did Caesar serve as Quaestor, and in which province?",
+      "options": [
+        "67 in Africa",
+        "70 in Gaul",
+        "68 in Sicily",
+        "69/68 in Spain"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Whose Granddaughter did Caesar marry in 67?",
+      "options": [
+        "Marius'",
+        "Sullas",
+        "Pompey's",
+        "Cicero's"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What political post does Caesar hold in 65?",
+      "options": [
+        "Praetor",
+        "Aedile",
+        "Consul",
+        "Quaestor"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did Crassus ensure that Caesar was elected pontifex maximus?",
+      "options": [
+        "Bribery",
+        "Influence",
+        "Support from Pompey",
+        "Using threats"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In which year did Caesar become pontifex maximus?",
+      "options": [
+        "62",
+        "63",
+        "65",
+        "64"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Caesar do after the Bona Dea scandal?",
+      "options": [
+        "Resigned his position",
+        "Married again",
+        "Divorced his wife",
+        "Held a public trial"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When did Caesar serve as Praetor?",
+      "options": [
+        "60",
+        "64",
+        "62",
+        "63"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which province is Caesar sent to as Propraetor?",
+      "options": [
+        "Spain",
+        "Gaul",
+        "Asia",
+        "Africa"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
