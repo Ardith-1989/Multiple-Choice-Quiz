@@ -1,0 +1,77 @@
+{
+  "id": "23-the-megarian-decree",
+  "title": "23. The Megarian Decree",
+  "description": "23. The Megarian Decree",
+  "questions": [
+    {
+      "question": "Provisions?",
+      "options": [
+        "Banned from ports",
+        "Pay tribute",
+        "Athens controls fleet",
+        "Forced join League"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Cause of decree?",
+      "options": [
+        "Control economy",
+        "Rebellion",
+        "Trade dispute",
+        "Envoy killed due sacred ground"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who refused revoke?",
+      "options": [
+        "Pericles",
+        "Aristides",
+        "Themistocles",
+        "Cimon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Corruption suggestion?",
+      "options": [
+        "Cover for Pheidias/Aspasia",
+        "Cover military failures",
+        "Punish Megara",
+        "Bribed by Spartans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Reason in Acharnians?",
+      "options": [
+        "Punish alliance",
+        "Insulted citizens",
+        "Stole prostitutes",
+        "Rebelled"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where else conflict?",
+      "options": [
+        "Aegean",
+        "Ionian",
+        "Gulf of Corinth",
+        "Ambracian Gulf"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which polis complained?",
+      "options": [
+        "Chios",
+        "Lesbos",
+        "Aegina",
+        "Samos"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

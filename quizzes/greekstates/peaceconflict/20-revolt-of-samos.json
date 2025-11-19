@@ -1,0 +1,77 @@
+{
+  "id": "20-revolt-of-samos",
+  "title": "20. Revolt of Samos",
+  "description": "20. Revolt of Samos",
+  "questions": [
+    {
+      "question": "Who was Samos at war with in 440?",
+      "options": [
+        "Sparta",
+        "Miletus",
+        "Corinth",
+        "Thebes"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What did Athens do?",
+      "options": [
+        "Sent reinforcements",
+        "Negotiated peace",
+        "Offered financial support",
+        "Replaced Oligarchy with Democracy"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did ousted oligarchs turn to?",
+      "options": [
+        "Sparta",
+        "Cimon",
+        "Pericles",
+        "Pissuthnes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long siege?",
+      "options": [
+        "3 months",
+        "9 months",
+        "1 year",
+        "6 months"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Result of Athens winning?",
+      "options": [
+        "Hand fleet + pay tribute",
+        "Independent",
+        "Joined Peloponnesian League",
+        "Destroyed"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who asked for aid?",
+      "options": [
+        "Corinth and Athens",
+        "Delphi and Persia",
+        "Sparta and Peloponnesian League",
+        "Thebes and Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who agreed to aid Athenians?",
+      "options": [
+        "Sparta help, Corinth says right",
+        "Athens help, Sparta says right",
+        "Thebes help, Athens says right",
+        "Corinth help, Sparta says right"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

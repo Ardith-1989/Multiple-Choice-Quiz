@@ -1,0 +1,76 @@
+{
+  "id": "22-potidaea",
+  "title": "22. Potidaea",
+  "description": "22. Potidaea",
+  "questions": [
+    {
+      "question": "What right did Corinth have?",
+      "options": [
+        "Control trade",
+        "Send military aid",
+        "Send magistrates",
+        "Govern directly"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What other allegiance?",
+      "options": [
+        "Delian League",
+        "Sparta",
+        "Corinth",
+        "Peloponnesian League"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What Athens did?",
+      "options": [
+        "Changed government",
+        "Imposed taxes",
+        "Increased tribute",
+        "Sent naval fleet"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Demands Athens made?",
+      "options": [
+        "Surrender fleet + land",
+        "Give up magistrates + tear walls",
+        "Join League or destruction",
+        "Hand rebel leaders"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led Peloponnesians?",
+      "options": [
+        "Theban Xenophon",
+        "Corinthian Aristaeus",
+        "Argive Cleomenes",
+        "Spartan Pausanias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Outcome clash?",
+      "options": [
+        "Stalemate",
+        "Athenians defeated",
+        "No fight",
+        "Peloponnesians defeated"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Solutions?",
+      "options": [
+        "Athens defeat Peloponnesians",
+        "Abandon siege",
+        "Sparta sends reinforcements"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

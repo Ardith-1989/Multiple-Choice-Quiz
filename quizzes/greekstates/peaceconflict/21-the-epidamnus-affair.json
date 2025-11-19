@@ -1,0 +1,107 @@
+{
+  "id": "21-the-epidamnus-affair",
+  "title": "21. The Epidamnus Affair",
+  "description": "21. The Epidamnus Affair",
+  "questions": [
+    {
+      "question": "What were relationships?",
+      "options": [
+        "Epidamnus colony of Corcyra; Corcyra of Corinth",
+        "Corinth colony of Epidamnus",
+        "Corcyra colony of Athens",
+        "Epidamnus colony of Athens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who asked for aid?",
+      "options": [
+        "Epidamnian Democrats, refused",
+        "Corcyra, refused",
+        "Corcyra, agreed",
+        "Epidamnian Democrats, agreed"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Conflict erupted between?",
+      "options": [
+        "Corinth and Athens",
+        "Corinth and Corcyra",
+        "Athens and Corcyra",
+        "Sparta and Corcyra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Battle Corcyra victorious?",
+      "options": [
+        "Salamis",
+        "Sybota",
+        "Thermopylae",
+        "Leucimme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many triremes?",
+      "options": [
+        "50",
+        "75",
+        "60",
+        "95"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who asked Athens for alliance?",
+      "options": [
+        "Athens",
+        "Corcyra",
+        "Sparta",
+        "Argos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Second largest naval power?",
+      "options": [
+        "Athens",
+        "Corcyra",
+        "Sparta",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Agreement made?",
+      "options": [
+        "Aid Corinth",
+        "Independence",
+        "Defensive alliance/watch",
+        "Pay tribute"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Battle fought?",
+      "options": [
+        "Marathon",
+        "Sybota",
+        "Leucimme",
+        "Aegospotami"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why Corinth retreat?",
+      "options": [
+        "Ships damaged",
+        "Arrival 20 Athenian ships",
+        "Storms",
+        "Persian navy"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "id": "24-the-assembly-at-sparta",
+  "title": "24. The Assembly at Sparta",
+  "description": "24. The Assembly at Sparta",
+  "questions": [
+    {
+      "question": "Who led complaints?",
+      "options": [
+        "Sparta+Athens",
+        "Corinth+Thebes",
+        "Athens+Corinth",
+        "Corinth+Corcyra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did envoys say?",
+      "options": [
+        "Defended empire + boastful",
+        "Denied wrongdoing",
+        "Apologised",
+        "Promised change"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which Spartan warned dangers?",
+      "options": [
+        "Archidamus",
+        "Cleomenes",
+        "Agis",
+        "Pleistoanax"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who urged war?",
+      "options": [
+        "Leonidas",
+        "Pausanias",
+        "Archidamus",
+        "Stheneleidas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Spartan vote?",
+      "options": [
+        "Begin war",
+        "Treaty broken",
+        "Offer peace",
+        "Remain neutral"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Before war?",
+      "options": [
+        "Alliance Corinth",
+        "Consult Zeus",
+        "Seek Delphi",
+        "Send envoy"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why not war immediately?",
+      "options": [
+        "Negotiate",
+        "Reinforcements",
+        "Feared navy",
+        "Needed time"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Ultimatum?",
+      "options": [
+        "End expansion",
+        "Return Aegina+Potidaea",
+        "Surrender fleet",
+        "Expel Alcmaeonidae + repeal decree"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who urged not give in?",
+      "options": [
+        "Themistocles",
+        "Aristides",
+        "Pericles",
+        "Cimon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Athens counter-proposal?",
+      "options": [
+        "Remove navy",
+        "Autonomy all states",
+        "Non-aggression",
+        "Repeal decree if Sparta restores autonomy"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What saw war break out?",
+      "options": [
+        "Sparta invaded",
+        "Thebes attacked Plataea",
+        "Athens attacked Corinth",
+        "Persians intervened"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

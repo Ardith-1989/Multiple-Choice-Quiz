@@ -1,0 +1,47 @@
+{
+  "id": "19-the-thirty-year-peace",
+  "title": "19. The Thirty Year Peace",
+  "description": "19. The Thirty Year Peace",
+  "questions": [
+    {
+      "question": "Which territories did Athens give up as part of the Thirty Year Peace?",
+      "options": [
+        "Chios, Mytilene, Samos, Naxos",
+        "Thessaly, Boeotia, Megara, Corinth",
+        "Corinth, Delphi, Thebes, Argos",
+        "Nisae, Pegae, Troezen, Achaea"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "What were neutral states allowed to do?",
+      "options": [
+        "Join either side",
+        "Stay neutral",
+        "Remain under Athenian control",
+        "Join one side"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which state was excluded but could be at peace?",
+      "options": [
+        "Argos",
+        "Thebes",
+        "Corinth",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What would happen in conflicts?",
+      "options": [
+        "War",
+        "Arbitration",
+        "Diplomatic council",
+        "Military intervention"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
