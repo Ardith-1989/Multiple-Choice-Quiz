@@ -1,0 +1,77 @@
+{
+  "id": "05-persian-preparations",
+  "title": "05. Persian Preparations",
+  "description": "Persian military and logistical preparations before the second invasion of Greece.",
+  "questions": [
+    {
+      "question": "What events caused a delay in the Persian preparations for a second invasion?",
+      "options": [
+        "Revolt in Athens, Political instability",
+        "The Battle of Marathon, Lack of funds",
+        "Internal conflicts, Economic collapse",
+        "Revolt in Egypt, Internal Struggles over succession"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Who becomes king on the death of Darius I?",
+      "options": [
+        "Darius II",
+        "Artaxerxes I",
+        "Xerxes I",
+        "Cambyses II"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Where did Xerxes have a canal cut to allow his ships easier passage?",
+      "options": [
+        "The Nile Delta",
+        "Mount Athos",
+        "The Dardanelles",
+        "The Bosporus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which river did Xerxes bridge to allow his army easier passage?",
+      "options": [
+        "The Euphrates River",
+        "The Tigris River",
+        "The Danube River",
+        "The Strymon River"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Xerxes set up across Thrace to ensure his army was readily supplied?",
+      "options": [
+        "Supply caravans",
+        "Fortified cities",
+        "Supply depots",
+        "Military camps"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Xerxes construct at the Hellespont to allow his army to pass easily?",
+      "options": [
+        "A bridge",
+        "A fleet of boats",
+        "A causeway",
+        "A tunnel"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which two cities does Xerxes not send demands for Earth and Water to?",
+      "options": [
+        "Athens and Corinth",
+        "Sparta and Argos",
+        "Thebes and Plataea",
+        "Athens and Sparta"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

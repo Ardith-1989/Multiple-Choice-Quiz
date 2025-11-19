@@ -1,0 +1,187 @@
+{
+  "id": "10-the-battle-of-plataea",
+  "title": "10. The Battle of Plataea",
+  "description": "Herodotus' account of the decisive land battle that ended the Persian invasion.",
+  "questions": [
+    {
+      "question": "Who did the Persians send to the Athenians with terms?",
+      "options": [
+        "Darius, king of Persia",
+        "Alexander, king of Macedon",
+        "Xerxes, king of Persia",
+        "Hippias, son of Pisistratus"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Under what terms could the Athenians have their city back?",
+      "options": [
+        "The Athenians had to join the Persian Empire",
+        "The Athenians had to pay tribute",
+        "The Athenians had to surrender their navy",
+        "The Athenians had to accept Persian rule"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Mardonius find upon marching to Athens?",
+      "options": [
+        "The city was deserted",
+        "The city was burned",
+        "The city was under Persian control",
+        "The city was occupied by rebels"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the Peloponnesians doing, rather than helping to defend central Greece?",
+      "options": [
+        "Defending Athens",
+        "Preparing for a naval battle",
+        "Reinforcing the army at Plataea",
+        "Building a wall at the Isthmus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which polis was working very closely with the Persians?",
+      "options": [
+        "Sparta",
+        "Delphi",
+        "Thebes",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who convinced the Persians to turn their weapons on the Phocians, who had medised?",
+      "options": [
+        "Thessaly",
+        "Sparta",
+        "Athens",
+        "Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which Spartan king set out for Boeotia with an army?",
+      "options": [
+        "Leonidas",
+        "Agesilaus",
+        "Pausanias",
+        "Cleombrotus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many troops made up the Spartan army?",
+      "options": [
+        "5000 Spartans, 35000 Helots",
+        "3000 Spartans, 15000 Helots",
+        "10000 Spartans, 20000 Helots",
+        "5000 Spartans, 20000 Athenians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greek army initially encamp at Plataea?",
+      "options": [
+        "Slopes of Mount Cithaeron",
+        "The Asopus Ridge",
+        "The Vale of Tempe",
+        "The Isthmus of Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greek army move to after this?",
+      "options": [
+        "The battlefield of Marathon",
+        "The walls of Athens",
+        "The Asopus Ridge",
+        "The Plain of Plataea"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why did Mardonius eventually decide to attack?",
+      "options": [
+        "The Greeks had tried to move and their forces were split up",
+        "He had received orders from Xerxes",
+        "The Greeks had fled to Athens",
+        "The Persian army was running low on supplies"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When Aristeides tried to march to aid the Spartans against Mardonius, who was he forced to stop and fight?",
+      "options": [
+        "The Argives",
+        "The Thebans",
+        "The Persians",
+        "The Thessalians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long did the Greeks camp on the battlefield after the victory?",
+      "options": [
+        "3 days",
+        "7 days",
+        "5 days",
+        "10 days"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How much of their spoils did they dedicate to Apollo at Delphi?",
+      "options": [
+        "1/4",
+        "1/10",
+        "1/2",
+        "1/5"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Greeks do to the city of Thebes?",
+      "options": [
+        "They made peace with Thebes",
+        "They besieged it and executed the leaders",
+        "They left it untouched",
+        "They granted Thebes autonomy"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many Greek states participated in the Battle of Plataea?",
+      "options": [
+        "20",
+        "23",
+        "15",
+        "30"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who does Herodotus say won a glorious victory in the battle?",
+      "options": [
+        "The Athenians",
+        "The Peloponnesians",
+        "The Thebans",
+        "The Spartans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which states joined the alliance after the battle?",
+      "options": [
+        "Samos, Ionian, Aeolia",
+        "Argos, Thebes, Delphi",
+        "Chios, Lesbos, Mytilene",
+        "Athens, Corinth, Sparta"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

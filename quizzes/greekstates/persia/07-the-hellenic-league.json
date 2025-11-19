@@ -1,0 +1,187 @@
+{
+  "id": "07-the-hellenic-league",
+  "title": "07. The Hellenic League",
+  "description": "The formation, decisions, and actions of the Hellenic League against Persia.",
+  "questions": [
+    {
+      "question": "Roughly how many poleis attended the congress at the Isthmus?",
+      "options": [
+        "20-50",
+        "30-70",
+        "50-100",
+        "10-30"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Who was given high command over the league?",
+      "options": [
+        "Argos",
+        "Athens",
+        "Thebes",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the league pledge to do to those who medised?",
+      "options": [
+        "Make peace with them",
+        "Negotiate with them",
+        "Punish them",
+        "Ignore them"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did the league agree to defend one another from?",
+      "options": [
+        "Persians",
+        "Pirates",
+        "All attacks",
+        "Spartans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How would large decisions be made by the league members?",
+      "options": [
+        "By a congress of members",
+        "By a single leader",
+        "By a vote in Athens",
+        "By a council of kings"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What monument (originally at Delphi) lists a number of cities that resisted the Persians?",
+      "options": [
+        "The Serpent Column",
+        "The Monument of Leonidas",
+        "The Pillars of Hercules",
+        "The Statue of Zeus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Argos do when asked to aid the resistance?",
+      "options": [
+        "Attacked Sparta",
+        "Joined the league",
+        "Fought against the Persians",
+        "Remained neutral"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who had advised Argos of this course of action?",
+      "options": [
+        "The Athenian generals",
+        "The oracle at Delphi",
+        "The Oracle of Zeus",
+        "The Spartan king"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Tyrant of Syracuse want in return for his aid?",
+      "options": [
+        "Gold and tribute",
+        "A treaty with Persia",
+        "Overall command of the army",
+        "A naval fleet"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many ships did Corcyra initially send?",
+      "options": [
+        "60",
+        "40",
+        "100",
+        "50"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did these ships stop to wait and see how the conflict went?",
+      "options": [
+        "Crete",
+        "Pylos",
+        "Athens",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Crete seek advice about how to proceed in the conflict?",
+      "options": [
+        "The Oracle at Delphi",
+        "The Athenian assembly",
+        "The Oracle at Dodona",
+        "The Oracle of Zeus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What advice were the Cretans given?",
+      "options": [
+        "Join the league",
+        "Support Athens",
+        "Fight Persia directly",
+        "Remain neutral"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Oracle given to Sparta say the two possibilities in the conflict were?",
+      "options": [
+        "Defeat the Persians or leave Greece",
+        "Lose a king, or the city will be destroyed",
+        "Lose a battle, or face destruction",
+        "Win the war or retreat to Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the first advice that the Oracle gave to Athens?",
+      "options": [
+        "Join Sparta",
+        "Fight Persia at all costs",
+        "Defend the city",
+        "Flee"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the Athenians advised to place their faith in in the second Oracle?",
+      "options": [
+        "Their warriors",
+        "Their armor",
+        "Their wooden walls?",
+        "Their naval fleet"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greeks initially plan to block the Persian invasion?",
+      "options": [
+        "The Isthmus",
+        "The Vale of Tempe",
+        "The Hellespont",
+        "Thermopylae"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which area was picked after the Greeks withdrew from their first choice?",
+      "options": [
+        "The Peloponnesian coast",
+        "Delphi and Parnassus",
+        "Thermopylae and Artemisium",
+        "Athens and Corinth"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

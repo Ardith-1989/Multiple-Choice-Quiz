@@ -1,0 +1,87 @@
+{
+  "id": "11-the-battle-of-mycale",
+  "title": "11. The Battle of Mycale",
+  "description": "The Greek offensive and final naval-land battle ending Persian power in the Aegean.",
+  "questions": [
+    {
+      "question": "Where did the Greek fleet assemble after Salamis?",
+      "options": [
+        "Corinth",
+        "Delphi",
+        "Aegina",
+        "Athens"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Where did Leotychides sail the fleet to?",
+      "options": [
+        "Crete",
+        "Euboea",
+        "Samos",
+        "Delos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where had the Persian navy headquartered?",
+      "options": [
+        "Delphi",
+        "Athens",
+        "Samos",
+        "Ionia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Persian fleet beach their ships after the Greeks sailed to Samos?",
+      "options": [
+        "The Bay of Salamis",
+        "The Isthmus of Corinth",
+        "The Promontory of Mycale",
+        "Ephesus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Peloponnesians propose to settle the Ionians?",
+      "options": [
+        "In Athens",
+        "On Mediser territory",
+        "In Macedonia",
+        "In the Peloponnese"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Xanthippus and the Athenians prefer to do, and what was eventually done?",
+      "options": [
+        "Make them citizens of Athens",
+        "Return them to Persia",
+        "Send them to the Aegean islands",
+        "Enrol them in the Hellenic League"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Peloponnesians do upon finding Xerxes' pontoon bridge gone?",
+      "options": [
+        "Retreated to the mainland",
+        "Sailed home",
+        "Sent a peace envoy",
+        "Attacked the Persians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What state did Xanthippus capture before sailing home with the Athenians?",
+      "options": [
+        "Thebes",
+        "Corinth",
+        "Miletus",
+        "Sestos"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "06-greek-responses",
+  "title": "06. Greek Responses",
+  "description": "Political and military developments in Athens and Sparta before the Persian invasion.",
+  "questions": [
+    {
+      "question": "In what year did Athens begin to choose Archons by lot?",
+      "options": [
+        "475",
+        "487",
+        "493",
+        "490"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Which island state was Athens in a continual conflict with?",
+      "options": [
+        "Delos",
+        "Aegina",
+        "Crete",
+        "Rhodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which Spartan king was removed from his position in 491, and subsequently traveled to Persia?",
+      "options": [
+        "Demaratus",
+        "Cleomenes",
+        "Leonidas",
+        "Pausanias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which politician rose to prominence in Athens during the 480s?",
+      "options": [
+        "Cleon",
+        "Aristides",
+        "Pericles",
+        "Themistocles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What project had Themistocles begun during his archonship in 493?",
+      "options": [
+        "Fortification of the Piraeus",
+        "Restoration of the Acropolis",
+        "Building a new Athenian fleet",
+        "Construction of the Parthenon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the proposed uses of the windfall of silver found at Laurium in 483/482?",
+      "options": [
+        "Themistocles said distribute it, Aristides said use it for a fleet",
+        "Themistocles said use it for a fleet, Aristides said distribute it",
+        "Use it to fund military campaigns, distribute it to the people",
+        "Fund public works and distribute it to the citizens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who does Herodotus feel is largely responsible for the ultimate defeat of the Persians?",
+      "options": [
+        "The Persian Empire's internal conflicts",
+        "The Greek fleet",
+        "Sparta",
+        "Athens"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

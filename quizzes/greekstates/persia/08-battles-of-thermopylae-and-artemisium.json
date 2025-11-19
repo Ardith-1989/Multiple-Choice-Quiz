@@ -1,0 +1,147 @@
+{
+  "id": "08-battles-of-thermopylae-and-artemisium",
+  "title": "08. The Battles of Thermopylae and Artemisium",
+  "description": "Events at Thermopylae and Artemisium during the Persian invasion.",
+  "questions": [
+    {
+      "question": "Why was Sparta not able to send their full army to Thermopylae?",
+      "options": [
+        "A famine in the city",
+        "Religious obligations",
+        "The Carneia festival",
+        "A conflict with Argos"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "How many troops did Leonidas travel to Thermopylae with?",
+      "options": [
+        "300 Spartans and 300 Thebans",
+        "500 Spartans and 1000 helots",
+        "300 Spartans, and 7 helots per man",
+        "200 Spartans and 1000 helots"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greek fleet position themselves?",
+      "options": [
+        "The Gulf of Corinth",
+        "The Aegean Sea",
+        "The Bay of Salamis",
+        "The Straits of Artemisium"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which other Greek cities sent troops to Thermopylae?",
+      "options": [
+        "Athens, Sparta, Corinth, Argos",
+        "Delphi, Corinth, Thebes",
+        "Chalcis, Delphi, Sparta",
+        "Thebes, Thespiae, Locris, Phocis, other Peloponnesians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was sent to hold a mountain pass that circumvented Thermopylae?",
+      "options": [
+        "Argives",
+        "Thebans",
+        "The Phocians",
+        "Lacedaemonians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many days did the Persians wait once they arrived at Thermopylae?",
+      "options": [
+        "4 days",
+        "3 days",
+        "2 days",
+        "5 days"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "After two days of unsuccessful attacks, who betrayed the Greeks, revealing the mountain pass to the Persians?",
+      "options": [
+        "Themistocles",
+        "Ephialtes",
+        "Aristides",
+        "Hippias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which troops remained when it was revealed the Persians were coming?",
+      "options": [
+        "Thebans and Phocians",
+        "Athenians and Spartans",
+        "Spartans and Thebans",
+        "Spartans, Thespians, and Thebans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What happened while the Persians were waiting at Artemisium?",
+      "options": [
+        "They fortified their camp",
+        "They were hit by a storm",
+        "They were ambushed by the Greeks",
+        "They gathered reinforcements"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many Persian ships were sent to sail around Euboea?",
+      "options": [
+        "200",
+        "100",
+        "250",
+        "150"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Greek fleet do upon learning of the defeat at Thermopylae?",
+      "options": [
+        "They sailed to the Peloponnese",
+        "They joined with the Spartan forces",
+        "They attacked the Persians",
+        "They retreated by night"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greek fleet move to after the battle?",
+      "options": [
+        "Athens",
+        "Salamis",
+        "Corinth",
+        "Delphi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Athens do to their population after the fall of Thermopylae?",
+      "options": [
+        "Hid them in the mountains",
+        "Evacuated to Crete",
+        "Sent them to the Peloponnesian coast",
+        "Evacuated most of the population to Salamis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Persians do once they arrived at Athens?",
+      "options": [
+        "They destroyed the Acropolis",
+        "They made peace with Athens",
+        "They plundered the Parthenon",
+        "They sacked the city, and burned it"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

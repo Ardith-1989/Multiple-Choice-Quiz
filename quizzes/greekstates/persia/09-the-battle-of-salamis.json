@@ -1,0 +1,137 @@
+{
+  "id": "09-the-battle-of-salamis",
+  "title": "09. The Battle of Salamis",
+  "description": "Key events and interpretations of the naval battle at Salamis.",
+  "questions": [
+    {
+      "question": "Who does Herodotus present as cowardly and stupid?",
+      "options": [
+        "Leonidas and Cleomenes",
+        "Adeimantus and Eurybiades",
+        "Xerxes and Darius",
+        "Themistocles and Aristides"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Who convinced the Greeks that Salamis was the best place to engage the Persian fleet?",
+      "options": [
+        "Themistocles",
+        "Aristides",
+        "Miltiades",
+        "Pericles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was his argument?",
+      "options": [
+        "The terrain suited the Greeks better, in open sea the Persians could use their numbers",
+        "The Persians could be outflanked by the Greeks",
+        "The Persians would be exhausted by a long battle",
+        "The Persian navy was poorly organized"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How were the Persians supposedly lured into attacking the Greeks?",
+      "options": [
+        "Themistocles offered peace in exchange for battle",
+        "The Greeks feigned retreat",
+        "Themistocles sent a slave to tell the Persians the Greeks were about to flee",
+        "The Greeks sent false signals to the Persian fleet"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who does Herodotus tell us fled the battle before it began, and was only convinced to return by a divine vision?",
+      "options": [
+        "The Athenian fleet",
+        "The Boeotian fleet",
+        "Adeimantus and the Corinthian fleet",
+        "The Spartan fleet"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why should we be suspicious of this story of cowardice?",
+      "options": [
+        "The Athenians say this, but the other Greeks disagree",
+        "Other Greeks confirm the cowardice of Adeimantus",
+        "There is no evidence of any cowardice",
+        "The Athenians were the only ones who fled"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Roughly how many Persian ships were lost or captured?",
+      "options": [
+        "300",
+        "500",
+        "100",
+        "200"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did a Greek ground force annihilate part of the Persian army at the same time?",
+      "options": [
+        "Plataea",
+        "Psyttaleia",
+        "Thermopylae",
+        "Salamis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did Xerxes leave behind in Greece when he returned to Asia after the defeat?",
+      "options": [
+        "Artaxerxes",
+        "Hippias",
+        "Mardonius",
+        "Darius"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Greeks cease following Xerxes?",
+      "options": [
+        "Thebes",
+        "Athens",
+        "Corinth",
+        "Andros"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What places did the Greeks punish for medising?",
+      "options": [
+        "Euboea and Lemnos",
+        "Andros and Carystus",
+        "Thebes and Plataea",
+        "Miletus and Naxos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the remaining Persian army go to spend the winter?",
+      "options": [
+        "Thessaly",
+        "Cappadocia",
+        "Macedonia",
+        "Sardis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was given the Greek prize for valour after the battle?",
+      "options": [
+        "Corinth",
+        "Athens",
+        "Aegina",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
