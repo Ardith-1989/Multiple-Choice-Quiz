@@ -1,0 +1,27 @@
+{
+  "id": "late-roman-republic",
+  "title": "Late Roman Republic Overview",
+  "description": "Key dates and conflicts in the Late Republic.",
+  "questions": [
+    {
+      "question": "What is the traditional year given for the founding of Rome?",
+      "options": ["509 BCE", "753 BCE", "146 BCE", "31 BCE"],
+      "correctIndex": 1
+    },
+    {
+      "question": "When was Rome made into a Republic?",
+      "options": ["753 BCE", "509 BCE", "287 BCE", "133 BCE"],
+      "correctIndex": 1
+    },
+    {
+      "question": "Who did Rome fight in the Social War?",
+      "options": [
+        "Carthage",
+        "Macedon",
+        "Some of their Italian allies",
+        "Parthia"
+      ],
+      "correctIndex": 2
+    }
+  ]
+}
