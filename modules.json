@@ -63,11 +63,6 @@
             "id": "11-the-battle-of-mycale",
             "title": "11. The Battle of Mycale",
             "path": "quizzes/greekstates/persia/11-the-battle-of-mycale.json"
-          },
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/greekstates/persia/late-roman-republic.json"
           }
         ]
       },
@@ -76,11 +71,6 @@
         "name": "02. Greece in Conflict, 479-446",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "12-12-the-formation--of-the-delian-league",
             "title": "12. The Formation  of the Delian League",
@@ -115,11 +105,6 @@
             "id": "18-18-the-spartan-invasion-of-attica-446",
             "title": "18. The Spartan Invasion of Attica 446",
             "path": "quizzes/greekstates/greeceinconflict/18-18-the-spartan-invasion-of-attica-446.json"
-          },
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/greekstates/greeceinconflict/late-roman-republic.json"
           }
         ]
       },
@@ -128,11 +113,6 @@
         "name": "03. Peace and Conflict, 446-431",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "19-the-thirty-year-peace",
             "title": "19. The Thirty Year Peace",
@@ -170,11 +150,6 @@
         "name": "04. The Archidamian War, 431-421",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "25-strategies-in-the-archidamian-war",
             "title": "25. Strategies in the Archidamian War",
@@ -219,11 +194,6 @@
             "id": "33-the-peace-of-nicias",
             "title": "33. The Peace of Nicias",
             "path": "quizzes/greekstates/archiamianwar/33-the-peace-of-nicias.json"
-          },
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/greekstates/archiamianwar/late-roman-republic.json"
           }
         ]
       },
@@ -232,11 +202,6 @@
         "name": "05. The End of the Peloponnesian War, 421-404",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "34-changing-alliances",
             "title": "34. Changing Alliances",
@@ -291,11 +256,6 @@
             "id": "44-the-reasons-for-athens-defeat",
             "title": "44. The Reasons for Athens' Defeat",
             "path": "quizzes/greekstates/endofthewar/44-the-reasons-for-athens-defeat.json"
-          },
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/greekstates/endofthewar/late-roman-republic.json"
           }
         ]
       }
@@ -606,4 +566,5 @@
     ]
   }
 ]
+
 
