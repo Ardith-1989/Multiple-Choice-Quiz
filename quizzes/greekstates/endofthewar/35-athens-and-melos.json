@@ -1,0 +1,37 @@
+{
+  "id": "35-athens-and-melos",
+  "title": "35. Athens and Melos",
+  "description": "35. Athens and Melos",
+  "questions": [
+    {
+      "question": "When did Athens launch an expedition against Melos?",
+      "options": [
+        "420",
+        "416",
+        "418",
+        "417"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Why did Athens launch an expedition against Melos?",
+      "options": [
+        "They rebelled against Athens",
+        "They had sided with Sparta",
+        "They had refused to join the Delian League",
+        "They offered support to Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Athens do, once they had won the siege of Melos?",
+      "options": [
+        "Exiled all citizens of Melos",
+        "Killed all men of military age, enslaved women and children",
+        "Offered amnesty to the Melian leaders",
+        "Destroyed the city but allowed the population to remain"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

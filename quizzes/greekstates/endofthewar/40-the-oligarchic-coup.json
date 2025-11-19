@@ -1,0 +1,217 @@
+{
+  "id": "40-the-oligarchic-coup",
+  "title": "40. The Oligarchic Coup",
+  "description": "40. The Oligarchic Coup",
+  "questions": [
+    {
+      "question": "Where did Alcibiades flee when he lost favour in Sparta?",
+      "options": [
+        "To Athens",
+        "To Persia",
+        "To Thebes",
+        "To Tissaphernes"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "What did Alcibiades say he could do if Athens had an oligarchic government?",
+      "options": [
+        "Strengthen the Athenian fleet",
+        "Get Persian support for Athens",
+        "Negotiate peace with Sparta",
+        "Make alliances with other Greek states"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was sent to Athens to propose an oligarchic government, and aid the recall of Alcibiades?",
+      "options": [
+        "Themistocles",
+        "Nicias",
+        "Pericles",
+        "Pisander"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What reasons underlied the oligarchic coup in Athens?",
+      "options": [
+        "Desire for power by the wealthy elite, Failure of the Athenian fleet",
+        "Fear of Spartan invasion, Dissatisfaction with the democracy",
+        "Poor handling of Sicily, Economic impacts of the war, Fears of Spartan-Persian Alliance",
+        "Tension between Athens and Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led the moderate faction in Athens who supported an oligarchic coup?",
+      "options": [
+        "Pericles",
+        "Nicias",
+        "Aristides",
+        "Theramenes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was the ruthless leader of the extreme oligarchs?",
+      "options": [
+        "Alcibiades",
+        "Cleon",
+        "Thucydides",
+        "Antiphon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many people were on the proposed list to replace the council?",
+      "options": [
+        "400",
+        "1000",
+        "300",
+        "500"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why was an assembly of 5000 people also suggested alongside the oligarchic council?",
+      "options": [
+        "To limit the power of the oligarchs",
+        "To replace the democratic council",
+        "To appease the moderates",
+        "To ensure the support of Athens' allies"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why did the Oligarchic council say they built fortifications at the Piraeus?",
+      "options": [
+        "To strengthen Athens' military defenses",
+        "To defend Athens from Sparta",
+        "To prepare for a naval battle",
+        "Apparently to protect from the fleet at Samos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the real reason behind the fortifying of the Piraeus?",
+      "options": [
+        "To protect the city from an incoming attack",
+        "To establish a naval stronghold",
+        "To prepare for a defense against Athens' enemies",
+        "To cut off supplies, starve the people to submission, and hand over the fleet to Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led a general revolt in Athens, when it was revealed the oligarchs planned to betray Athens?",
+      "options": [
+        "Alcibiades",
+        "Theramenes",
+        "Cleophon",
+        "Nicias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What happened to the generals of the Samos fleet who were suspected of Oligarchic sympathies?",
+      "options": [
+        "They were dismissed",
+        "They were exiled",
+        "They were promoted",
+        "They were executed"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who declared themselves the legitimate government of Athens?",
+      "options": [
+        "Alcibiades",
+        "The Assembly",
+        "The oligarchs",
+        "The fleet at Samos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who restrained the Athenian fleet from sailing on Athens to overthrow the oligarchs?",
+      "options": [
+        "Alcibiades",
+        "Theramenes",
+        "Nicias",
+        "Pericles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Peloponnesian fleet sent to Athens do when it reached the city?",
+      "options": [
+        "Attacked the Athenian fleet",
+        "Sailed to Euboea, helping them revolt",
+        "Sailed to Athens and supported the oligarchs",
+        "Negotiated a truce with Athens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did some of the Athenian oligarchs escape to?",
+      "options": [
+        "Sparta",
+        "Corinth",
+        "Decelea",
+        "Delphi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which oligarchic leader was sentenced to death?",
+      "options": [
+        "Cleophon",
+        "Alcibiades",
+        "Antiphon",
+        "Theramenes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In the restored moderate democracy, who was given the vote?",
+      "options": [
+        "Wealthy landowners",
+        "Soldiers and generals",
+        "Men who could supply themselves with hoplite armor",
+        "All male citizens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long would Alcibiades take to return to Athens, after the restored democracy voted to recall him?",
+      "options": [
+        "Two years",
+        "One year",
+        "Five years",
+        "Three years"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When was a full democracy restored in Athens?",
+      "options": [
+        "413",
+        "411",
+        "410",
+        "412"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who would emerge as the main leader of the restored democracy?",
+      "options": [
+        "Alcibiades",
+        "Cleophon",
+        "Nicias",
+        "Themistocles"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

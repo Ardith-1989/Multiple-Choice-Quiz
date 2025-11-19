@@ -1,0 +1,57 @@
+{
+  "id": "37-the-occupation-of-decelea",
+  "title": "37. The Occupation of Decelea",
+  "description": "37. The Occupation of Decelea",
+  "questions": [
+    {
+      "question": "Who was sent with a force of Spartan troops to occupy Decelea?",
+      "options": [
+        "King Pausanias",
+        "King Archidamus",
+        "King Cleomenes",
+        "King Agis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many slaves would desert from Athens, many of them escaping to Decelea?",
+      "options": [
+        "5,000",
+        "20,000+",
+        "15,000",
+        "10,000"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the consequences of the occupation for Athenian agriculture?",
+      "options": [
+        "The farms prospered due to Spartan intervention",
+        "Food supplies became more self-sufficient",
+        "Attica couldn't be farmed, and food had to be imported",
+        "Athenian agriculture expanded into new regions"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was Thucydides' opinion on the importance of the occupation of Decelea?",
+      "options": [
+        "It led to a stronger Athenian economy",
+        "It had little effect on Athenian power",
+        "It was a minor setback for Athens",
+        "It was one of the chief reasons for the decline of Athenian power"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Athens occupy in response?",
+      "options": [
+        "Samos",
+        "Cythera",
+        "Delphi",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "id": "39-the-treaty-of-miletus",
+  "title": "39. The Treaty of Miletus",
+  "description": "39. The Treaty of Miletus",
+  "questions": [
+    {
+      "question": "After the Sicilian Expedition, who sent representatives to Sparta?",
+      "options": [
+        "Samos, Athens, Corinth, Miletus",
+        "Euboea, Lesbos, Chios, Tissaphernes, Pharnabazus",
+        "Thebes, Corinth, Chios, Persia",
+        "Chios, Sparta, Thebes, Delphi"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Which treaty may have also been signed between Athens and Persia at this time?",
+      "options": [
+        "The Treaty of Delphi",
+        "The Treaty of Phocis",
+        "The Peace of Epilycus",
+        "The Peace of Callias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did the Spartan fleet first sail to?",
+      "options": [
+        "Chios",
+        "Samos",
+        "Corinth",
+        "Ephesus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who accompanied the Spartan fleet, and encouraged the Athenian allies to revolt?",
+      "options": [
+        "Nicias",
+        "Cimon",
+        "Alcibiades",
+        "Pericles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which states were won over by the Peloponnesians?",
+      "options": [
+        "Samos, Mytilene, Corinth, Athens",
+        "Chios, Erythrae, Clazonmenae, Ephesus, Miletus",
+        "Argos, Delphi, Chios, Thebes",
+        "Corinth, Megara, Chios, Euboea"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was a treaty signed between the Persians and Spartans?",
+      "options": [
+        "Corinth",
+        "Susa",
+        "Athens",
+        "Miletus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What were the five key terms of the treaty between the Persians and the Spartans?",
+      "options": [
+        "Persians agree to defend Sparta, Miletus remains independent, Sparta recognizes Persia's supremacy, Athens agrees to a ceasefire, Athenian tribute to Persia reduced",
+        "Sparta recognizes Persia's claims, Athens is forced to negotiate with Persia, Miletus remains neutral, Persia grants aid to Sparta, New alliances between Persia and Athens",
+        "Sparta gains control of all Persian territories, Athens pays tribute to Sparta, War carried on jointly, Persia grants Sparta trade rights, Chios becomes a Spartan ally",
+        "All former Persian lands given back, All tribute paid to Persian king, War carried on jointly, Any who revolt from Persia will be Sparta's enemies, and vice versa"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
