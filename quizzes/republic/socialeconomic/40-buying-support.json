@@ -1,0 +1,127 @@
+{
+  "id": "40-buying-support",
+  "title": "40. Buying Support",
+  "description": "40. Buying Support",
+  "questions": [
+    {
+      "question": "What was largesse?",
+      "options": [
+        "Giving gifts, money, or benefices to the people",
+        "Confiscating wealth",
+        "Enforcing debt repayment",
+        "Raising taxes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What method of largesse was used by Caesar to honour his father in 63, and again when his daughter Julia died?",
+      "options": [
+        "Public speeches",
+        "Games",
+        "Distributions of food",
+        "Monument dedications"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What largesse did Crassus provide in 70?",
+      "options": [
+        "Distribution of grain to soldiers only",
+        "Dinner for everyone in Rome, and gifts for 3 months",
+        "A new aqueduct system",
+        "A series of public games"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Caesar give to all citizens during his Gallic campaigns?",
+      "options": [
+        "Free grain for a year",
+        "Land plots",
+        "A gold coin",
+        "A Gallic slave each, and 400 sestertii"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who established the subsidised corn dole?",
+      "options": [
+        "Gaius Gracchus",
+        "Caesar",
+        "Marius",
+        "Tiberius Gracchus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who abolished the corn dole?",
+      "options": [
+        "Sulla",
+        "Pompey",
+        "Crassus",
+        "Cicero"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who brought the corn dole back in 72?",
+      "options": [
+        "Pompey and Crassus",
+        "Cato and Cicero",
+        "Caesar and Antony",
+        "Varro and Longinus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who unexpectedly increased the number of corn dole recipients in 62?",
+      "options": [
+        "Cicero",
+        "Cato",
+        "Pompey",
+        "Clodius"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who eventually made the corn dole free to 320,000 citizens?",
+      "options": [
+        "Pompey",
+        "Caesar",
+        "Antony",
+        "Clodius"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Caesar do to the corn dole during his dictatorship?",
+      "options": [
+        "Expanded it to 400,000",
+        "Reduced recipients to 150,000",
+        "Abolished it",
+        "Made it hereditary"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Where did Sulla provide land to his soldiers?",
+      "options": [
+        "Etruria",
+        "Sicily",
+        "Campania",
+        "Gaul"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who did Caesar secure land for after his defeat of Pompey?",
+      "options": [
+        "His and Pompey's veterans",
+        "His soldiers only",
+        "Urban plebs",
+        "Foreign mercenaries"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

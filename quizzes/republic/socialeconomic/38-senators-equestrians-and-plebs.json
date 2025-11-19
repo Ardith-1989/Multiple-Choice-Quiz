@@ -1,0 +1,127 @@
+{
+  "id": "38-senators-equestrians-and-plebs",
+  "title": "38. Senators, Equestrians, and Plebs",
+  "description": "38. Senators, Equestrians, and Plebs",
+  "questions": [
+    {
+      "question": "What obligation did the senatorial class feel they had?",
+      "options": [
+        "To rule and act as public servants",
+        "To expand trade",
+        "To accumulate wealth",
+        "To avoid politics entirely"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were senators technically barred from?",
+      "options": [
+        "Owning land",
+        "Accepting gifts from clients",
+        "Serving in the army",
+        "Business ventures"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was the primary difference between senators and equestrians?",
+      "options": [
+        "Prestige and class",
+        "Income level",
+        "Political ideology",
+        "Education"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What possible reasons are there for senators acting in ways that benefit the poor?",
+      "options": [
+        "They want to help or see it as a route to power themselves (through popularity)",
+        "They are required by law",
+        "They wish to weaken the elite",
+        "They fear rebellion"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was the wealth requirement to be an equestrian?",
+      "options": [
+        "1,000,000 sestertii",
+        "250,000 sestertii",
+        "400,000 sestertii",
+        "100,000 sestertii"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What prominent roles did equestrians have in the economy?",
+      "options": [
+        "Foreign trade and business in Rome",
+        "Agriculture and law",
+        "Army administration only",
+        "Religious duties"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who were the publicanii?",
+      "options": [
+        "Tax collectors",
+        "Senatorial advisors",
+        "Bankers of the plebs",
+        "Provincial governors"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did equestrian money-lenders cause in the 60s?",
+      "options": [
+        "A population boom",
+        "A food shortage",
+        "An agricultural reform",
+        "A credit crisis"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was required of the rural poor that the urban poor were exempt from?",
+      "options": [
+        "Religious sacrifices",
+        "Labor in public works",
+        "Military service",
+        "Tax payment"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why were the poor farmers unable to do, when faced with falling profits, that the large landowners could do?",
+      "options": [
+        "Turn to cash crops",
+        "Move to cities",
+        "Borrow money from equestrians",
+        "Hire foreign labor"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did the rural poor, who were unable to maintain their farms, do in increasing numbers?",
+      "options": [
+        "Move east",
+        "Go to Rome",
+        "Sell themselves into slavery",
+        "Join the army"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why were the urban poor an important political force?",
+      "options": [
+        "They could sway votes, as they could sway the votes of their (rural) tribes",
+        "They funded elections",
+        "They worked for senators directly",
+        "They paid higher taxes"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

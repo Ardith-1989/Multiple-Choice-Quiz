@@ -1,0 +1,77 @@
+{
+  "id": "39-land-reform",
+  "title": "39. Land Reform",
+  "description": "39. Land Reform",
+  "questions": [
+    {
+      "question": "What land reform did Tiberius Gracchus attempt to enforce?",
+      "options": [
+        "The 500 iugera limit",
+        "The abolition of private farms",
+        "The redistribution of city land only",
+        "The 1000 iugera limit"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was the traditional reward to soldiers who had reached the end of their contracts?",
+      "options": [
+        "Roman citizenship",
+        "A gold bonus",
+        "Land grants",
+        "A pension"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who proposed a land bill in 63 that would redistribute land?",
+      "options": [
+        "Catiline",
+        "Pompey",
+        "Clodius",
+        "Rullus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who spoke against the land bill of 63?",
+      "options": [
+        "Cicero",
+        "Cato",
+        "Crassus",
+        "Caesar"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did Caesar pass his first (conciliatory) land bill?",
+      "options": [
+        "By popular vote only",
+        "Through compromise",
+        "Through the Senate",
+        "Through force"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which land did a late land bill of Caesar target?",
+      "options": [
+        "Sicily",
+        "Gaul",
+        "Campania",
+        "Sardinia"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did Antony and Octavian acquire land to settle their veterans?",
+      "options": [
+        "They received it from the Senate",
+        "They purchased it through taxation",
+        "They took it, often from enemies or places that resisted",
+        "They granted public lands"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
