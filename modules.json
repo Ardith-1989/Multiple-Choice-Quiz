@@ -174,6 +174,56 @@
             "id": "roman-law-basics",
             "title": "Roman Law Basics",
             "path": "quizzes/rome/law/roman-law-basics.json"
+          },
+          {
+            "id": "25-strategies-in-the-archidamian-war",
+            "title": "25. Strategies in the Archidamian War",
+            "path": "quizzes/greekstates/archiamianwar/25-strategies-in-the-archidamian-war.json"
+          },
+          {
+            "id": "26-the-invasions-of-attica-and-the-plague",
+            "title": "26. The Invasions of Attica, and the Plague",
+            "path": "quizzes/greekstates/archiamianwar/26-the-invasions-of-attica-and-the-plague.json"
+          },
+          {
+            "id": "27-the-revolt-of-lesbos",
+            "title": "27. The Revolt of Lesbos",
+            "path": "quizzes/greekstates/archiamianwar/27-the-revolt-of-lesbos.json"
+          },
+          {
+            "id": "28-plataea-and-corcyra",
+            "title": "28. Plataea and Corcyra",
+            "path": "quizzes/greekstates/archiamianwar/28-plataea-and-corcyra.json"
+          },
+          {
+            "id": "29-tribute-reassessments",
+            "title": "29. Tribute Reassessments",
+            "path": "quizzes/greekstates/archiamianwar/29-tribute-reassessments.json"
+          },
+          {
+            "id": "30-pylos-and-sphacteria",
+            "title": "30. Pylos and Sphacteria",
+            "path": "quizzes/greekstates/archiamianwar/30-pylos-and-sphacteria.json"
+          },
+          {
+            "id": "31-brasidas-in-thrace",
+            "title": "31. Brasidas in Thrace",
+            "path": "quizzes/greekstates/archiamianwar/31-brasidas-in-thrace.json"
+          },
+          {
+            "id": "32-attitudes-in-athens-and-sparta",
+            "title": "32. Attitudes in Athens and Sparta",
+            "path": "quizzes/greekstates/archiamianwar/32-attitudes-in-athens-and-sparta.json"
+          },
+          {
+            "id": "33-the-peace-of-nicias",
+            "title": "33. The Peace of Nicias",
+            "path": "quizzes/greekstates/archiamianwar/33-the-peace-of-nicias.json"
+          },
+          {
+            "id": "late-roman-republic",
+            "title": "Late Roman Republic Overview",
+            "path": "quizzes/greekstates/archiamianwar/late-roman-republic.json"
           }
         ]
       },
@@ -246,63 +296,6 @@
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
             "path": "quizzes/greekstates/endofthewar/late-roman-republic.json"
-          }
-        ]
-      },
-      {
-        "id": "greekstates-archiamianwar",
-        "name": "Archiamianwar",
-        "description": "",
-        "quizzes": [
-          {
-            "id": "25-strategies-in-the-archidamian-war",
-            "title": "25. Strategies in the Archidamian War",
-            "path": "quizzes/greekstates/archiamianwar/25-strategies-in-the-archidamian-war.json"
-          },
-          {
-            "id": "26-the-invasions-of-attica-and-the-plague",
-            "title": "26. The Invasions of Attica, and the Plague",
-            "path": "quizzes/greekstates/archiamianwar/26-the-invasions-of-attica-and-the-plague.json"
-          },
-          {
-            "id": "27-the-revolt-of-lesbos",
-            "title": "27. The Revolt of Lesbos",
-            "path": "quizzes/greekstates/archiamianwar/27-the-revolt-of-lesbos.json"
-          },
-          {
-            "id": "28-plataea-and-corcyra",
-            "title": "28. Plataea and Corcyra",
-            "path": "quizzes/greekstates/archiamianwar/28-plataea-and-corcyra.json"
-          },
-          {
-            "id": "29-tribute-reassessments",
-            "title": "29. Tribute Reassessments",
-            "path": "quizzes/greekstates/archiamianwar/29-tribute-reassessments.json"
-          },
-          {
-            "id": "30-pylos-and-sphacteria",
-            "title": "30. Pylos and Sphacteria",
-            "path": "quizzes/greekstates/archiamianwar/30-pylos-and-sphacteria.json"
-          },
-          {
-            "id": "31-brasidas-in-thrace",
-            "title": "31. Brasidas in Thrace",
-            "path": "quizzes/greekstates/archiamianwar/31-brasidas-in-thrace.json"
-          },
-          {
-            "id": "32-attitudes-in-athens-and-sparta",
-            "title": "32. Attitudes in Athens and Sparta",
-            "path": "quizzes/greekstates/archiamianwar/32-attitudes-in-athens-and-sparta.json"
-          },
-          {
-            "id": "33-the-peace-of-nicias",
-            "title": "33. The Peace of Nicias",
-            "path": "quizzes/greekstates/archiamianwar/33-the-peace-of-nicias.json"
-          },
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/greekstates/archiamianwar/late-roman-republic.json"
           }
         ]
       }
@@ -613,3 +606,4 @@
     ]
   }
 ]
+
