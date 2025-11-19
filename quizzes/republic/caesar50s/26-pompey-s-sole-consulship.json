@@ -1,0 +1,67 @@
+{
+  "id": "26-pompey-s-sole-consulship",
+  "title": "26. Pompey's Sole Consulship",
+  "description": "26. Pompey's Sole Consulship",
+  "questions": [
+    {
+      "question": "What did Bibulus and Cato propose for Pompey, rather than him being given a",
+      "options": [
+        "Censorship",
+        "Sole consulship",
+        "Temporary dictatorship",
+        "Joint consulship with Crassus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What legislation did Pompey pass in his sole consulship?",
+      "options": [
+        "Reformed taxation and reduced provincial corruption",
+        "Expanded citizenship across the provinces",
+        "Abolished the tribunate and limited senatorial terms",
+        "Law against public violence, mandating a five year gap between urban and rural"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which law was Milo prosecuted under?",
+      "options": [
+        "Law on treason",
+        "Law on electoral corruption",
+        "Law against public violence",
+        "Law on bribery"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which was made suspicious by two of Pompey's laws regarding political posts",
+      "options": [
+        "Caesar",
+        "Crassus",
+        "Cato",
+        "Cicero"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What law had Caesar passed using ten tribunes previously?",
+      "options": [
+        "Allowing him to stand in absentia for his election",
+        "Providing land for his veterans",
+        "Revising senatorial rolls",
+        "Granting him command in Gaul"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who did Pompey take as a colleague for the remainder of the year, and what",
+      "options": [
+        "Cato, his ally",
+        "Lucullus, his brother-in-law",
+        "Crassus, his rival",
+        "Metellus Scipio, his father-in-law"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
