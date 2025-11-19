@@ -1,0 +1,162 @@
+{
+  "id": "14-pompey-s-early-career",
+  "title": "14. Pompey's Early Career",
+  "description": "14. Pompey's Early Career",
+  "questions": [
+    {
+      "question": "Pompey's Early Career",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "Where was Pompey sent in 81, to deal with escaped Marians?",
+      "options": [
+        "Sardinia",
+        "Cyprus",
+        "Sicily",
+        "Corsica"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Who did Pompey try in chains?",
+      "options": [
+        "Metellus",
+        "Carbo",
+        "Cinna",
+        "Lepidus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Where was Pompey sent after his first task was complete?",
+      "options": [
+        "Sicily",
+        "Asia",
+        "Africa",
+        "Spain"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "After the defeat of Domitius, what did Pompey do (that he had not been asked to)?",
+      "options": [
+        "Subdued Numidia",
+        "Expanded Hispania",
+        "Invaded Carthage",
+        "Conquered Gaul"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did Sulla salute Pompey on his return to Rome in 80-79?",
+      "options": [
+        "Dux",
+        "Imperator",
+        "Consul",
+        "Magnus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Pompey demand, and why was this unusual?",
+      "options": [
+        "A Triumph, he was not even a senator",
+        "A Governorship",
+        "A Senate seat",
+        "A Consulship"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who does Pompey help to become elected Consul for 79?",
+      "options": [
+        "Crassus",
+        "Caesar",
+        "Lepidus",
+        "Metellus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "After fleeing Spain in 83, when does Sertorius return to the province?",
+      "options": [
+        "80",
+        "82",
+        "79",
+        "81"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When is Pompey sent to aid in dealing with Sertorius' revolt in Spain?",
+      "options": [
+        "77",
+        "76",
+        "78",
+        "75"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who is Pompey sent to help?",
+      "options": [
+        "Crassus",
+        "Cinna",
+        "Lepidus",
+        "Metellus Pius"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why did the consuls give in so quickly to Pompey's request for troops (and implied threat)?",
+      "options": [
+        "Because they feared his army",
+        "Because Pompey was the most powerful man",
+        "Because Pompey threatened to withdraw his support",
+        "Because they wished to go east on their commands"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When did Pompey request these reinforcements?",
+      "options": [
+        "76",
+        "78",
+        "77",
+        "75"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who killed Sertorius?",
+      "options": [
+        "Pompey",
+        "Metellus",
+        "Sulla",
+        "Perpenna"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When was Sertorius killed?",
+      "options": [
+        "73",
+        "74",
+        "72",
+        "71"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When was Sertorius revolt finally defeated?",
+      "options": [
+        "72",
+        "71",
+        "70",
+        "73"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

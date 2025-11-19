@@ -1,0 +1,92 @@
+{
+  "id": "16-pompey-and-crassus-consulship",
+  "title": "16. Pompey and Crassus' Consulship",
+  "description": "16. Pompey and Crassus' Consulship",
+  "questions": [
+    {
+      "question": "Pompey and Crassus' Consulship",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "How many years below the required age limit for a consul was Pompey?",
+      "options": [
+        "5",
+        "8",
+        "6",
+        "7"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Where did Pompey and Crassus wait with their armies while awaiting honours?",
+      "options": [
+        "At their private estates",
+        "Outside the city",
+        "In the Senate",
+        "At the gates of Rome"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were Pompey and Crassus awarded for their victories?",
+      "options": [
+        "Pompey - an ovation, Crassus - a triumph",
+        "Pompey - an ovation, Crassus - a triumph",
+        "Pompey - a parade, Crassus - a wreath",
+        "Pompey - a triumph, Crassus - an ovation"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year did Pompey and Crassus become consuls?",
+      "options": [
+        "70",
+        "71",
+        "72",
+        "69"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who did Pompey and Crassus restore full rights to?",
+      "options": [
+        "The Plebeians",
+        "The Censors",
+        "The Consuls",
+        "The Tribunes"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which political office did Pompey and Crassus restore?",
+      "options": [
+        "The Censor",
+        "The Aedile",
+        "The Praetor",
+        "The Tribune"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which groups were now allowed to make up juries, after a law proposed by L. Aurelius Cotta?",
+      "options": [
+        "Senators, Plebeians, Magistrates",
+        "Senators, Equestrians, tribunarii aerarii",
+        "Equestrians, Senators, Patricians",
+        "Equestrians, Consuls, Senators"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Pompey do after the consulship?",
+      "options": [
+        "Continued military campaigning",
+        "Became dictator",
+        "Went into retirement.",
+        "Focused on economic reforms"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
