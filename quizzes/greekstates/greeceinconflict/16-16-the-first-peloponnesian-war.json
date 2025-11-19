@@ -1,0 +1,157 @@
+{
+  "id": "16-16-the-first-peloponnesian-war",
+  "title": "16. The First Peloponnesian War",
+  "description": "16. The First Peloponnesian War",
+  "questions": [
+    {
+      "question": "From which alliance did Megara defect?",
+      "options": [
+        "Corinthian League",
+        "Athenian League",
+        "Delian League",
+        "Peloponnesian League"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Prompted defection?",
+      "options": [
+        "Corinth-Persia",
+        "Sparta conquering",
+        "Corinth upper hand",
+        "Athens threatening"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was Athens defeated?",
+      "options": [
+        "Marathon",
+        "Haleis",
+        "Corinth",
+        "Aegospotami"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Naval victory at Cecryphalia?",
+      "options": [
+        "Corinth and Athens",
+        "Persians",
+        "Sparta and Thebes",
+        "Corinth and Epidaurus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which polis besieged 458?",
+      "options": [
+        "Corcyra",
+        "Aegina",
+        "Chios",
+        "Delos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who sent to fight Corinth?",
+      "options": [
+        "Spartan fleet",
+        "Best generals",
+        "Athenian navy",
+        "Oldest and youngest hoplites"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Victor in Tanagra?",
+      "options": [
+        "Sparta",
+        "Athens",
+        "Corinth",
+        "Boeotia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Battle Athens defeated Boeotians?",
+      "options": [
+        "Salamis",
+        "Oenephyta",
+        "Plataea",
+        "Marathon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Land Empire territories?",
+      "options": [
+        "Boeotia, Phocis, Opuntian Locris",
+        "Corinth, Argos, Delphi",
+        "Samos, Mytilene, Naxos",
+        "Sparta, Crete, Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which Spartan dockyard burned?",
+      "options": [
+        "Sparta",
+        "Gytheion",
+        "Thebes",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who returned from ostracism?",
+      "options": [
+        "Aristides",
+        "Pericles",
+        "Cimon",
+        "Themistocles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What peace 451?",
+      "options": [
+        "Five Year Peace",
+        "Peace of Callias",
+        "Treaty of Delphi",
+        "Peace of Nicias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which sanctuary focal point?",
+      "options": [
+        "Nemea",
+        "Olympia",
+        "Delphi",
+        "Dodona"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who supported whom?",
+      "options": [
+        "Sparta-Thebans, Athens-Corinthians",
+        "Sparta-Delphians, Athens-Phocians",
+        "Sparta-Phocians, Athens-Delphians",
+        "Sparta-Thessalians, Athens-Boeotians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Battle collapse 447?",
+      "options": [
+        "Thermopylae",
+        "Salamis",
+        "Choroneia",
+        "Tanagra"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
