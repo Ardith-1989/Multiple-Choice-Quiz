@@ -1,0 +1,127 @@
+{
+  "id": "03-mardonius-invasion",
+  "title": "03. Mardonius’ Invasion",
+  "description": "Herodotus’ account of the 492 BC expedition led by Mardonius.",
+  "questions": [
+    {
+      "question": "In what year did Mardonius undertake his expedition?",
+      "options": ["492", "490", "494", "475"],
+      "correctIndex": 0
+    },
+    {
+      "question": "What are the goals of Mardonius' expedition that Herodotus outlines?",
+      "options": [
+        "Punish Eritrea and Athens, and subdue as many Greek cities as possible.",
+        "Secure Persian dominance in the Aegean region.",
+        "Conquer all of Greece and spread Persian culture.",
+        "Seek revenge for the Persian defeat at Marathon."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Mardonius do as he marched through Ionia?",
+      "options": [
+        "He set up democracies",
+        "He burned the cities to the ground",
+        "He established Persian satraps in the region.",
+        "He fortified the region for future invasions."
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who helped ferry Mardonius' troops across the Hellespont?",
+      "options": ["The Ionians", "The Thracians", "The Phoenicians", "The Macedonians"],
+      "correctIndex": 2
+    },
+    {
+      "question": "Which island did Mardonius take during his march through Thrace?",
+      "options": ["Thasos", "Lesbos", "Naxos", "Crete"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where was Mardonius' fleet wrecked?",
+      "options": [
+        "Off Mt. Athos",
+        "Near the Isle of Salamis",
+        "At the shores of Delos",
+        "In the Aegean Sea"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who attacked Mardonius' army, wounding him?",
+      "options": [
+        "A Rebel Thracian Tribe",
+        "The Spartans",
+        "The Macedonian Cavalry",
+        "The Athenians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What does Mardonius do after subduing the attackers?",
+      "options": [
+        "He returns to Persia",
+        "He negotiates a peace treaty with the Thracians",
+        "He strengthens his army and continues the march.",
+        "He retreats to the coast and waits for reinforcements."
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "In which book of his Histories does Herodotus record Mardonius' expedition?",
+      "options": ["Book 6", "Book 3", "Book 9", "Book 4"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was Athens in conflict with during this period?",
+      "options": ["Aegina", "Sparta", "Corinth", "Argos"],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Darius demand from the Greek city-states between 492-491?",
+      "options": [
+        "Earth and Water",
+        "Tribute and soldiers",
+        "Peaceful submission",
+        "A fleet of ships"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which city-state agreed to join Persia due to their feud with Athens (according to the Athenians)?",
+      "options": ["Aegina", "Thebes", "Corinth", "Argos"],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who went to arrest the leaders of this medising state but was turned away?",
+      "options": [
+        "Cleomenes, king of Sparta",
+        "Xerxes, king of Persia",
+        "Leonidas, king of Sparta",
+        "Pericles, leader of Athens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Sparta and Athens do to the Persian King's Messengers?",
+      "options": [
+        "Athens - Threw them into a pit like criminals\nSparta - Threw them into a well (to find Earth and Water?)",
+        "Athens - Burned them alive\nSparta - Imprisoned them for questioning the king",
+        "Sparta - Threw them into a pit like criminals\nAthens - Threw them into a well (to find Earth and Water?)",
+        "Athens - Burned them alive\nSparta - Imprisoned them for questioning the king"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why was Darius so intent on invading Greece?",
+      "options": [
+        "A servant was reminding him to remember the Athenians\nThe Pisistratidae (exiled Tyrant) were urging him.\nHe wanted to subdue all of Hellas who refused him earth and water",
+        "He sought revenge for the burning of Sardis by the Greeks\nExiled Spartans were aiding his plans\nHe hated the Greeks' religion",
+        "His father had attempted and failed in the invasion before",
+        "He wanted to subdue all of Hellas who refused him Earth and Water."
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
