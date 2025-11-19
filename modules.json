@@ -13,12 +13,12 @@
             "id": "01-the-classical-greek-world",
             "title": "01. The Classical Greek World",
             "path": "quizzes/greekstates/persia/01-the-classical-greek-world.json"
-          }
+          },
           {
             "id": "02-the-ionian-revolt",
             "title": "02. The Ionian Revolt",
             "path": "quizzes/greekstates/persia/02-the-ionian-revolt.json"
-          }
+          },
           {
             "id": "03-mardonius-invasion",
             "title": "03. Mardonius' Invasion",
@@ -302,6 +302,7 @@
     ]
   }
 ]
+
 
 
 
