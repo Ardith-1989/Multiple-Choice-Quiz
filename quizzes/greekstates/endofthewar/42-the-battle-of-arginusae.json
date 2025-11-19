@@ -1,0 +1,117 @@
+{
+  "id": "42-the-battle-of-arginusae",
+  "title": "42. The Battle of Arginusae",
+  "description": "42. The Battle of Arginusae",
+  "questions": [
+    {
+      "question": "Who appointed Spartan admiral after Lysander recalled?",
+      "options": [
+        "Agis",
+        "Cleomenes",
+        "Callicratides",
+        "Pausanias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why was Lysander recalled?",
+      "options": [
+        "Defeated",
+        "Feared influence",
+        "Needed elsewhere",
+        "Term over"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led Athenian fleet after Alcibiades exiled?",
+      "options": [
+        "Conon",
+        "Pericles",
+        "Nicias",
+        "Replacement"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many generals at Arginusae?",
+      "options": [
+        "6",
+        "8",
+        "10",
+        "5"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When battle Arginusae?",
+      "options": [
+        "404",
+        "406",
+        "405",
+        "407"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who made up Athenian rowers?",
+      "options": [
+        "Spartan/Persian",
+        "Citizens",
+        "Anyone incl slaves",
+        "Mercenaries"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many Spartan ships lost?",
+      "options": [
+        "60",
+        "70",
+        "50",
+        "80"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why no rescue?",
+      "options": [
+        "Trap",
+        "Lack ships",
+        "Storm",
+        "No reinforcements"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Demos response?",
+      "options": [
+        "Celebrated",
+        "Prosecuted generals",
+        "New leadership",
+        "Blamed Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Spartan reaction?",
+      "options": [
+        "Asked peace",
+        "Truce",
+        "Counterattack",
+        "Reinforcements"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led demos refusing peace?",
+      "options": [
+        "Pericles",
+        "Nicias",
+        "Alcibiades",
+        "Cleophon"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

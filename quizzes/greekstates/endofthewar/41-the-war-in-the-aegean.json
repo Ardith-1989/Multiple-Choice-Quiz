@@ -1,0 +1,227 @@
+{
+  "id": "41-the-war-in-the-aegean",
+  "title": "41. The War in the Aegean",
+  "description": "41. The War in the Aegean",
+  "questions": [
+    {
+      "question": "Which Spartan general moved the fleet's operations to the Hellespont?",
+      "options": [
+        "Cleomenes",
+        "Mindarus",
+        "Archidamus",
+        "Pausanias"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Why did the Spartan fleet move to the Hellespont?",
+      "options": [
+        "Persian support withdrawn",
+        "Tissaphernes' support lackluster",
+        "Athens too strong",
+        "Avoid naval superiority"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the first major sea battle between the Spartans and Athenians, in 411?",
+      "options": [
+        "Notium",
+        "Cyzicus",
+        "Cynosemms",
+        "Abydos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who won the first major sea battle in 411?",
+      "options": [
+        "Both",
+        "Athens",
+        "Neither",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who won the battle of Abydos, in 411?",
+      "options": [
+        "Athens",
+        "Sparta",
+        "Neither",
+        "Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which commanders forced the Spartans into battle at Cyzicus in 410?",
+      "options": [
+        "Nicias...",
+        "Pericles...",
+        "Cleophon...",
+        "Alcibiades, Theramenes, Thrasybulus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who won the Battle of Cyzicus in 410?",
+      "options": [
+        "Athens",
+        "Neither",
+        "Sparta",
+        "Both"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led rejection of a peace treaty after Cyzicus?",
+      "options": [
+        "Cimon",
+        "Nicias",
+        "Pericles",
+        "Cleophon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who offered to rebuild the Spartan fleet after 410?",
+      "options": [
+        "Cyrus",
+        "Tissaphernes",
+        "Pharnabazus",
+        "Artaxerxes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When did Persian King support Sparta?",
+      "options": [
+        "409",
+        "407",
+        "410",
+        "408"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who also sent an ambassador to Persia?",
+      "options": [
+        "Athens",
+        "Thebes",
+        "Corinth",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Signatories of Treaty of Boeotius?",
+      "options": [
+        "Corinth/Athens",
+        "Sparta/Persia",
+        "Sparta/Thebes",
+        "Athens/Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In what year did Alcibiades return to Athens?",
+      "options": [
+        "410",
+        "407",
+        "409",
+        "408"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What position granted on return?",
+      "options": [
+        "Ambassador",
+        "Strategos",
+        "Polemarchos",
+        "Commander-in-Chief"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why encouraged to leave quickly?",
+      "options": [
+        "Jealousy",
+        "Fear decisions",
+        "Fear dictator",
+        "Fear betrayal"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who sent to manage Sparta alliance?",
+      "options": [
+        "Cyrus",
+        "Darius II",
+        "Tissaphernes",
+        "Artaxerxes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who was admiral at Notium?",
+      "options": [
+        "Mindarus",
+        "Pausanias",
+        "Cleomenes",
+        "Lysander"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What strategy to lure Athenian rowers?",
+      "options": [
+        "Attack Athens",
+        "Increase pay",
+        "Envoys",
+        "Promise land"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who left in charge near Notium?",
+      "options": [
+        "Pericles",
+        "Nicias",
+        "Themistocles",
+        "Antiochus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Orders given?",
+      "options": [
+        "Attack",
+        "Don't engage Lysander",
+        "Secure alliances",
+        "Negotiate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When was Notium?",
+      "options": [
+        "408",
+        "409",
+        "406",
+        "407"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Athens' response to loss?",
+      "options": [
+        "Removed Alcibiades",
+        "Increased pay",
+        "Alliance Persia",
+        "Rewarded"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
