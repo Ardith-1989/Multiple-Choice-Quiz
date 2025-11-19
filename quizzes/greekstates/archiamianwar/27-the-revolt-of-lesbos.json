@@ -1,0 +1,97 @@
+{
+  "id": "27-the-revolt-of-lesbos",
+  "title": "27. The Revolt of Lesbos",
+  "description": "27. The Revolt of Lesbos",
+  "questions": [
+    {
+      "question": "Why Lesbos important?",
+      "options": [
+        "Naval base",
+        "Provided ships",
+        "Source of iron",
+        "One of only 2 chip allies"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Year revolt?",
+      "options": [
+        "430",
+        "431",
+        "429",
+        "428"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who led revolt?",
+      "options": [
+        "Athenian Aristocrats",
+        "Corinthian fleet",
+        "Mytilene oligarchs",
+        "Spartan allies"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who appealed to?",
+      "options": [
+        "Athens",
+        "Sparta",
+        "Corinth",
+        "Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why help not materialize?",
+      "options": [
+        "Athens attacks",
+        "Sparta invasion",
+        "Persian alliance",
+        "Reinforcements diverted"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Outcome siege?",
+      "options": [
+        "Revolt crushed",
+        "Lesbos destroyed",
+        "Lesbos surrendered",
+        "Athens captured Mytilene"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Cleon convinced assembly?",
+      "options": [
+        "Exile all",
+        "Grant amnesty",
+        "Sell city",
+        "Execute men, enslave women"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who argued next day?",
+      "options": [
+        "Pericles",
+        "Themistocles",
+        "Diodotus",
+        "Cimon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Ultimate punishment?",
+      "options": [
+        "Tributary to Sparta",
+        "Exiled",
+        "Executions,walls down,fleet surrendered,land confiscated",
+        "Independent"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "28-plataea-and-corcyra",
+  "title": "28. Plataea and Corcyra",
+  "description": "28. Plataea and Corcyra",
+  "questions": [
+    {
+      "question": "In what year destroy Plataea?",
+      "options": [
+        "425",
+        "431",
+        "427",
+        "429"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Punishment?",
+      "options": [
+        "Killed men enslaved women",
+        "Exiled population",
+        "Destroyed city allowed remain",
+        "Executed leaders"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who given land?",
+      "options": [
+        "Corinth",
+        "Spartans",
+        "Athens",
+        "Thebans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When revolution Corcyra?",
+      "options": [
+        "427",
+        "426",
+        "425",
+        "428"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who supported democrats?",
+      "options": [
+        "Thebes",
+        "Athens",
+        "Corinth",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

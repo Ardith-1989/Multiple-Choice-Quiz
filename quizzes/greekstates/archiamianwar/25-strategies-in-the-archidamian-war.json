@@ -1,0 +1,77 @@
+{
+  "id": "25-strategies-in-the-archidamian-war",
+  "title": "25. Strategies in the Archidamian War",
+  "description": "25. Strategies in the Archidamian War",
+  "questions": [
+    {
+      "question": "Where did Sparta and Athens' respective areas of superiority lie?",
+      "options": [
+        "Athens on Land, Sparta on Sea",
+        "Both equal",
+        "Athens on Sea, Sparta on Water",
+        "Athens on Sea, Sparta on Land"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In which years did Sparta invade Attica?",
+      "options": [
+        "431, 429, 428, 427",
+        "431, 430, 428, 427, 426",
+        "430, 431, 432, 429",
+        "425, 424, 423, 420"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What would Sparta do?",
+      "options": [
+        "Burn Athens",
+        "Attack farmland",
+        "Support allies",
+        "Invade Athens"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long longest invasion?",
+      "options": [
+        "40 days",
+        "60 days",
+        "30 days",
+        "50 days"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Pericles' response?",
+      "options": [
+        "Raid Sparta",
+        "Negotiate peace",
+        "Send army",
+        "Bring citizens within walls"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Key aspects?",
+      "options": [
+        "Engage direct battle",
+        "Build Persia alliance",
+        "Avoid direct battle, cavalry patrols, fleet raids Peloponnese, avoid expansion",
+        "Avoid naval battle"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "People's response?",
+      "options": [
+        "Indifferent",
+        "Didn't like",
+        "Demanded victory",
+        "Supported them"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

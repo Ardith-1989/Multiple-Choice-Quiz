@@ -1,0 +1,157 @@
+{
+  "id": "33-the-peace-of-nicias",
+  "title": "33. The Peace of Nicias",
+  "description": "33. The Peace of Nicias",
+  "questions": [
+    {
+      "question": "Why Athens seek peace?",
+      "options": [
+        "Persia alliance",
+        "Defeats Sicily",
+        "Losses Delium/Amphipolis",
+        "Avoid war Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why Sparta seek peace?",
+      "options": [
+        "Fear Athens",
+        "Regain Sphacteria + epiteichisma",
+        "Regain Amphipolis",
+        "Align Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which truce ending?",
+      "options": [
+        "Spartan-Argive",
+        "Corinth-Sparta",
+        "Athenian-Persia",
+        "Peloponnesian Alliance"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Whose deaths?",
+      "options": [
+        "Pericles,Themistocles",
+        "Nicias,Cleon",
+        "Cleon,Brasidas",
+        "Archidamus,Cimon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Driver Athens?",
+      "options": [
+        "Pericles",
+        "Nicias",
+        "Cleon",
+        "Themistocles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who negotiated Sparta?",
+      "options": [
+        "Agis",
+        "Pleistoanax",
+        "Pausanias",
+        "Cleomenes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How long?",
+      "options": [
+        "20",
+        "50",
+        "30",
+        "40"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What do with territories?",
+      "options": [
+        "Give back",
+        "Neutral",
+        "Trade",
+        "Spoils"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Spartan prisoners?",
+      "options": [
+        "To Persia",
+        "Imprisoned",
+        "Executed",
+        "Returned"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who adjust terms?",
+      "options": [
+        "Sparta",
+        "Corinth League",
+        "Athens+Sparta",
+        "Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who swear?",
+      "options": [
+        "Athens+Sparta+allies",
+        "All Greek states",
+        "Only Athens+Sparta",
+        "Peloponnesian League"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Allies not accept?",
+      "options": [
+        "Argives,Corinthians",
+        "Thebans,Melians",
+        "Boeotians,Corinthians,Eleans,Megarians",
+        "Thracians,Macedonians"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which city refused?",
+      "options": [
+        "Amphipolis",
+        "Samos",
+        "Corinth",
+        "Delphi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which truce unrenewed?",
+      "options": [
+        "Theban",
+        "Spartan-Macedonian",
+        "Athenian-Persian",
+        "Spartan-Argive"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Athens+Sparta do?",
+      "options": [
+        "Re-establish League",
+        "Peace defend territory",
+        "War Persia",
+        "Alliance Thebes"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

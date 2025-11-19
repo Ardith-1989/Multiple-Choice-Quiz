@@ -1,0 +1,137 @@
+{
+  "id": "32-attitudes-in-athens-and-sparta",
+  "title": "32. Attitudes in Athens and Sparta",
+  "description": "32. Attitudes in Athens and Sparta",
+  "questions": [
+    {
+      "question": "Battle 424 lost?",
+      "options": [
+        "Delium",
+        "Aegospotami",
+        "Amphipolis",
+        "Naupactus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Year armistice?",
+      "options": [
+        "424",
+        "422",
+        "423",
+        "421"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "City revolted?",
+      "options": [
+        "Scione",
+        "Naxos",
+        "Chios",
+        "Mytilene"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Brasidas response?",
+      "options": [
+        "Refused",
+        "Join Athens",
+        "Peace settlement",
+        "Negotiate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Cleon proposal?",
+      "options": [
+        "Let go",
+        "Recapture execute",
+        "Force government",
+        "Offer amnesty"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Other city allies?",
+      "options": [
+        "Argos",
+        "Thebes",
+        "Mende",
+        "Corinth"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "City recaptured?",
+      "options": [
+        "Mende retaken",
+        "Delphi retaken",
+        "Samos retaken",
+        "Chios retaken"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Year truce expire?",
+      "options": [
+        "423",
+        "422",
+        "421",
+        "420"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who sent?",
+      "options": [
+        "Pericles",
+        "Nicias",
+        "Cimon",
+        "Cleon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who retake Torone?",
+      "options": [
+        "Themistocles",
+        "Cleon",
+        "Nicias",
+        "Pericles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Year Amphipolis?",
+      "options": [
+        "421",
+        "422",
+        "420",
+        "423"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Two figures killed?",
+      "options": [
+        "Pericles,Cimon",
+        "Cleon,Brasidas",
+        "Nicias,Themistocles",
+        "Generals"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who buried?",
+      "options": [
+        "Themistocles",
+        "Nicias",
+        "Cleon",
+        "Brasidas"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

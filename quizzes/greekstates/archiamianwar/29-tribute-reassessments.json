@@ -1,0 +1,67 @@
+{
+  "id": "29-tribute-reassessments",
+  "title": "29. Tribute Reassessments",
+  "description": "29. Tribute Reassessments",
+  "questions": [
+    {
+      "question": "When Cleonymus posted?",
+      "options": [
+        "428",
+        "426",
+        "427",
+        "425"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When Thoudippos agreed?",
+      "options": [
+        "426",
+        "424",
+        "425",
+        "427"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What decrees establish?",
+      "options": [
+        "Allocation wealth",
+        "Tightening tribute+penalties",
+        "Expansion",
+        "Tax reduction"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Tribute level?",
+      "options": [
+        "1300",
+        "1000",
+        "1460",
+        "2000"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Plutarch state tribute?",
+      "options": [
+        "1460",
+        "1800",
+        "2000",
+        "1300"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Aristophanes states?",
+      "options": [
+        "2000",
+        "1000",
+        "1500",
+        "1200"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

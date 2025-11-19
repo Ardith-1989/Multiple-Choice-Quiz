@@ -1,0 +1,197 @@
+{
+  "id": "30-pylos-and-sphacteria",
+  "title": "30. Pylos and Sphacteria",
+  "description": "30. Pylos and Sphacteria",
+  "questions": [
+    {
+      "question": "Where fleet headed?",
+      "options": [
+        "Samos",
+        "Sicily",
+        "Corinth",
+        "Sparta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who commanded?",
+      "options": [
+        "Cleon+Demosthenes",
+        "Cimon+Aristides",
+        "Pericles+Themistocles",
+        "Eurymedon+Sophocles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who felt chance epiteichismos?",
+      "options": [
+        "Demosthenes",
+        "Nicias",
+        "Pericles",
+        "Cleon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What epiteichismos?",
+      "options": [
+        "Fort enemy",
+        "Naval base",
+        "Wall",
+        "Alliance"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What Spartans do?",
+      "options": [
+        "Seek naval battle",
+        "Abandon invasion",
+        "Attack Athens",
+        "Conquer Pylos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where trapped?",
+      "options": [
+        "Sphacteria",
+        "Salamis",
+        "Corinth",
+        "Delphi"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Result?",
+      "options": [
+        "Join League",
+        "Counterattack",
+        "Surrender",
+        "Armistice"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Cleon incited?",
+      "options": [
+        "Peace",
+        "Strengthen walls",
+        "Seek better terms",
+        "Demand surrender"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who blamed Cleon?",
+      "options": [
+        "Aristides",
+        "Themistocles",
+        "Pericles",
+        "Nicias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Cleon claimed?",
+      "options": [
+        "Win 20 days",
+        "Negotiate",
+        "Defeat Spartans",
+        "End siege"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why not unlikely?",
+      "options": [
+        "Strategy",
+        "Demosthenes planning, fire cleared trees",
+        "Massive fleet",
+        "Persian aid"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What Spartans told?",
+      "options": [
+        "Attack Athens",
+        "Surrender",
+        "Make decisions nothing dishonour",
+        "Call reinforcements"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Spartans do?",
+      "options": [
+        "Surrendered",
+        "Requested truce",
+        "Attacked",
+        "Fled"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Athenian presence encouraged?",
+      "options": [
+        "Attack Sparta",
+        "Join army",
+        "Revolt",
+        "Negotiate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Whose popularity?",
+      "options": [
+        "Cleon",
+        "Pericles",
+        "Themistocles",
+        "Nicias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why no invade Attica?",
+      "options": [
+        "Fleet destroyed",
+        "Lost fleet",
+        "Athens had hostages",
+        "Athens cavalry"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What Nicias did?",
+      "options": [
+        "Naval victory",
+        "Peace Persia",
+        "Expelled rebels",
+        "Gained base"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How much tribute increase?",
+      "options": [
+        "5x",
+        "2x",
+        "4x",
+        "3x"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Measure by Cleon?",
+      "options": [
+        "Increase juror pay",
+        "Public works",
+        "Expand League",
+        "Lower taxes"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

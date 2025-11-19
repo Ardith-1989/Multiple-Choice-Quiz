@@ -1,0 +1,87 @@
+{
+  "id": "31-brasidas-in-thrace",
+  "title": "31. Brasidas in Thrace",
+  "description": "31. Brasidas in Thrace",
+  "questions": [
+    {
+      "question": "Why march?",
+      "options": [
+        "Invade Athens",
+        "Aid Perdiccas",
+        "Negotiate Persia",
+        "Expand Asia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Group part force?",
+      "options": [
+        "Athenian mercenaries",
+        "Helots",
+        "Boeotians",
+        "700 neodamodeis"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why attractive?",
+      "options": [
+        "Gold",
+        "Neutral",
+        "Athenian allies ready revolt",
+        "Ally Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How win Acanthus?",
+      "options": [
+        "Gold",
+        "Siege",
+        "Threatening diplomacy",
+        "Alliance"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Promise Amphipolis?",
+      "options": [
+        "Riches",
+        "Autonomy",
+        "Land",
+        "Protection"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Which general failed?",
+      "options": [
+        "Thucydides",
+        "Themistocles",
+        "Cimon",
+        "Pericles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Other cities?",
+      "options": [
+        "Thebes,Delphi",
+        "Stagirus,Torone",
+        "Argos,Corinth",
+        "Chios,Mytilene"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Request Sparta?",
+      "options": [
+        "Supplies",
+        "Reinforcements",
+        "Peace treaty",
+        "Permission invade"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
