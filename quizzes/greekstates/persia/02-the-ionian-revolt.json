@@ -1,0 +1,167 @@
+{
+  "id": "02-the-ionian-revolt",
+  "title": "02. The Ionian Revolt",
+  "description": "Key events and figures of the Ionian Revolt, 499–493 BC.",
+  "questions": [
+    {
+      "question": "Who does Herodotus say was responsible for the outbreak of the Ionian revolt?",
+      "options": [
+        "Aristagoras and Darius",
+        "Miltiades and Darius",
+        "Histaeus and Aristagoras",
+        "The Ionian States"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Who became tyrant of Miletus?",
+      "options": [
+        "Histaeus",
+        "Miltiades",
+        "Aristagoras",
+        "Pericles"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "What Greek island did Aristagoras attempt to invade?",
+      "options": [
+        "Chios",
+        "Naxos",
+        "Crete",
+        "Mykonos"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "When did Aristagoras attempt this invasion?",
+      "options": [
+        "500 BC",
+        "499 BC",
+        "490 BC",
+        "498 BC"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Who did Aristagoras seek aid of in his revolt after this failed invasion?",
+      "options": [
+        "The Persian Empire",
+        "The Spartan League",
+        "The Greek and Ionian States",
+        "The Athenian Navy"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Who sent aid, and how much?",
+      "options": [
+        "Sparta sent 20 ships, Athens sent 10",
+        "Athens sent 10 ships, Sparta sent 10",
+        "Eritrea sent 20 ships, Athens sent 5",
+        "Athens sent 20 ships, Eritrea sent 5"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Upon the arrival of this aid, which city did they burn?",
+      "options": [
+        "Naxos",
+        "Athens",
+        "Sardis",
+        "Miletus"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "When did the burning of this city happen?",
+      "options": [
+        "494 BC",
+        "499 BC",
+        "497 BC",
+        "498 BC"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "After this burning, where were the rebels defeated?",
+      "options": [
+        "Sardis",
+        "Athens",
+        "Ephesus",
+        "Marathon"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "What did the fleet do after this defeat?",
+      "options": [
+        "Seek refuge in Asia Minor",
+        "Return home",
+        "Disband",
+        "Reinforce the rebels"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What did Histaeus do, having left the Persian capital to stop the rebels?",
+      "options": [
+        "He joined the Spartans",
+        "He fled to Athens and joined the rebels",
+        "He raised an army from Lesbos and joined them",
+        "He returned to the Persian capital"
+      ],
+      "correctIndex": 2
+    },
+    {
+      "question": "Where were the rebels defeated in 494?",
+      "options": [
+        "The Battle of Lade",
+        "The Battle of Thermopylae",
+        "The Battle of Marathon",
+        "The Battle of Plataea"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "When was the Revolt finally defeated?",
+      "options": [
+        "497 BC",
+        "494 BC",
+        "490 BC",
+        "493 BC"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "How did the Persians treat the Ionians after the defeat?",
+      "options": [
+        "Harshly",
+        "Leniently",
+        "With exile",
+        "With indifference"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Which city was destroyed as a result of the revolt?",
+      "options": [
+        "Athens",
+        "Sardis",
+        "Naxos",
+        "Miletus"
+      ],
+      "correctIndex": 3
+    },
+    {
+      "question": "Which former tyrant of the Chersonese returned to Athens?",
+      "options": [
+        "Aristagoras",
+        "Pericles",
+        "Histaeus",
+        "Miltiades"
+      ],
+      "correctIndex": 3
+    }
+  ]
+}
