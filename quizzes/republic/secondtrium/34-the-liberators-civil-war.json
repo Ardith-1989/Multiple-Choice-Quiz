@@ -1,0 +1,77 @@
+{
+  "id": "34-the-liberators-civil-war",
+  "title": "34. The Liberators' Civil War",
+  "description": "34. The Liberators' Civil War",
+  "questions": [
+    {
+      "question": "How many legions had Brutus and Cassius gathered in the east?",
+      "options": [
+        "12",
+        "19",
+        "25",
+        "30"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Where did Brutus and Cassius take up position to face Antony and Octavian?",
+      "options": [
+        "Byzantium",
+        "Athens",
+        "Thessalonica",
+        "Philippi in Macedonia"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many legions did Antony and Octavian have?",
+      "options": [
+        "25",
+        "32",
+        "20",
+        "28"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What did Brutus and Cassius do, after being defeated twice?",
+      "options": [
+        "Surrendered to Octavian",
+        "Fled to Egypt",
+        "Commit suicide",
+        "Joined Sextus Pompeius"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who took credit for the victory?",
+      "options": [
+        "Brutus",
+        "Antony",
+        "Lepidus",
+        "Octavian"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Where did some of the remaining republicans flee to?",
+      "options": [
+        "Spain",
+        "Egypt",
+        "Parthia",
+        "Sextus Pompeius"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did the allotment of provinces to the Triumvirs change after this?",
+      "options": [
+        "Antony - Spain and Africa; Octavian - Greece and Asia; Lepidus - Gaul and Egypt",
+        "Antony - Egypt; Octavian - Greece; Lepidus - Gaul",
+        "Antony - Italy; Octavian - Macedonia; Lepidus - Syria",
+        "Antony - All of Gaul (except Cisalpine Gaul, now part of Italy). He also went east to"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

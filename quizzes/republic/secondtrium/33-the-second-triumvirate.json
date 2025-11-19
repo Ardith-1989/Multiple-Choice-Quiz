@@ -1,0 +1,97 @@
+{
+  "id": "33-the-second-triumvirate",
+  "title": "33. The Second Triumvirate",
+  "description": "33. The Second Triumvirate",
+  "questions": [
+    {
+      "question": "Which three figures met in 43 to create the Second Triumvirate?",
+      "options": [
+        "Pompey, Crassus, Caesar",
+        "Antony, Octavian, Lepidus",
+        "Octavian, Cato, Cicero",
+        "Brutus, Cassius, Cicero"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "How did this differ to the first Triumvirate?",
+      "options": [
+        "It included the Senate as a fourth member",
+        "This was a legal position, the first was informal",
+        "It was only for military purposes",
+        "It excluded Octavian"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How long were the triumvirs appointed for?",
+      "options": [
+        "Ten years",
+        "Five years",
+        "Three years",
+        "Indefinitely"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What powers did they have?",
+      "options": [
+        "The powers of a dictator, and power to nominate magistrates in advance",
+        "Military command only",
+        "Limited senatorial authority",
+        "Control of the treasury only"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which triumvir controlled which territories?",
+      "options": [
+        "Antony - Greece; Lepidus - Egypt; Octavian - Gaul",
+        "Antony - Spain; Lepidus - Macedonia; Octavian - Gaul",
+        "Antony - Asia; Lepidus - Africa; Octavian - Italy",
+        "Antony - Transalpine and Cisalpine Gaul; Lepidus - Narbonese Gaul and Spain;"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How did the triumvirs decide to replenish the treasury and destroy their",
+      "options": [
+        "They carried out proscriptions",
+        "They imposed new taxes",
+        "They sold off Caesar’s estates",
+        "They plundered temples"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was done with Cicero's head and hands when he was finally killed?",
+      "options": [
+        "They were sent to Antony",
+        "They were buried with honours",
+        "They were burned outside Rome",
+        "They were displayed in the forum"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who was appointed consul for 42?",
+      "options": [
+        "Octavian",
+        "Lepidus",
+        "Cassius",
+        "Brutus"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who were the Triumvirs preparing to face in battle?",
+      "options": [
+        "Crassus and Lucullus",
+        "Brutus and Cassius",
+        "Pompey and Cato",
+        "Cicero and Decimus Brutus"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
