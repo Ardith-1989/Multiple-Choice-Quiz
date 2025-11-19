@@ -1,0 +1,87 @@
+{
+  "id": "15-15-the-helot-revolt",
+  "title": "15. The Helot Revolt",
+  "description": "15. The Helot Revolt",
+  "questions": [
+    {
+      "question": "What preceded Helot revolt?",
+      "options": [
+        "Spartan invasion",
+        "Earthquake",
+        "Plague",
+        "Naval defeat"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Helots retreat?",
+      "options": [
+        "Athens",
+        "Mt. Ithome",
+        "Delphi",
+        "Thebes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Reason Sparta appealed for help?",
+      "options": [
+        "Hellenic League terms",
+        "Need reinforcements",
+        "Athenians preparing war",
+        "Persians invading"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who favoured sending support?",
+      "options": [
+        "Pericles",
+        "Themistocles",
+        "Aristides",
+        "Cimon"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who favoured not aiding?",
+      "options": [
+        "Ephialtes",
+        "Cleon",
+        "Pericles",
+        "Themistocles"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why send Athenian troops home?",
+      "options": [
+        "Feared takeover",
+        "Feared radical democracy",
+        "Losing revolt",
+        "Peace with Persia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did Athens ally with?",
+      "options": [
+        "Sparta and Corinth",
+        "Argos and Thessaly",
+        "Athens and Thebes",
+        "Miletus and Mytilene"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who ostracised?",
+      "options": [
+        "Pericles",
+        "Themistocles",
+        "Cimon",
+        "Aristides"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}
