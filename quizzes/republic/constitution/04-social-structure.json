@@ -1,0 +1,162 @@
+{
+  "id": "04-social-structure",
+  "title": "04. Social Structure",
+  "description": "04. Social Structure",
+  "questions": [
+    {
+      "question": "Social Structure - Multiple Choice Quiz",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "What were the three factors the status of a person in the Roman empire depended on?",
+      "options": [
+        "Property, Citizenship, Legal standing",
+        "Citizenship, Ancestry, Census Rank (Ordo)",
+        "Ancestry, Occupation, Military Rank",
+        "Wealth, Citizenship, Military service"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "Who were cives Romani?",
+      "options": [
+        "Plebian Class Members",
+        "Freedmen",
+        "Non-Roman Citizens",
+        "Full Roman Citizens"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What are the rights of a citizen with optimo iure?",
+      "options": [
+        "Right to vote, to stand for office, to contract a marriage, to own property",
+        "Right to vote, trade, own slaves",
+        "Right to own property, pay taxes",
+        "Right to own property, defend the state"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What are the rights of a citizen with non optimo iure?",
+      "options": [
+        "Right to stand for office",
+        "Right to vote, defend the state",
+        "Right to own property, right to contract a marriage",
+        "Right to serve in the military"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year was citizenship given to the Latins and Socii?",
+      "options": [
+        "77 BCE",
+        "90 BCE",
+        "88 BCE",
+        "100 BCE"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What rights did all inhabitants of the Roman Empire hold?",
+      "options": [
+        "Full Roman rights",
+        "Voting rights",
+        "ius gentium",
+        "Roman citizenship"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who were the Patrician families mostly descendants of?",
+      "options": [
+        "The senators appointed by Romulus",
+        "The plebeian class",
+        "The Roman military leaders",
+        "Foreign generals"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What is the primary qualification of members of the senatorial class?",
+      "options": [
+        "They are military leaders",
+        "They are elected senators",
+        "They own large estates",
+        "They are descendants of consuls"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What business were senators prohibited from engaging in?",
+      "options": [
+        "Trade and military",
+        "Public office",
+        "Banking and financial management",
+        "Non-agricultural business, trade, public contracts"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What is the property requirement for membership of the equestrian class?",
+      "options": [
+        "500,000 s.",
+        "200,000 s.",
+        "100,000 s.",
+        "400,000 s."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was a freedman?",
+      "options": [
+        "A plebeian member",
+        "A foreigner granted citizenship",
+        "A slave who had been freed",
+        "A Roman citizen"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What status did the children of freedmen have?",
+      "options": [
+        "They were slaves",
+        "They were free but without citizenship",
+        "They were full citizens",
+        "They were low-ranking citizens"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How could slaves become freedmen?",
+      "options": [
+        "They could save money and buy their freedom, or could be manumitted",
+        "They could petition the Senate",
+        "They could be granted freedom after serving for 5 years",
+        "They could be adopted by a Roman citizen"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who do the children of two married Roman citizens take their class rank from?",
+      "options": [
+        "The local magistrates",
+        "Their paternal grandparents",
+        "Their father",
+        "Their mother"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who do the children of a Latin, Foreign, or slave woman take their status from?",
+      "options": [
+        "Their father",
+        "Their local council",
+        "Their community",
+        "Their mother, regardless of their father"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

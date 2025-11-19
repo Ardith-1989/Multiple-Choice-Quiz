@@ -1,0 +1,152 @@
+{
+  "id": "09-marius",
+  "title": "09. Marius",
+  "description": "09. Marius",
+  "questions": [
+    {
+      "question": "Marius Quiz",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "In which year was Marius elected consul for the first time?",
+      "options": [
+        "107",
+        "102",
+        "100",
+        "115"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was a novus homo?",
+      "options": [
+        "A military officer",
+        "A type of Roman senator",
+        "A foreigner granted citizenship",
+        "A new man, first in the family into the senate (or as a consul)"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was Marius' relationship to Julius Caesar?",
+      "options": [
+        "Marius was his cousin",
+        "Marius was his uncle",
+        "Marius was his brother",
+        "Marius was his father"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How many Consulships did Marius hold?",
+      "options": [
+        "10",
+        "7",
+        "5",
+        "4"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did the Marian reforms to the army remove?",
+      "options": [
+        "The requirement for generals to be patricians",
+        "Army conscription for all Roman citizens",
+        "Provisions for veterans",
+        "Property requirements, meaning anyone could enlist"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was the ongoing war in Africa that Marius ultimately took command of?",
+      "options": [
+        "The Second Punic War",
+        "The First Punic War",
+        "The African Civil War",
+        "The Jugurthine War"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How did Marius get the command in the war transferred to him from the current commander?",
+      "options": [
+        "He bribed the commander",
+        "He had the comitia plebis tributa pass a law giving him command",
+        "He challenged the current commander in a duel",
+        "He was appointed by the Senate"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who previously held the command?",
+      "options": [
+        "Marcus Antonius",
+        "Lucius Cornelius Sulla",
+        "Gaius Marius",
+        "Caecilius Metellus"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In his Consulship of 100 who did Marius form an amicitia with?",
+      "options": [
+        "Crassus",
+        "Saturninus",
+        "Sulla",
+        "Pompey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What reforms did Saturninus promote?",
+      "options": [
+        "Political reforms to reduce Senate power",
+        "Bill for Marius' veterans, increase recipients of the corn dole",
+        "Increase funding for the military",
+        "Increase land grants for soldiers"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How did Saturninus force his proposals through the assembly?",
+      "options": [
+        "Through military force",
+        "Using street gangs",
+        "Using Senate support",
+        "Bribery"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What prompted the passing of an SCU?",
+      "options": [
+        "The death of a consular candidate for 99",
+        "Assassination of a tribune",
+        "Marius' victory in Africa",
+        "A military coup"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Where did Marius hold Saturninus and his followers after their arrest?",
+      "options": [
+        "In the army camp",
+        "In a public prison",
+        "In the Senate house",
+        "At his home"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How were Saturninus and his followers ultimately killed?",
+      "options": [
+        "By hanging",
+        "Thrown into the Tiber",
+        "With roof tiles",
+        "Executed by the Senate"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

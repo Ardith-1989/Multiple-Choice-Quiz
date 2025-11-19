@@ -1,0 +1,72 @@
+{
+  "id": "01-the-late-roman-republic",
+  "title": "01. The Late Roman Republic",
+  "description": "01. The Late Roman Republic",
+  "questions": [
+    {
+      "question": "The Late Roman Republic",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "What is the traditional year given for the founding of Rome?",
+      "options": [
+        "753 BCE",
+        "500 BCE",
+        "400 BCE",
+        "800 BCE"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did Rome fight in the Punic Wars?",
+      "options": [
+        "Egypt",
+        "Carthage",
+        "Greece",
+        "Gauls"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who did Rome fight in the Social War?",
+      "options": [
+        "Carthage",
+        "Persia",
+        "Some of their Italian Allies",
+        "Sparta"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When did the Social War begin and end?",
+      "options": [
+        "100-90",
+        "75-70",
+        "80-75",
+        "91-88"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When was Rome made into a Republic?",
+      "options": [
+        "400 BCE",
+        "509 BCE",
+        "300 BCE",
+        "350 BCE"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were the four major kingdoms/empires to the east of the Roman Empire in 88 BCE?",
+      "options": [
+        "Kingdom of Greece, Persia, Macedon, Egypt",
+        "Kingdom of Pontus, Parthian Empire, Seleucid Kingdom, Ptolemaic Egyptic.",
+        "Seleucid Empire, Parthian Kingdom, Greece, Rome",
+        "Parthian Empire, Seleucid Empire, Egypt, Carthage"
+      ],
+      "correctIndex": null
+    }
+  ]
+}

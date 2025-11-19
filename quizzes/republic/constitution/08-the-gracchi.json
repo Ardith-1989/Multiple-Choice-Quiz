@@ -1,0 +1,152 @@
+{
+  "id": "08-the-gracchi",
+  "title": "08. The Gracchi",
+  "description": "08. The Gracchi",
+  "questions": [
+    {
+      "question": "The Gracchi - Multiple Choice Quiz",
+      "options": [],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year was Tiberius Gracchus elected as tribune?",
+      "options": [
+        "133",
+        "129",
+        "145",
+        "120"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Tiberius' lex agraria do?",
+      "options": [
+        "Increase land ownership for senators",
+        "Redistribute ager publicus, reaffirm 500 iugera limit (+ 250 iugera each for two sons).",
+        "Provide land to all Romans regardless of property",
+        "Ban agricultural businesses"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What was Tiberius' primary goal in passing the lex agraria?",
+      "options": [
+        "Lower taxes for the plebs",
+        "Reduce the number of slaves",
+        "Increase recruitment for the army (property requirement)",
+        "Create a new citizenship law"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who did Tiberius take the law to in order to pass it?",
+      "options": [
+        "The Consuls",
+        "The Senate",
+        "The Assembly",
+        "The Courts"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Who vetoed this law?",
+      "options": [
+        "Another Tribune, Octavius",
+        "Cato",
+        "Pompey",
+        "Marius"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How did Tiberius overcome the veto of his law?",
+      "options": [
+        "He agreed to compromise",
+        "He had Octavius deposed",
+        "He appealed to the Senate",
+        "He called for a new vote"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "How was Tiberius going to fund implementing his law?",
+      "options": [
+        "Taxing the equites",
+        "Reducing public spending",
+        "From private donations",
+        "Using money from a recent conquest"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What happened when Tiberius attempted to get re-elected as Tribune?",
+      "options": [
+        "A group of senators beat him to death",
+        "He fled to the countryside",
+        "He was imprisoned",
+        "He was exiled"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "In what year was Gaius Gracchus first elected Tribune?",
+      "options": [
+        "128",
+        "120",
+        "123",
+        "130"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What did Gaius do to help the poor get adequate food supply for the plebs?",
+      "options": [
+        "Establish a subsidised corn dole",
+        "Give land to the plebs",
+        "Build new infrastructure",
+        "Pass new laws to tax the wealthy"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What of Gaius' proposals was vetoed by Livius Drusus?",
+      "options": [
+        "His proposal for an empire-wide military draft",
+        "His proposal to reduce taxes",
+        "His proposals for Citizenship for the Latins, and Latin status for all of Italy",
+        "His proposal to grant land to veterans"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "Why did each social group fear Tiberius' proposals?",
+      "options": [
+        "Senators - anger at the plebs, Equites - fear of new laws, Plebs - fear of political instability",
+        "Senators - loss of power, Equites - damage to business interests, Plebs - sharing of their benefits",
+        "Senators - fear of rebellion, Equites - loss of wealth, Plebs - more taxes",
+        "Senators - fear of military dictatorship, Equites - loss of land, Plebs - fear of poverty"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What made Gaius take up arms against the Roman state?",
+      "options": [
+        "Conflict with his brother Tiberius",
+        "A desire to overthrow the Senate",
+        "A failure to obtain military support",
+        "Failure to be elected Tribune a third time, and plans to stop his colonisation"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "question": "What became more and more normalised after the death of Tiberius Gracchus?",
+      "options": [
+        "Political Violence",
+        "Civic participation",
+        "Public executions",
+        "Public speaking"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

@@ -1,0 +1,417 @@
+{
+  "id": "02-the-government-of-republican-rome",
+  "title": "02. The Government of Republican Rome",
+  "description": "02. The Government of Republican Rome",
+  "questions": [
+    {
+      "question": "After which magistracies would a politician often go to govern a province?",
+      "options": [
+        "Tribune and Praetor",
+        "Censor and Consul",
+        "Praetor and Consul",
+        "Quaestor and Aedile"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many questors were elected annually?",
+      "options": [
+        "15",
+        "20",
+        "10",
+        "30"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How long does each magistracy last?",
+      "options": [
+        "6 months",
+        "5 years",
+        "2 years",
+        "Cursus Honorum - 1 year, Dictator - for the duration of the crisis/fixed term, Censor - 18 months, Tribune - 1 year."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were the traditional powers and honours of the tribunes?",
+      "options": [
+        "Propose and Veto laws to the assemblies, Veto magistrates' actions, sacrosanctity.",
+        "Propose taxes and fines",
+        "Oversee military campaigns",
+        "Manage the treasury"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many Tribunes were elected annually?",
+      "options": [
+        "10",
+        "6",
+        "12",
+        "8"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who makes up the comitia plebis tributa/concilium plebis?",
+      "options": [
+        "Senators and their families",
+        "Only plebeian citizens.",
+        "Patricians and Plebeians",
+        "All Roman citizens."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What does the comitia plebis tributa/concilium plebis vote on?",
+      "options": [
+        "Tribunes and Plebeian Aediles, and legislation",
+        "The Consuls and Praetors",
+        "Elections for military leaders",
+        "Laws on agricultural reform"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many centuries make up the Comitia Centuriata?",
+      "options": [
+        "200",
+        "193",
+        "180",
+        "150"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What roles do the aediles undertake?",
+      "options": [
+        "Military strategy and campaigns",
+        "Legislative duties",
+        "Public buildings, food supply, games",
+        "Supervise the Senate's policies"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which assembly was used more frequently for the passing of legislation?",
+      "options": [
+        "Comitia Populi Tributa",
+        "Comitia Centuriata",
+        "The Senate",
+        "Comitia plebis tributa/concilium plebis"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who make up the senate?",
+      "options": [
+        "Former Magistrates",
+        "The Consuls",
+        "All citizens of Rome",
+        "The Patricians"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What are the three major parts of the Roman government?",
+      "options": [
+        "The Magistrates, The Consuls, The Assemblies",
+        "The Senate, The Consuls, The Tribunes",
+        "The Senate, The Patricians, The Tribunes",
+        "The Senate, The People's Assemblies, The Magistrates"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who makes up the comitia populi tributa?",
+      "options": [
+        "All citizens of Rome.",
+        "The Plebeians",
+        "Only those eligible for military service.",
+        "Only the Patricians."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What is a senatus consultum ultimum (SCU)?",
+      "options": [
+        "A legal statute for new laws to be enforced.",
+        "A financial decree on military funding.",
+        "Final Decree of the Senate - empowers magistrates to use their full powers to protect the state.",
+        "A decree to expel foreign invaders."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What roles do the praetors undertake?",
+      "options": [
+        "Administrative tasks",
+        "Public works management",
+        "Military leadership",
+        "Judicial functions"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many consuls were elected annually?",
+      "options": [
+        "4",
+        "1",
+        "3",
+        "2"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "At what age were you eligible to be a quaestor?",
+      "options": [
+        "35",
+        "30",
+        "25",
+        "40"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many praetors were elected annually?",
+      "options": [
+        "8",
+        "6",
+        "12",
+        "10"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many rural and urban tribes were there?",
+      "options": [
+        "4 urban, 31 rural",
+        "4 urban, 25 rural",
+        "6 urban, 30 rural",
+        "5 urban, 30 rural"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what order would you hold the offices of the cursus honorum?",
+      "options": [
+        "Quaestor, Consul, Praetor",
+        "Quaestor, (Aedile), Praetor, Consul, (Censor maybe)",
+        "Consul, Praetor, Quaestor",
+        "Praetor, Quaestor, Consul"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many centuries make up the final class of the poorest citizens?",
+      "options": [
+        "5",
+        "3",
+        "8",
+        "10"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why would a dictator be appointed?",
+      "options": [
+        "To lead a military campaign",
+        "To deal with a specific crisis/issue",
+        "To resolve conflicts between the Senate and the people",
+        "To oversee public works"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many aediles were elected annually?",
+      "options": [
+        "6",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How are the classes, into which the centuries are divided, organised?",
+      "options": [
+        "By family lineage",
+        "By wealth",
+        "By military experience",
+        "By social rank"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who was not eligible to run as a tribune?",
+      "options": [
+        "Plebeians",
+        "Praetors",
+        "Consuls",
+        "Patricians"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what order do the tribes of the comitia populi tributa vote?",
+      "options": [
+        "Random, selected by lot",
+        "By social class",
+        "By age",
+        "By wealth"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "At what age were you eligible to be a praetor?",
+      "options": [
+        "40",
+        "45",
+        "35",
+        "39"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "At what age were you eligible to be an aedile?",
+      "options": [
+        "36",
+        "35",
+        "40",
+        "30"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What is the majority needed for a vote to pass?",
+      "options": [
+        "97",
+        "90",
+        "100",
+        "85"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Which magistracies come with imperium?",
+      "options": [
+        "Praetor and Consul",
+        "Quaestor and Aedile",
+        "Consul and Censor",
+        "Tribune and Consul"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What are senatus consulta?",
+      "options": [
+        "Suggestions the senate make to the people on laws to approve.",
+        "Directives for the magistrates on military actions.",
+        "Financial proposals to the people.",
+        "Laws the senate pass directly to the people."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What roles do the quaestors undertake?",
+      "options": [
+        "Supervise the Senate's financial matters.",
+        "Aid consuls in military campaigns.",
+        "Oversee public works.",
+        "2 in the treasury at Rome, 18 aiding provincial governors."
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What does the comitia centuriata primarily vote on?",
+      "options": [
+        "Military matters",
+        "Elections for local officials",
+        "Laws and decrees",
+        "Consuls and Praetors (rarely legislation)"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What do the comitia populi tributa vote on?",
+      "options": [
+        "Consuls and Praetors",
+        "Tribunal decisions",
+        "Quaestors and Curule Aediles, and legislation",
+        "Only military appointments"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What roles do the consuls undertake?",
+      "options": [
+        "Chief magistrate of the state, preside over senate meetings and some assemblies.",
+        "Manage public works and resources",
+        "Military leadership",
+        "Oversee judicial matters"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many centuries do the richest two classes control?",
+      "options": [
+        "75",
+        "50",
+        "100",
+        "88"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Roughly how many people were in the Senate?",
+      "options": [
+        "500",
+        "400",
+        "700",
+        "600"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "At what age were you eligible to be a consul?",
+      "options": [
+        "45",
+        "42",
+        "40",
+        "50"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who was appointed to aid the dictator?",
+      "options": [
+        "The Tribune",
+        "The Master of the Horse",
+        "The Consul",
+        "The Praetor"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What is the role of the censor?",
+      "options": [
+        "To enforce laws regarding public morals",
+        "To maintain senate rolls.",
+        "To manage public finances",
+        "To supervise military campaigns"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "When does the Patrician and Equestrian class vote?",
+      "options": [
+        "Third, after the plebeians.",
+        "Second, after the first block.",
+        "First, before any other classes.",
+        "Last, after the poorest citizens."
+      ],
+      "correctIndex": null
+    }
+  ]
+}

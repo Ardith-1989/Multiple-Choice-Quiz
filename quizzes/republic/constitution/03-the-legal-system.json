@@ -1,0 +1,117 @@
+{
+  "id": "03-the-legal-system",
+  "title": "03. The Legal System",
+  "description": "03. The Legal System",
+  "questions": [
+    {
+      "question": "Who was responsible for bringing a charge against a criminal in Rome?",
+      "options": [
+        "The Consuls",
+        "Private individuals",
+        "The Senate",
+        "The Magistrates"
+      ],
+      "correctIndex": 1
+    },
+    {
+      "question": "What were quaestiones perpetuae?",
+      "options": [
+        "Standing courts",
+        "Public trials",
+        "Temporary commissions",
+        "Senatorial investigations"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "How many quaestiones perpetuae were there?",
+      "options": [
+        "10",
+        "12",
+        "5",
+        "7"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who reorganised the courts and established the quaestiones perpetuae?",
+      "options": [
+        "Caesar",
+        "Cato",
+        "Pompey",
+        "Sulla"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What were the seven crimes dealt with by the quaestiones perpetuae?",
+      "options": [
+        "Murder and Poisoning, Violence, Treason, Electoral Bribery, Embezzlement, Fraud,",
+        "Murder, Theft, Arson, Fraud, Assault, Perjury, Treason",
+        "Theft, Corruption, Sedition, Libel, Bribery, Tax Evasion, Violence",
+        "Arson, Robbery, Fraud, Sedition, Treason, Kidnapping, Murder"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "In what year was the trial of Sextus Roscius?",
+      "options": [
+        "78",
+        "79",
+        "81",
+        "80"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "What was Roscius accused of?",
+      "options": [
+        "Conspiring with Sulla’s enemies",
+        "Treason",
+        "Murdering his father",
+        "Theft from the state"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Who did Cicero argue had committed the murder?",
+      "options": [
+        "A group of hired assassins",
+        "Roscius' relatives, with the aid of Chrysogonus",
+        "Roscius himself",
+        "The local magistrates"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why did Cicero say these people committed this crime?",
+      "options": [
+        "To gain political advantage",
+        "To seize the elder Roscius' estates",
+        "To punish corruption",
+        "To avenge an insult"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Was Roscius found guilty or acquitted?",
+      "options": [
+        "Acquitted",
+        "Exiled",
+        "Imprisoned",
+        "Executed"
+      ],
+      "correctIndex": null
+    },
+    {
+      "question": "Why was this case risky for Cicero to take on?",
+      "options": [
+        "Chrysogonus was a freedman of Sulla",
+        "The jury was biased against Cicero",
+        "It involved foreign citizens",
+        "Roscius was a senator"
+      ],
+      "correctIndex": null
+    }
+  ]
+}
