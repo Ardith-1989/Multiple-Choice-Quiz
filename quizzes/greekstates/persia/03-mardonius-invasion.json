@@ -1,7 +1,7 @@
 {
   "id": "03-mardonius-invasion",
   "title": "03. Mardonius’ Invasion",
-  "description": "Herodotus’ account of the 492 BC expedition led by Mardonius.",
+  "description": "Herodotus’ account of the Persian expedition to Greece led by Mardonius.",
   "questions": [
     {
       "question": "In what year did Mardonius undertake his expedition?",
@@ -66,7 +66,7 @@
         "He strengthens his army and continues the march.",
         "He retreats to the coast and waits for reinforcements."
       ],
-      "correctIndex": 2
+      "correctIndex": 0
     },
     {
       "question": "In which book of his Histories does Herodotus record Mardonius' expedition?",
@@ -109,7 +109,7 @@
         "Athens - Threw them into a pit like criminals\nSparta - Threw them into a well (to find Earth and Water?)",
         "Athens - Burned them alive\nSparta - Imprisoned them for questioning the king",
         "Sparta - Threw them into a pit like criminals\nAthens - Threw them into a well (to find Earth and Water?)",
-        "Athens - Burned them alive\nSparta - Imprisoned them for questioning the king"
+        "Sparta - Burned them alive\nAthens - Imprisoned them for questioning the king"
       ],
       "correctIndex": 0
     },
