@@ -10,9 +10,9 @@
         "description": "Caesar, Pompey and the late Republic.",
         "quizzes": [
           {
-            "id": "caesar-pompey",
-            "title": "Caesar vs Pompey",
-            "path": "quizzes/rome/politics/caesar-pompey.json"
+            "id": "01-the-classical-greek-world",
+            "title": "01. The Classical Greek World",
+            "path": "quizzes/greekstates/persia/01-the-classical-greek-world.json"
           }
         ]
       },
@@ -292,6 +292,7 @@
     ]
   }
 ]
+
 
 
 
