@@ -40,6 +40,17 @@ body.theme-light {
     --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.18);
 }
 
+/* Ensure the main area always has the page background */
+.app-main {
+    background-color: var(--bg);  /* uses light grey in theme-light, dark in dark mode */
+}
+
+/* (optional, but makes sure html and body match too) */
+html,
+body {
+    background-color: var(--bg);
+}
+
 /* ================================
    Global Layout & Typography
 =================================== */
@@ -266,7 +277,8 @@ body {
 .app-main {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: center;   /* horizontally centre the card */
+    align-items: flex-start;   /* don't stretch vertically – fit content */
     padding: 18px 16px 26px;
 }
 
