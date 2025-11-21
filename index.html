@@ -528,8 +528,7 @@
         // ================================
         // Supabase client & auth (optional login + guest mode)
         // ================================
-        // Replace these with your actual Supabase project details.
-        // If you leave them as-is, the app will stay in guest-only mode.
+        // Already configured with your project details
         const SUPABASE_URL = "https://bzthteamkdbseartltsv.supabase.co";
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6dGh0ZWFta2Ric2VhcnRsdHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3MjQ1MTksImV4cCI6MjA3OTMwMDUxOX0.ojZY5BKxa3ERTJsG-pieY64y6iOh3I4iJFPBJ5R1nCk";
 
@@ -554,60 +553,110 @@
             }
 
             if (!currentUser) {
+                // Guest mode: show login + signup as separate actions
                 panel.innerHTML = `
       <div class="sidebar-text" style="margin-bottom:6px;">
         <strong>Guest mode:</strong> your scores are saved on this device only.
-        Log in to sync progress across devices.
+        Log in or create an account to sync progress across devices.
       </div>
       <input type="email" id="auth-email" placeholder="Email" class="sidebar-input" />
       <input type="password" id="auth-password" placeholder="Password" class="sidebar-input" />
-      <button class="primary-button" id="auth-login-btn" style="margin-top:6px;">
-        Log in / Sign up
-      </button>
+      <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
+        <button class="primary-button" id="auth-login-btn">
+          Log in
+        </button>
+        <button class="secondary-button" id="auth-signup-btn">
+          Create account
+        </button>
+      </div>
     `;
 
                 const loginBtn = document.getElementById("auth-login-btn");
+                const signupBtn = document.getElementById("auth-signup-btn");
+
+                async function getAuthCredentials() {
+                    const emailInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-email"));
+                    const passwordInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-password"));
+                    const email = (emailInput.value || "").trim();
+                    const password = passwordInput.value;
+
+                    if (!email || !password) {
+                        alert("Please enter an email and password.");
+                        return null;
+                    }
+                    return { email, password };
+                }
+
+                // LOGIN: sign-in only
                 if (loginBtn) {
                     loginBtn.addEventListener("click", async () => {
-                        const emailInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-email"));
-                        const passwordInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-password"));
-                        const email = (emailInput.value || "").trim();
-                        const password = passwordInput.value;
+                        if (!supabaseClient) return;
+                        const creds = await getAuthCredentials();
+                        if (!creds) return;
 
-                        if (!email || !password) {
-                            alert("Please enter an email and password.");
-                            return;
-                        }
-
-                        // Try sign-in first
-                        let { data, error } = await supabaseClient.auth.signInWithPassword({
+                        const { email, password } = creds;
+                        const { data, error } = await supabaseClient.auth.signInWithPassword({
                             email,
                             password,
                         });
 
                         if (error) {
-                            // If sign-in fails, try sign-up
-                            const { data: signUpData, error: signUpError } =
-                                await supabaseClient.auth.signUp({ email, password });
-                            if (signUpError) {
-                                alert("Auth error: " + signUpError.message);
-                                return;
-                            }
-                            data = signUpData;
-                            alert("Account created. Check your email if confirmation is required, then log in again.");
+                            alert("Login failed: " + error.message);
+                            return;
                         }
 
                         currentUser = data.user;
                         refreshAuthPanel();
                     });
                 }
+
+                // SIGNUP: create new account
+                if (signupBtn) {
+                    signupBtn.addEventListener("click", async () => {
+                        if (!supabaseClient) return;
+                        const creds = await getAuthCredentials();
+                        if (!creds) return;
+
+                        const { email, password } = creds;
+                        const { data, error } = await supabaseClient.auth.signUp({
+                            email,
+                            password,
+                        });
+
+                        if (error) {
+                            alert("Sign-up error: " + error.message);
+                            return;
+                        }
+
+                        alert("Account created. If email confirmation is required, check your inbox, then come back and log in.");
+                        currentUser = data.user ?? null;
+                        refreshAuthPanel();
+                    });
+                }
             } else {
+                // Logged-in UI + optional guest import
+                const guestHasData = Object.keys(loadGuestResults()).length > 0;
+                const showImportPrompt = guestHasData && !hasGuestBeenImported();
+
                 panel.innerHTML = `
       <div class="sidebar-text">
         Logged in as <strong>${currentUser.email}</strong><br />
         Your quiz results are synced via Supabase.
       </div>
-      <button class="secondary-button" id="auth-logout-btn" style="margin-top:6px;">
+
+      ${
+        showImportPrompt
+          ? `<div class="sidebar-text" style="margin-top:6px;">
+               We found quiz progress saved in guest mode on this device.
+               You can import it into your account so it syncs across devices.
+             </div>
+             <button class="primary-button" id="import-guest-btn" style="margin-top:6px;">
+               Import guest progress
+             </button>`
+          : ""
+      }
+
+      <button class="secondary-button" id="auth-logout-btn" style="margin-top:8px;">
         Log out
       </button>
     `;
@@ -617,6 +666,14 @@
                     logoutBtn.addEventListener("click", async () => {
                         await supabaseClient.auth.signOut();
                         currentUser = null;
+                        refreshAuthPanel();
+                    });
+                }
+
+                const importBtn = document.getElementById("import-guest-btn");
+                if (importBtn) {
+                    importBtn.addEventListener("click", async () => {
+                        await importGuestResultsToSupabase();
                         refreshAuthPanel();
                     });
                 }
@@ -648,6 +705,15 @@
         }
 
         const GUEST_RESULTS_KEY = "mcqGuestResults";
+        const GUEST_IMPORTED_KEY = "mcqGuestResultsImported";
+
+        function hasGuestBeenImported() {
+            return localStorage.getItem(GUEST_IMPORTED_KEY) === "true";
+        }
+
+        function markGuestImported() {
+            localStorage.setItem(GUEST_IMPORTED_KEY, "true");
+        }
 
         function loadGuestResults() {
             try {
@@ -750,6 +816,48 @@
                 bestTotal,
                 bestPercent,
             };
+        }
+
+        // Import guest results (best scores) into Supabase for the logged-in user
+        async function importGuestResultsToSupabase() {
+            if (!supabaseClient || !currentUser) return;
+
+            const all = loadGuestResults();
+            const entries = Object.entries(all);
+            if (entries.length === 0) {
+                alert("No guest progress found on this device.");
+                return;
+            }
+
+            const rows = [];
+
+            for (const [quizId, stats] of entries) {
+                if (!stats || stats.bestScore == null || stats.bestTotal == null) continue;
+
+                rows.push({
+                    user_id: currentUser.id,
+                    quiz_id: quizId,
+                    score: stats.bestScore,
+                    total: stats.bestTotal,
+                    percent: stats.bestPercent ?? Math.round((stats.bestScore / stats.bestTotal) * 100),
+                });
+            }
+
+            if (rows.length === 0) {
+                alert("No usable guest progress found to import.");
+                return;
+            }
+
+            const { error } = await supabaseClient.from("quiz_attempts").insert(rows);
+
+            if (error) {
+                console.error("Failed to import guest results:", error.message);
+                alert("Sorry, something went wrong while importing your guest progress.");
+                return;
+            }
+
+            markGuestImported();
+            alert("Guest progress imported into your account! Your stats will now sync across devices.");
         }
 
         async function fetchQuizStatsFromSupabase(quizMeta) {
@@ -1459,5 +1567,3 @@
     </script>
 </body>
 </html>
-
-
