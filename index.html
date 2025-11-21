@@ -124,7 +124,7 @@
             transition:
                 box-shadow 0.18s ease; /* subtle only */
         }
-        
+
         /* Keep a tiny bit of feedback, but no colour/transform highlight */
         .list-item:hover {
             box-shadow: 0 10px 22px rgba(15, 23, 42, 0.30);
@@ -142,7 +142,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            font-family: inherit:
+            font-family: inherit;
         }
 
         .helper-text {
@@ -326,6 +326,10 @@
             }
         }
     </style>
+
+    <!-- Supabase client (for optional login + cloud-stored results) -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+
 </head>
 <body class="theme-light">
     <div class="app-shell">
@@ -389,7 +393,7 @@
         </main>
     </div>
 
-    <!-- Sidebar: matches Revision Randomiser structure -->
+    <!-- Sidebar: options + account -->
     <aside class="sidebar" id="optionsSidebar">
         <div class="sidebar-inner">
             <div class="sidebar-header">
@@ -437,6 +441,15 @@
                         When enabled, you won’t see which answers are correct as you go.
                         All answers are revealed on the results screen at the end.
                     </p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-section-header">
+                    <p class="sidebar-section-title">Account</p>
+                </div>
+                <div class="sidebar-section-controls" id="auth-panel">
+                    <!-- Filled by JavaScript: guest mode / login / logout -->
                 </div>
             </div>
 
@@ -511,6 +524,295 @@
         if (openSidebarBtn) openSidebarBtn.addEventListener("click", openSidebar);
         if (closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebar);
         if (sidebarBackdropEl) sidebarBackdropEl.addEventListener("click", closeSidebar);
+
+        // ================================
+        // Supabase client & auth (optional login + guest mode)
+        // ================================
+        // Replace these with your actual Supabase project details.
+        // If you leave them as-is, the app will stay in guest-only mode.
+        const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+        const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+        let supabaseClient = null;
+        let currentUser = null;
+
+        if (window.supabase && SUPABASE_URL !== "https://YOUR-PROJECT.supabase.co") {
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        }
+
+        async function refreshAuthPanel() {
+            const panel = document.getElementById("auth-panel");
+            if (!panel) return;
+
+            if (!supabaseClient) {
+                panel.innerHTML = `
+      <div class="sidebar-text">
+        Supabase is not configured. Using guest mode only (progress stays on this device).
+      </div>
+    `;
+                return;
+            }
+
+            if (!currentUser) {
+                panel.innerHTML = `
+      <div class="sidebar-text" style="margin-bottom:6px;">
+        <strong>Guest mode:</strong> your scores are saved on this device only.
+        Log in to sync progress across devices.
+      </div>
+      <input type="email" id="auth-email" placeholder="Email" class="sidebar-input" />
+      <input type="password" id="auth-password" placeholder="Password" class="sidebar-input" />
+      <button class="primary-button" id="auth-login-btn" style="margin-top:6px;">
+        Log in / Sign up
+      </button>
+    `;
+
+                const loginBtn = document.getElementById("auth-login-btn");
+                if (loginBtn) {
+                    loginBtn.addEventListener("click", async () => {
+                        const emailInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-email"));
+                        const passwordInput = /** @type {HTMLInputElement} */ (document.getElementById("auth-password"));
+                        const email = (emailInput.value || "").trim();
+                        const password = passwordInput.value;
+
+                        if (!email || !password) {
+                            alert("Please enter an email and password.");
+                            return;
+                        }
+
+                        // Try sign-in first
+                        let { data, error } = await supabaseClient.auth.signInWithPassword({
+                            email,
+                            password,
+                        });
+
+                        if (error) {
+                            // If sign-in fails, try sign-up
+                            const { data: signUpData, error: signUpError } =
+                                await supabaseClient.auth.signUp({ email, password });
+                            if (signUpError) {
+                                alert("Auth error: " + signUpError.message);
+                                return;
+                            }
+                            data = signUpData;
+                            alert("Account created. Check your email if confirmation is required, then log in again.");
+                        }
+
+                        currentUser = data.user;
+                        refreshAuthPanel();
+                    });
+                }
+            } else {
+                panel.innerHTML = `
+      <div class="sidebar-text">
+        Logged in as <strong>${currentUser.email}</strong><br />
+        Your quiz results are synced via Supabase.
+      </div>
+      <button class="secondary-button" id="auth-logout-btn" style="margin-top:6px;">
+        Log out
+      </button>
+    `;
+
+                const logoutBtn = document.getElementById("auth-logout-btn");
+                if (logoutBtn) {
+                    logoutBtn.addEventListener("click", async () => {
+                        await supabaseClient.auth.signOut();
+                        currentUser = null;
+                        refreshAuthPanel();
+                    });
+                }
+            }
+        }
+
+        async function initAuth() {
+            if (!supabaseClient) {
+                currentUser = null;
+                refreshAuthPanel();
+                return;
+            }
+
+            const { data } = await supabaseClient.auth.getUser();
+            currentUser = data.user ?? null;
+            refreshAuthPanel();
+
+            supabaseClient.auth.onAuthStateChange((_event, session) => {
+                currentUser = session?.user ?? null;
+                refreshAuthPanel();
+            });
+        }
+
+        // ================================
+        // Quiz results: guest (localStorage) + Supabase
+        // ================================
+        function getQuizIdFromMeta(quizMeta) {
+            return quizMeta && quizMeta.id ? quizMeta.id : quizMeta.path;
+        }
+
+        const GUEST_RESULTS_KEY = "mcqGuestResults";
+
+        function loadGuestResults() {
+            try {
+                const raw = localStorage.getItem(GUEST_RESULTS_KEY);
+                if (!raw) return {};
+                return JSON.parse(raw);
+            } catch {
+                return {};
+            }
+        }
+
+        function saveGuestResults(all) {
+            try {
+                localStorage.setItem(GUEST_RESULTS_KEY, JSON.stringify(all));
+            } catch (e) {
+                console.warn("Failed to save guest results", e);
+            }
+        }
+
+        function updateGuestQuizResults(quizMeta, score, total) {
+            const quizId = getQuizIdFromMeta(quizMeta);
+            const all = loadGuestResults();
+            const prev = all[quizId];
+
+            const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+            const attempts = prev ? prev.attempts + 1 : 1;
+
+            const isBest =
+                !prev || percent > prev.bestPercent || (percent === prev.bestPercent && score > prev.bestScore);
+
+            const updated = {
+                attempts,
+                lastScore: score,
+                lastTotal: total,
+                lastPercent: percent,
+                lastCompletedAt: new Date().toISOString(),
+                bestScore: isBest ? score : (prev?.bestScore ?? score),
+                bestTotal: isBest ? total : (prev?.bestTotal ?? total),
+                bestPercent: isBest ? percent : (prev?.bestPercent ?? percent),
+            };
+
+            all[quizId] = updated;
+            saveGuestResults(all);
+            return updated;
+        }
+
+        function getGuestQuizResults(quizMeta) {
+            const quizId = getQuizIdFromMeta(quizMeta);
+            const all = loadGuestResults();
+            return all[quizId] || null;
+        }
+
+        async function saveAttemptToSupabase(quizMeta, score, total) {
+            if (!supabaseClient || !currentUser) return null;
+
+            const quizId = getQuizIdFromMeta(quizMeta);
+            const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+
+            const { error } = await supabaseClient.from("quiz_attempts").insert({
+                user_id: currentUser.id,
+                quiz_id: quizId,
+                score,
+                total,
+                percent,
+            });
+
+            if (error) {
+                console.error("Failed to save quiz attempt:", error.message);
+                return null;
+            }
+
+            // After insert, fetch attempts to compute best stats
+            const { data, error: statsError } = await supabaseClient
+                .from("quiz_attempts")
+                .select("score, total, percent")
+                .eq("user_id", currentUser.id)
+                .eq("quiz_id", quizId);
+
+            if (statsError || !data) {
+                console.error("Failed to fetch updated stats:", statsError?.message);
+                return null;
+            }
+
+            const attempts = data.length;
+            let bestScore = -1;
+            let bestTotal = 0;
+            let bestPercent = -1;
+
+            for (const row of data) {
+                if (row.percent > bestPercent || (row.percent === bestPercent && row.score > bestScore)) {
+                    bestPercent = row.percent;
+                    bestScore = row.score;
+                    bestTotal = row.total;
+                }
+            }
+
+            return {
+                attempts,
+                bestScore,
+                bestTotal,
+                bestPercent,
+            };
+        }
+
+        async function fetchQuizStatsFromSupabase(quizMeta) {
+            if (!supabaseClient || !currentUser) return null;
+
+            const quizId = getQuizIdFromMeta(quizMeta);
+
+            const { data, error } = await supabaseClient
+                .from("quiz_attempts")
+                .select("score, total, percent")
+                .eq("user_id", currentUser.id)
+                .eq("quiz_id", quizId);
+
+            if (error || !data) {
+                console.error("Failed to fetch stats:", error?.message);
+                return null;
+            }
+
+            if (data.length === 0) {
+                return {
+                    attempts: 0,
+                    bestScore: null,
+                    bestTotal: null,
+                    bestPercent: null,
+                };
+            }
+
+            const attempts = data.length;
+            let bestScore = -1;
+            let bestTotal = 0;
+            let bestPercent = -1;
+
+            for (const row of data) {
+                if (row.percent > bestPercent || (row.percent === bestPercent && row.score > bestScore)) {
+                    bestPercent = row.percent;
+                    bestScore = row.score;
+                    bestTotal = row.total;
+                }
+            }
+
+            return {
+                attempts,
+                bestScore,
+                bestTotal,
+                bestPercent,
+            };
+        }
+
+        async function saveAttempt(quizMeta, score, total) {
+            if (supabaseClient && currentUser) {
+                return await saveAttemptToSupabase(quizMeta, score, total);
+            } else {
+                return updateGuestQuizResults(quizMeta, score, total);
+            }
+        }
+
+        async function getQuizStats(quizMeta) {
+            if (supabaseClient && currentUser) {
+                return await fetchQuizStatsFromSupabase(quizMeta);
+            } else {
+                return getGuestQuizResults(quizMeta);
+            }
+        }
 
         // ================================
         // MCQ APP LOGIC
@@ -688,7 +990,7 @@
             if (!units.length) {
                 quizContentEl.innerHTML = `
           <p>No units found for this module.</p>
-          <div class="controls">
+          <div class="controls" style="justify-content:flex-start;">
             <button class="secondary-button" id="back-modules">Back to modules</button>
           </div>
         `;
@@ -774,8 +1076,8 @@
                   (q) => `
             <button class="list-item" data-id="${q.id}">
               <div class="list-title">${q.title}</div>
-              <div class="list-meta">
-                <span>Quiz file: ${q.path}</span>
+              <div class="list-meta" data-stats-for="${q.id}">
+                <span>${currentUser ? "Loading stats…" : "Guest: progress saved on this device"}</span>
               </div>
             </button>
           `
@@ -800,6 +1102,25 @@
             document
                 .getElementById("back-units")
                 .addEventListener("click", () => renderUnitList(currentModule.id));
+
+            // Populate stats per quiz (attempts, best score)
+            quizzes.forEach(async (q) => {
+                const metaEl = document.querySelector(`.list-meta[data-stats-for="${q.id}"]`);
+                if (!metaEl) return;
+
+                const stats = await getQuizStats(q);
+                if (!stats || !stats.attempts) {
+                    metaEl.innerHTML = currentUser
+                        ? `<span>Not attempted yet</span>`
+                        : `<span>Guest: not attempted yet</span>`;
+                } else {
+                    metaEl.innerHTML = `
+        <span>Attempts: ${stats.attempts}</span>
+        <span>•</span>
+        <span>Best: ${stats.bestScore}/${stats.bestTotal} (${stats.bestPercent}%)</span>
+      `;
+                }
+            });
         }
 
         async function startQuiz(quizMeta) {
@@ -1032,10 +1353,13 @@
             }
         }
 
-        function renderResult() {
+        async function renderResult() {
             const questions = currentQuizData.questions;
             const total = questions.length;
             const percent = Math.round((score / total) * 100);
+
+            // Save attempt (guest or logged-in) and get updated stats
+            const stats = await saveAttempt(currentQuizMeta, score, total);
 
             progressFillEl.style.width = "100%";
             pillRightEl.textContent = "Quiz complete";
@@ -1068,6 +1392,16 @@
                 })
                 .join("");
 
+            let statsLine = "";
+            if (stats) {
+                statsLine = "Attempts: <strong>" + stats.attempts + "</strong>";
+                if (stats.bestScore != null) {
+                    statsLine += " • Best: <strong>" +
+                        stats.bestScore + "/" + stats.bestTotal +
+                        " (" + stats.bestPercent + "%)</strong>";
+                }
+            }
+
             quizContentEl.innerHTML = `
         <div class="result-heading">
           Your results for "${currentQuizData.title || currentQuizMeta.title}"
@@ -1075,9 +1409,13 @@
         <p class="result-score">
           You scored <strong>${score}</strong> out of <strong>${total}</strong> (${percent}%)
         </p>
-        <p class="result-detail">
+        ${
+          statsLine
+            ? `<p class="result-detail">${statsLine}</p>`
+            : `<p class="result-detail">
           Review your answers below, or go back to choose another quiz in this unit.
-        </p>
+        </p>`
+        }
 
         <div class="controls" style="margin-bottom: 6px;">
           <button class="secondary-button" id="back-quizzes">Back to quizzes</button>
@@ -1117,6 +1455,7 @@
         }
 
         loadModules();
+        initAuth();
     </script>
 </body>
 </html>
