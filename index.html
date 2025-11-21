@@ -602,16 +602,33 @@
                     });
                 }
             } else {
+                // Check if there's guest data that hasn't been imported yet
+                const guestHasData = Object.keys(loadGuestResults()).length > 0;
+                const showImportPrompt = guestHasData && !hasGuestBeenImported();
+            
                 panel.innerHTML = `
-      <div class="sidebar-text">
-        Logged in as <strong>${currentUser.email}</strong><br />
-        Your quiz results are synced via Supabase.
-      </div>
-      <button class="secondary-button" id="auth-logout-btn" style="margin-top:6px;">
-        Log out
-      </button>
-    `;
-
+                  <div class="sidebar-text">
+                    Logged in as <strong>${currentUser.email}</strong><br />
+                    Your quiz results are synced via Supabase.
+                  </div>
+            
+                  ${
+                    showImportPrompt
+                      ? `<div class="sidebar-text" style="margin-top:6px;">
+                           We found quiz progress saved in guest mode on this device.
+                           You can import it into your account so it syncs across devices.
+                         </div>
+                         <button class="primary-button" id="import-guest-btn" style="margin-top:6px;">
+                           Import guest progress
+                         </button>`
+                      : ""
+                  }
+            
+                  <button class="secondary-button" id="auth-logout-btn" style="margin-top:8px;">
+                    Log out
+                  </button>
+                `;
+            
                 const logoutBtn = document.getElementById("auth-logout-btn");
                 if (logoutBtn) {
                     logoutBtn.addEventListener("click", async () => {
@@ -620,8 +637,17 @@
                         refreshAuthPanel();
                     });
                 }
-            }
-        }
+
+    const importBtn = document.getElementById("import-guest-btn");
+    if (importBtn) {
+        importBtn.addEventListener("click", async () => {
+            await importGuestResultsToSupabase();
+            // After import, refresh panel so the prompt disappears
+            refreshAuthPanel();
+        });
+    }
+}
+
 
         async function initAuth() {
             if (!supabaseClient) {
@@ -634,9 +660,22 @@
             currentUser = data.user ?? null;
             refreshAuthPanel();
 
-            supabaseClient.auth.onAuthStateChange((_event, session) => {
-                currentUser = session?.user ?? null;
-                refreshAuthPanel();
+            supabaseClient.auth.onAuthStateChange(async (_event, session) => {
+              currentUser = session?.user ?? null;
+              refreshAuthPanel();
+            
+              if (currentUser && !hasGuestBeenImported()) {
+                const guestResults = loadGuestResults();
+                if (Object.keys(guestResults).length > 0) {
+                  const wantsImport = confirm(
+                    "We found quiz progress saved in guest mode on this device. Do you want to import it into your account so it syncs across devices?"
+                  );
+                  if (wantsImport) {
+                    await importGuestResultsToSupabase();
+                    refreshAuthPanel();
+                  }
+                }
+              }
             });
         }
 
@@ -648,6 +687,17 @@
         }
 
         const GUEST_RESULTS_KEY = "mcqGuestResults";
+        
+        // Has this browser's guest data already been imported for this user?
+        const GUEST_IMPORTED_KEY = "mcqGuestResultsImported";
+        
+        function hasGuestBeenImported() {
+          return localStorage.getItem(GUEST_IMPORTED_KEY) === "true";
+        }
+        
+        function markGuestImported() {
+          localStorage.setItem(GUEST_IMPORTED_KEY, "true");
+        }
 
         function loadGuestResults() {
             try {
@@ -750,6 +800,53 @@
                 bestTotal,
                 bestPercent,
             };
+        }
+        // Take aggregated guest stats in localStorage and turn them into Supabase attempts
+        async function importGuestResultsToSupabase() {
+          if (!supabaseClient || !currentUser) return;
+        
+          const all = loadGuestResults();
+          const entries = Object.entries(all);
+          if (entries.length === 0) {
+            alert("No guest progress found on this device.");
+            return;
+          }
+        
+          const rows = [];
+        
+          // For each quiz, we insert a single "best score" attempt.
+          for (const [quizId, stats] of entries) {
+            if (!stats || stats.bestScore == null || stats.bestTotal == null) continue;
+        
+            rows.push({
+              user_id: currentUser.id,
+              quiz_id: quizId,
+              score: stats.bestScore,
+              total: stats.bestTotal,
+              percent: stats.bestPercent ?? Math.round((stats.bestScore / stats.bestTotal) * 100),
+            });
+          }
+        
+          if (rows.length === 0) {
+            alert("No usable guest progress found to import.");
+            return;
+          }
+        
+          const { error } = await supabaseClient.from("quiz_attempts").insert(rows);
+        
+          if (error) {
+            console.error("Failed to import guest results:", error.message);
+            alert("Sorry, something went wrong while importing your guest progress.");
+            return;
+          }
+        
+          // Mark imported so we don't re-import repeatedly
+          markGuestImported();
+        
+          // Optional: keep or clear guest data
+          // localStorage.removeItem(GUEST_RESULTS_KEY);
+        
+          alert("Guest progress imported into your account! Your stats will now sync across devices.");
         }
 
         async function fetchQuizStatsFromSupabase(quizMeta) {
@@ -1459,5 +1556,6 @@
     </script>
 </body>
 </html>
+
 
 
