@@ -15,33 +15,33 @@
     --accent-contrast: #020617;
     --text: #e5e7eb;
     --text-soft: #9ca3af;
-    --text-softer: #6b7280;
     --danger: #f97373;
-    --shadow-soft: 0 4px 14px rgba(15, 23, 42, 0.6);
+    --success: #22c55e;
+    --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.6);
     --radius-lg: 18px;
-    --radius-xl: 24px;
     --radius-full: 999px;
 }
+
+/* Light theme overrides */
 
 body.theme-light {
     --bg: #f3f4f6;
     --bg-elevated: #ffffff;
-    --bg-elevated-soft: #e5e7eb;
+    --bg-elevated-soft: #f9fafb;
     --bg-card: #ffffff;
     --bg-sidebar: #f9fafb;
-    --border-subtle: rgba(148, 163, 184, 0.5);
+    --border-subtle: rgba(148, 163, 184, 0.35);
     --accent: #2563eb;
     --accent-soft: rgba(37, 99, 235, 0.08);
     --accent-strong: #1d4ed8;
     --accent-contrast: #eff6ff;
-    --text: #111827;
-    --text-soft: #4b5563;
-    --text-softer: #6b7280;
-    --shadow-soft: 0 4px 12px rgba(15, 23, 42, 0.16);
+    --text: #0f172a;
+    --text-soft: #6b7280;
+    --shadow-soft: 0 8px 24px rgba(15, 23, 42, 0.18);
 }
 
 /* ================================
-   Global
+   Global Layout & Typography
 =================================== */
 
 *,
@@ -54,23 +54,23 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-}
-
-/* ================================
-   App Shell
-=================================== */
-
-.app-shell {
     display: flex;
     flex-direction: column;
+}
+
+.app-shell {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ================================
@@ -103,21 +103,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ecfeff;
     font-weight: 700;
-    font-size: 18px;
-    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.45);
+    font-size: 20px;
+    color: var(--accent-contrast);
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.5);
 }
 
 .app-title-group {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
 .app-title {
     margin: 0;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 19px;
+    font-weight: 650;
 }
 
 .app-subtitle {
@@ -132,20 +133,17 @@ body {
     gap: 8px;
 }
 
-/* ================================
-   Buttons
-=================================== */
-
 .icon-button {
-    border: 1px solid var(--border-subtle);
-    background-color: var(--bg-elevated-soft);
     border-radius: var(--radius-full);
-    padding: 7px 11px;
-    color: var(--text-soft);
+    border: 1px solid var(--border-subtle);
+    padding: 6px 10px;
+    background-color: var(--bg-elevated-soft);
+    color: var(--text);
     cursor: pointer;
     font-size: 14px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     transition:
         background-color 0.18s ease,
@@ -154,21 +152,20 @@ body {
         box-shadow 0.18s ease;
 }
 
-body.theme-light .icon-button {
-    background-color: #f9fafb;
-}
-
 .icon-button:hover {
     background-color: var(--bg-elevated);
     border-color: var(--accent);
-    color: var(--text);
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.4);
+    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.35);
     transform: translateY(-1px);
 }
 
 .icon-button:active {
     transform: translateY(0);
     box-shadow: none;
+}
+
+.icon-button span {
+    font-size: 13px;
 }
 
 .sidebar-toggle {
@@ -189,6 +186,8 @@ body.theme-light .icon-button {
     align-items: center;
     gap: 8px;
     transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
         transform 0.08s ease,
         box-shadow 0.18s ease,
         filter 0.18s ease;
@@ -224,10 +223,6 @@ body.theme-light .icon-button {
         box-shadow 0.18s ease;
 }
 
-body.theme-light .secondary-button {
-    background-color: #f9fafb;
-}
-
 .secondary-button:hover {
     background-color: var(--bg-elevated);
     border-color: var(--accent);
@@ -259,27 +254,9 @@ body.theme-light .secondary-button {
 }
 
 .ghost-button:hover {
-    background-color: var(--accent-soft);
+    background-color: var(--bg-elevated-soft);
     border-color: var(--accent);
-    color: var(--accent-strong);
-}
-
-/* Link-style button for "Clear all" */
-
-.link-button {
-    border: none;
-    background: none;
-    padding: 0;
-    margin: 0;
-    font-size: 13px;
-    color: var(--text-softer);
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 2px;
-}
-
-.link-button:hover {
-    color: var(--accent-strong);
+    color: var(--accent);
 }
 
 /* ================================
@@ -290,128 +267,69 @@ body.theme-light .secondary-button {
     flex: 1;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding: 24px 16px 32px;
+    padding: 18px 16px 26px;
 }
 
 /* ================================
-   Card Panel (center area)
+   Generic Panel (used by both apps)
 =================================== */
 
-.card-panel {
+.content-panel {
     width: 100%;
-    max-width: 880px;
+    max-width: 960px;
     background-color: var(--bg-elevated);
     border-radius: 22px;
     padding: 20px 20px 22px;
     border: 1px solid var(--border-subtle);
     box-shadow: var(--shadow-soft);
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    position: relative;
-    overflow: hidden;
 }
 
-body.theme-light .card-panel {
+body.theme-light .content-panel {
     background-color: var(--bg-card);
 }
 
-.card-panel-header {
+.panel-header {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 18px;
-    align-items: center;
-    position: relative;
-    z-index: 1;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.panel-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .panel-title {
-    margin: 0 0 4px;
+    margin: 0;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 650;
 }
 
-.panel-description {
+.panel-subtitle {
     margin: 0;
     font-size: 13px;
     color: var(--text-soft);
 }
 
-/* Flashcards */
-
-.flashcard-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    margin: 4px 0 10px;
-    position: relative;
-    z-index: 1;
-}
-
-.flashcard {
-    position: relative;
-    border-radius: 18px;
-    padding: 18px 18px;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.55);
-    color: var(--text);
-    font-size: 16px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 140px;
-    cursor: pointer;
-    transition:
-        transform 0.09s ease,
-        box-shadow 0.18s ease,
-        border-color 0.18s ease,
-        background-color 0.18s ease;
-}
-
-body.theme-light .flashcard {
-    background-color: #ffffff;
-    box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
-}
-
-.flashcard:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.7);
-    border-color: var(--accent);
-}
-
-.flashcard:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.5);
-}
-
-.flashcard:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-}
-
-/* Card panel footer */
-
-.card-panel-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    position: relative;
-    z-index: 1;
-}
-
-.hint-text {
-    margin: 0;
+.panel-pill {
     font-size: 12px;
-    color: var(--text-softer);
+    border-radius: var(--radius-full);
+    padding: 4px 10px;
+    background-color: var(--accent-soft);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-soft);
+    white-space: nowrap;
+}
+
+.panel-body {
+    font-size: 14px;
 }
 
 /* ================================
-   Sidebar / Drawer
+   Sidebar (shared style)
 =================================== */
 
 .sidebar {
@@ -419,7 +337,7 @@ body.theme-light .flashcard {
     top: 0;
     right: 0;
     bottom: 0;
-    width: min(360px, 100%);
+    width: min(340px, 100%);
     transform: translateX(100%);
     transition: transform 0.26s ease;
     z-index: 50;
@@ -435,12 +353,11 @@ body.theme-light .flashcard {
     height: 100%;
     background-color: var(--bg-sidebar);
     border-left: 1px solid var(--border-subtle);
-    box-shadow: -4px 0 14px rgba(15, 23, 42, 0.7);
-    padding: 16px 16px 22px;
+    box-shadow: -12px 0 30px rgba(15, 23, 42, 0.7);
+    padding: 16px 16px 16px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    overflow-y: auto;
+    gap: 12px;
 }
 
 .sidebar-header {
@@ -477,19 +394,21 @@ body.theme-light .flashcard {
     z-index: 45;
 }
 
-/* Sidebar sections */
+/* Sections within sidebar */
 
 .sidebar-section {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-section:last-of-type {
+    border-bottom: none;
 }
 
 .sidebar-section-title {
-    margin: 4px 0 0;
-    font-size: 14px;
+    margin: 0;
+    font-size: 13px;
     font-weight: 600;
-    color: var(--text-soft);
 }
 
 .sidebar-section-header {
@@ -500,23 +419,33 @@ body.theme-light .flashcard {
 }
 
 .sidebar-section-controls {
+    margin-top: 8px;
     display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.inline-checkbox {
-    display: inline-flex;
-    align-items: center;
+    flex-direction: column;
     gap: 6px;
-    font-size: 13px;
-    color: var(--text-soft);
 }
 
 .sidebar-text {
     margin: 0 0 4px;
     font-size: 13px;
     color: var(--text-soft);
+}
+
+/* NEW: auth inputs in sidebar */
+.sidebar-input {
+    width: 100%;
+    padding: 7px 9px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background-color: var(--bg-elevated-soft);
+    color: var(--text);
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.sidebar-input:focus {
+    outline: none;
+    border-color: var(--accent);
 }
 
 /* Scroll area for selections */
@@ -529,6 +458,9 @@ body.theme-light .flashcard {
 /* ================================
    Category / Function Trees
 =================================== */
+
+/* ...rest of your existing styles (unchanged) ... */
+
 
 .category-container,
 .function-container {
