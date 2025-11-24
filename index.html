@@ -11,6 +11,52 @@
         /* =========================================
            MCQ-specific styling (uses shared theme vars)
            ========================================= */
+		   
+		/* Tooltip wrapper */
+		.mastery-tooltip {
+			position: relative;
+			display: inline-block;
+			cursor: help;
+		}
+
+		/* Tooltip box */
+		.mastery-tooltip .tooltip-text {
+			visibility: hidden;
+			opacity: 0;
+			width: 220px;
+			background: var(--bg-elevated);
+			color: var(--text);
+			text-align: left;
+			border-radius: 10px;
+			padding: 8px 10px;
+			border: 1px solid var(--border-subtle);
+			box-shadow: var(--shadow-soft);
+			position: absolute;
+			z-index: 9999;
+			bottom: 130%;
+			left: 50%;
+			transform: translateX(-50%);
+			transition: opacity 0.2s ease-in-out;
+			font-size: 12px;
+		}
+
+		/* Tooltip arrow */
+		.mastery-tooltip .tooltip-text::after {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-width: 6px;
+			border-style: solid;
+			border-color: var(--border-subtle) transparent transparent transparent;
+		}
+
+		/* Show on hover */
+		.mastery-tooltip:hover .tooltip-text {
+			visibility: visible;
+			opacity: 1;
+		}
 
         .card-panel-mcq {
             width: 100%;
@@ -959,6 +1005,9 @@
         }
 
         // ================================
+}
+
+        // ================================
         // Mastery calculations (unit & module)
         // ================================
 
@@ -1206,9 +1255,15 @@
                 const { percent, attempted, total, category } = result;
                 const badgeClass = (category && category.className) ? category.className : "mastery-badge";
                 const label = (category && category.label) ? ` (${category.label})` : "";
-                el.innerHTML =
-                    `• <span class="${badgeClass}">Mastery: ${percent}%${label}</span>` +
-                    ` <span>• ${attempted}/${total} quizzes attempted</span>`;
+				el.innerHTML =
+					`• <span class="mastery-tooltip">
+						 <span class="${badgeClass}">Mastery: ${percent}%${label}</span>
+						 <span class="tooltip-text">
+							 This represents your average best score across all quizzes in this unit/module.
+							 Unattempted quizzes count as 0% until you try them.
+						 </span>
+					 </span>
+					 <span>• ${attempted}/${total} quizzes attempted</span>`;
             });
         }
 
@@ -1293,9 +1348,15 @@
                 const { percent, attempted, total, category } = result;
                 const badgeClass = (category && category.className) ? category.className : "mastery-badge";
                 const label = (category && category.label) ? ` (${category.label})` : "";
-                el.innerHTML =
-                    `• <span class="${badgeClass}">Mastery: ${percent}%${label}</span>` +
-                    ` <span>• ${attempted}/${total} quizzes attempted</span>`;
+				el.innerHTML =
+					`• <span class="mastery-tooltip">
+						 <span class="${badgeClass}">Mastery: ${percent}%${label}</span>
+						 <span class="tooltip-text">
+							 This represents your average best score across all quizzes in this unit/module.
+							 Unattempted quizzes count as 0% until you try them.
+						 </span>
+					 </span>
+					 <span>• ${attempted}/${total} quizzes attempted</span>`;
             });
         }
 
@@ -1721,4 +1782,3 @@
     </script>
 </body>
 </html>
-
