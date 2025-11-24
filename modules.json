@@ -641,8 +641,8 @@
         "id": "julioclaudians-nero",
         "name": "05. Nero",
         "description": "Structure of the Roman legal system.",
-        "quizzes": 
-          {
+        "quizzes": [ 
+        {
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
             "path": "quizzes/julioclaudians/nero/late-roman-republic.json"
