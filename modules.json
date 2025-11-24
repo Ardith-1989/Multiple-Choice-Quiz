@@ -595,11 +595,6 @@
         "description": "Caesar, Pompey and the late Republic.",
         "quizzes": [
           {
-            "id": "caesar-pompey",
-            "title": "Caesar vs Pompey",
-            "path": "quizzes/rome/politics/caesar-pompey.json"
-          },
-          {
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
             "path": "quizzes/julioclaudians/augustus/late-roman-republic.json"
@@ -611,11 +606,6 @@
         "name": "02. Tiberius",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
@@ -629,9 +619,9 @@
         "description": "Structure of the Roman legal system.",
         "quizzes": [
           {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
+            "id": "late-roman-republic",
+            "title": "Late Roman Republic Overview",
+            "path": "quizzes/julioclaudians/tiberius/late-roman-republic.json"
           }
         ]
       },
@@ -640,11 +630,6 @@
         "name": "04. Claudius",
         "description": "Structure of the Roman legal system.",
         "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
           {
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
@@ -656,12 +641,7 @@
         "id": "julioclaudians-nero",
         "name": "05. Nero",
         "description": "Structure of the Roman legal system.",
-        "quizzes": [
-          {
-            "id": "roman-law-basics",
-            "title": "Roman Law Basics",
-            "path": "quizzes/rome/law/roman-law-basics.json"
-          },
+        "quizzes": 
           {
             "id": "late-roman-republic",
             "title": "Late Roman Republic Overview",
