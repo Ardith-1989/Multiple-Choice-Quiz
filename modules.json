@@ -648,18 +648,6 @@
             "path": "quizzes/julioclaudians/nero/late-roman-republic.json"
           }
         ]
-      },
-      {
-        "id": "julioclaudians-gaius",
-        "name": "Gaius",
-        "description": "",
-        "quizzes": [
-          {
-            "id": "late-roman-republic",
-            "title": "Late Roman Republic Overview",
-            "path": "quizzes/julioclaudians/gaius/late-roman-republic.json"
-          }
-        ]
       }
     ]
   }
