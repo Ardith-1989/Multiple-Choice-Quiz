@@ -1241,27 +1241,27 @@
             });
 			
 			// After rendering the module list, calculate mastery for each module
-            modules.forEach(async (m) => {
-                const el = document.querySelector(`.mastery-text[data-master-for-module="${m.id}"]`);
-                if (!el) return;
-                const result = await calculateModuleMastery(m);
-                if (!result || !result.total) {
-                    el.textContent = "";
-                    return;
-                }
-                const { percent, attempted, total, category } = result;
-                const badgeClass = (category && category.className) ? category.className : "mastery-badge";
-                const label = (category && category.label) ? ` (${category.label})` : "";
-				el.innerHTML =
-					`• <span class="mastery-tooltip">
-						 <span class="${badgeClass}">Mastery: ${percent}%${label}</span>
-						 <span class="tooltip-text">
-							 This represents your average best score across all quizzes in this unit/module.
-							 Unattempted quizzes count as 0% until you try them.
-						 </span>
-					 </span>
-					 <span>• ${attempted}/${total} quizzes attempted</span>`;
-            });
+			modules.forEach(async (m) => {
+			    const el = document.querySelector(`.mastery-text[data-master-for-module="${m.id}"]`);
+			    if (!el) return;
+			    const result = await calculateModuleMastery(m);
+			    if (!result || !result.total) {
+			        el.textContent = "";
+			        return;
+			    }
+			    const { percent, attempted, total, category } = result;
+			    const badgeClass = (category && category.className) ? category.className : "mastery-badge";
+			
+			    el.innerHTML =
+			        `• <span class="mastery-tooltip">
+			             <span class="${badgeClass}">Mastery: ${percent}%</span>
+			             <span class="tooltip-text">
+			                 This represents your average best score across all quizzes in this unit/module.
+			                 Unattempted quizzes count as 0% until you try them.
+			             </span>
+			         </span>
+			         <span>• ${attempted}/${total} quizzes attempted</span>`;
+			});
         }
 
         function renderUnitList(moduleId) {
@@ -1779,5 +1779,6 @@
     </script>
 </body>
 </html>
+
 
 
