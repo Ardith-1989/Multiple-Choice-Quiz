@@ -595,6 +595,21 @@ function pickRandomQuiz(quizzes) {
   return quizzes[index];
 }
 
+// Find which unit in a module contains a given quiz
+function findUnitForQuizInModule(module, quizMeta) {
+  if (!module || !module.units) return null;
+  const targetId = getQuizIdFromMeta(quizMeta);
+  for (const u of module.units) {
+    const quizzes = u.quizzes || [];
+    for (const q of quizzes) {
+      if (getQuizIdFromMeta(q) === targetId) {
+        return u;
+      }
+    }
+  }
+  return null;
+}
+
 // ================================
 // MCQ APP LOGIC
 // ================================
@@ -614,13 +629,6 @@ let shuffleQuestionsEnabled = false;
 let hideFeedbackEnabled = false;
 let questionOrder = [];
 let currentOptionOrder = [];
-
-// remembers where we came from before starting a quiz
-let lastView = {
-  moduleId: null, // string | null
-  unitId: null,   // string | null
-  view: "modules" // "modules" | "units" | "quizzes"
-};
 
 const quizContentEl = document.getElementById("quiz-content");
 const cardTitleEl = document.getElementById("card-title");
@@ -763,30 +771,35 @@ function renderModuleList() {
   });
 
   // Random quiz per module
-  document.querySelectorAll("[data-random-module]").forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const moduleId = btn.getAttribute("data-random-module");
-      const mod = modules.find((m) => m.id === moduleId);
-      if (!mod) return;
+	document.querySelectorAll("[data-random-module]").forEach((btn) => {
+	  btn.addEventListener("click", (event) => {
+		event.stopPropagation();
+		const moduleId = btn.getAttribute("data-random-module");
+		const mod = modules.find((m) => m.id === moduleId);
+		if (!mod) return;
 
-      const quizzes = getAllQuizzesInModule(mod);
-      const chosen = pickRandomQuiz(quizzes);
-      if (!chosen) {
-        alert("This module has no quizzes.");
-        return;
-      }
+		const quizzes = getAllQuizzesInModule(mod);
+		const chosen = pickRandomQuiz(quizzes);
+		if (!chosen) {
+		  alert("This module has no quizzes.");
+		  return;
+		}
 
-      // record where we came from
-      lastView = {
-        moduleId: mod.id,
-        unitId: null,
-        view: "modules"
-      };
+		// Try to locate which unit this quiz belongs to
+		const unit = findUnitForQuizInModule(mod, chosen);
+		currentModule = mod;
+		currentUnit = unit || null;
 
-      startQuiz(chosen);
-    });
-  });
+		// record where we came from (still treat as module-level start)
+		lastView = {
+		  moduleId: mod.id,
+		  unitId: unit ? unit.id : null,
+		  view: "modules"
+		};
+
+		startQuiz(chosen);
+	  });
+	});
 
   // Mastery for each module
   modules.forEach(async (m) => {
@@ -905,14 +918,6 @@ function renderUnitList(moduleId) {
         alert("This unit has no quizzes.");
         return;
       }
-
-      // record where we came from
-      lastView = {
-        moduleId: currentModule.id,
-        unitId: unit.id,
-        view: "units"
-      };
-
       startQuiz(chosen);
     });
   });
@@ -1002,15 +1007,7 @@ function renderQuizList(unitId) {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-id");
       const meta = quizzes.find((q) => q.id === id);
-      if (meta) {
-        // record that we came from the quiz list
-        lastView = {
-          moduleId: currentModule.id,
-          unitId: currentUnit.id,
-          view: "quizzes"
-        };
-        startQuiz(meta);
-      }
+      if (meta) startQuiz(meta);
     });
   });
 
@@ -1081,39 +1078,13 @@ async function startQuiz(quizMeta) {
     quizContentEl.innerHTML = `
       <p class="error-text">Could not load quiz file <code>${quizMeta.path}</code>.</p>
       <div class="controls" style="justify-content:flex-start;">
-        <button class="secondary-button" id="back-quizzes">Exit quiz</button>
+        <button class="secondary-button" id="back-quizzes">Back to quizzes</button>
       </div>
     `;
     document
       .getElementById("back-quizzes")
-      .addEventListener("click", () => exitQuiz());
+      .addEventListener("click", () => renderQuizList(currentUnit.id));
   }
-}
-
-// Decide where to go when "Exit quiz" / "Back to quizzes" is clicked
-function exitQuiz() {
-  if (!lastView) {
-    renderModuleList();
-    return;
-  }
-
-  if (lastView.view === "quizzes" && lastView.unitId) {
-    renderQuizList(lastView.unitId);
-    return;
-  }
-
-  if (lastView.view === "units" && lastView.moduleId) {
-    renderUnitList(lastView.moduleId);
-    return;
-  }
-
-  if (lastView.view === "modules") {
-    renderModuleList();
-    return;
-  }
-
-  // Fallback
-  renderModuleList();
 }
 
 function renderQuestion() {
@@ -1159,7 +1130,7 @@ function renderQuestion() {
     </div>
     <div class="feedback" id="feedback"></div>
     <div class="controls">
-      <button class="secondary-button" id="back-to-quizzes">Exit quiz</button>
+      <button class="secondary-button" id="back-to-quizzes">Back to quizzes</button>
       <button class="secondary-button" id="skip-btn">Skip</button>
       <button class="primary-button" id="next-btn" disabled>
         Next →
@@ -1174,7 +1145,7 @@ function renderQuestion() {
   document.getElementById("skip-btn").addEventListener("click", onSkip);
   document
     .getElementById("back-to-quizzes")
-    .addEventListener("click", () => exitQuiz());
+    .addEventListener("click", () => renderQuizList(currentUnit.id));
 }
 
 function onOptionClick(e) {
@@ -1357,10 +1328,12 @@ async function renderResult() {
           </p>`
     }
 
-    <div class="controls" style="margin-bottom: 6px;">
-      <button class="secondary-button" id="back-quizzes">Exit quiz</button>
-      <button class="primary-button" id="restart-btn">Retake this quiz</button>
-    </div>
+	<div class="controls" style="margin-bottom: 6px; flex-wrap:wrap;">
+	  <button class="secondary-button" id="back-quizzes">Exit quiz</button>
+	  <button class="secondary-button" id="next-quiz-btn">Next quiz in unit</button>
+	  <button class="secondary-button" id="random-unit-quiz-btn">Random quiz in unit</button>
+	  <button class="primary-button" id="restart-btn">Retake this quiz</button>
+	</div>
 
     <div class="summary-list">
       ${summaryItemsHtml}
@@ -1373,8 +1346,73 @@ async function renderResult() {
 
   document
     .getElementById("back-quizzes")
-    .addEventListener("click", () => exitQuiz());
+    .addEventListener("click", () => renderQuizList(currentUnit.id));
 }
+
+  // Next quiz in unit
+  const nextQuizBtn = document.getElementById("next-quiz-btn");
+  const randomUnitBtn = document.getElementById("random-unit-quiz-btn");
+
+  const unit = currentUnit;
+  const moduleObj = currentModule;
+
+  if (!unit || !unit.quizzes || unit.quizzes.length === 0) {
+    if (nextQuizBtn) nextQuizBtn.disabled = true;
+    if (randomUnitBtn) randomUnitBtn.disabled = true;
+  } else {
+    // NEXT QUIZ
+    if (nextQuizBtn) {
+      nextQuizBtn.addEventListener("click", () => {
+        const quizzes = unit.quizzes || [];
+        const currentId = getQuizIdFromMeta(currentQuizMeta);
+        const idx = quizzes.findIndex(
+          (q) => getQuizIdFromMeta(q) === currentId
+        );
+        if (idx === -1 || idx === quizzes.length - 1) {
+          alert("There is no next quiz in this unit.");
+          return;
+        }
+        const nextMeta = quizzes[idx + 1];
+
+        // We are effectively navigating as if from the quiz list
+        lastView = {
+          moduleId: moduleObj ? moduleObj.id : null,
+          unitId: unit.id,
+          view: "quizzes"
+        };
+        startQuiz(nextMeta);
+      });
+    }
+
+    // RANDOM QUIZ IN UNIT
+    if (randomUnitBtn) {
+      randomUnitBtn.addEventListener("click", () => {
+        const quizzes = unit.quizzes || [];
+        if (!quizzes.length) {
+          alert("This unit has no quizzes.");
+          return;
+        }
+
+        const currentId = getQuizIdFromMeta(currentQuizMeta);
+        const pool = quizzes.filter(
+          (q) => getQuizIdFromMeta(q) !== currentId
+        );
+        const chosen = pool.length ? pickRandomQuiz(pool) : pickRandomQuiz(quizzes);
+
+        if (!chosen) {
+          alert("This unit has no quizzes.");
+          return;
+        }
+
+        lastView = {
+          moduleId: moduleObj ? moduleObj.id : null,
+          unitId: unit.id,
+          view: "quizzes"
+        };
+        startQuiz(chosen);
+      });
+    }
+  }
 
 // ================================
 // Sidebar toggles (shuffle, hide-feedback)
