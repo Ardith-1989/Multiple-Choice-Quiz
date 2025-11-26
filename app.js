@@ -1,12 +1,16 @@
-// ================================
-// Theme toggle
-// ================================
+/* =========================================================
+   A LEVEL ANCIENT HISTORY — MULTIPLE CHOICE QUIZ ENGINE
+   Cleaned & Organised Version (Part 1/3)
+   ========================================================= */
 
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
 const THEME_KEY = "revision-theme";
 
 function applyStoredTheme() {
-  const stored = localStorage.getItem(THEME_KEY);
-  if (!stored || stored === "light") {
+  const t = localStorage.getItem(THEME_KEY);
+  if (!t || t === "light") {
     document.body.classList.add("theme-light");
   } else {
     document.body.classList.remove("theme-light");
@@ -27,14 +31,12 @@ function toggleTheme() {
 applyStoredTheme();
 
 const themeBtn = document.getElementById("toggleThemeBtn");
-if (themeBtn) {
-  themeBtn.addEventListener("click", toggleTheme);
-}
+if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
 
-// ================================
-// Sidebar open/close
-// ================================
 
+/* =========================================================
+   SIDEBAR OPEN/CLOSE
+   ========================================================= */
 const sidebarEl = document.getElementById("optionsSidebar");
 const sidebarBackdropEl = document.getElementById("sidebarBackdrop");
 const openSidebarBtn = document.getElementById("openSidebarBtn");
@@ -42,22 +44,22 @@ const closeSidebarBtn = document.getElementById("closeSidebarBtn");
 
 function openSidebar() {
   sidebarEl.classList.add("open");
-  if (sidebarBackdropEl) sidebarBackdropEl.style.display = "block";
+  sidebarBackdropEl.style.display = "block";
 }
 
 function closeSidebar() {
   sidebarEl.classList.remove("open");
-  if (sidebarBackdropEl) sidebarBackdropEl.style.display = "none";
+  sidebarBackdropEl.style.display = "none";
 }
 
 if (openSidebarBtn) openSidebarBtn.addEventListener("click", openSidebar);
 if (closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebar);
 if (sidebarBackdropEl) sidebarBackdropEl.addEventListener("click", closeSidebar);
 
-// ================================
-// Supabase client & auth
-// ================================
 
+/* =========================================================
+   SUPABASE INITIALISATION
+   ========================================================= */
 const SUPABASE_URL = "https://bzthteamkdbseartltsv.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6dGh0ZWFta2Ric2VhcnRsdHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3MjQ1MTksImV4cCI6MjA3OTMwMDUxOX0.ojZY5BKxa3ERTJsG-pieY64y6iOh3I4iJFPBJ5R1nCk";
@@ -66,24 +68,29 @@ let supabaseClient = null;
 let currentUser = null;
 
 if (window.supabase) {
-  supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-  );
+  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
-// ================================
-// Guest results (localStorage) & Supabase quiz stats
-// ================================
 
-function getQuizIdFromMeta(quizMeta) {
-  return quizMeta && quizMeta.id ? quizMeta.id : quizMeta.path;
-}
-
+/* =========================================================
+   GUEST STORAGE SYSTEM
+   ========================================================= */
 const GUEST_RESULTS_KEY = "mcqGuestResults";
 const GUEST_IMPORTED_KEY = "mcqGuestResultsImported";
 
-function hasGuestBeenImported() {
+function loadsGuest() {
+  try {
+    return JSON.parse(localStorage.getItem(GUEST_RESULTS_KEY)) || {};
+  } catch {
+    return {};
+  }
+}
+
+function saveGuest(all) {
+  localStorage.setItem(GUEST_RESULTS_KEY, JSON.stringify(all));
+}
+
+function guestImported() {
   return localStorage.getItem(GUEST_IMPORTED_KEY) === "true";
 }
 
@@ -91,33 +98,21 @@ function markGuestImported() {
   localStorage.setItem(GUEST_IMPORTED_KEY, "true");
 }
 
-function loadGuestResults() {
-  try {
-    const raw = localStorage.getItem(GUEST_RESULTS_KEY);
-    if (!raw) return {};
-    return JSON.parse(raw);
-  } catch {
-    return {};
-  }
+function getQuizId(quizMeta) {
+  return quizMeta.id || quizMeta.path;
 }
 
-function saveGuestResults(all) {
-  try {
-    localStorage.setItem(GUEST_RESULTS_KEY, JSON.stringify(all));
-  } catch (e) {
-    console.warn("Failed to save guest results", e);
-  }
-}
 
-function updateGuestQuizResults(quizMeta, score, total) {
-  const quizId = getQuizIdFromMeta(quizMeta);
-  const all = loadGuestResults();
-  const prev = all[quizId];
+// Update guest result after finishing a quiz
+function updateGuest(quizMeta, score, total) {
+  const id = getQuizId(quizMeta);
+  const all = loadsGuest();
+  const prev = all[id];
 
-  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+  const percent = total ? Math.round((score / total) * 100) : 0;
   const attempts = prev ? prev.attempts + 1 : 1;
 
-  const isBest =
+  const isBetter =
     !prev ||
     percent > prev.bestPercent ||
     (percent === prev.bestPercent && score > prev.bestScore);
@@ -127,58 +122,57 @@ function updateGuestQuizResults(quizMeta, score, total) {
     lastScore: score,
     lastTotal: total,
     lastPercent: percent,
-    lastCompletedAt: new Date().toISOString(),
-    bestScore: isBest ? score : prev?.bestScore ?? score,
-    bestTotal: isBest ? total : prev?.bestTotal ?? total,
-    bestPercent: isBest ? percent : prev?.bestPercent ?? percent,
+    bestScore: isBetter ? score : prev?.bestScore ?? score,
+    bestTotal: isBetter ? total : prev?.bestTotal ?? total,
+    bestPercent: isBetter ? percent : prev?.bestPercent ?? percent,
   };
 
-  all[quizId] = updated;
-  saveGuestResults(all);
+  all[id] = updated;
+  saveGuest(all);
   return updated;
 }
 
-function getGuestQuizResults(quizMeta) {
-  const quizId = getQuizIdFromMeta(quizMeta);
-  const all = loadGuestResults();
-  return all[quizId] || null;
+function loadGuestQuizStats(quizMeta) {
+  const id = getQuizId(quizMeta);
+  const all = loadsGuest();
+  return all[id] || null;
 }
 
+
+/* =========================================================
+   SUPABASE QUIZ STATS STORAGE
+   ========================================================= */
 async function saveAttemptToSupabase(quizMeta, score, total) {
   if (!supabaseClient || !currentUser) return null;
 
-  const quizId = getQuizIdFromMeta(quizMeta);
-  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
+  const id = getQuizId(quizMeta);
+  const percent = total ? Math.round((score / total) * 100) : 0;
 
   const { error } = await supabaseClient.from("quiz_attempts").insert({
+    quiz_id: id,
     user_id: currentUser.id,
-    quiz_id: quizId,
     score,
     total,
     percent,
   });
 
   if (error) {
-    console.error("Failed to save quiz attempt:", error.message);
+    console.warn("Supabase insert failed:", error.message);
     return null;
   }
 
-  const { data, error: statsError } = await supabaseClient
+  // Retrieve updated stats
+  const { data, error: readErr } = await supabaseClient
     .from("quiz_attempts")
     .select("score, total, percent")
-    .eq("user_id", currentUser.id)
-    .eq("quiz_id", quizId);
+    .eq("quiz_id", id)
+    .eq("user_id", currentUser.id);
 
-  if (statsError || !data) {
-    console.error("Failed to fetch updated stats:", statsError?.message);
-    return null;
-  }
+  if (readErr || !data) return null;
 
-  const attempts = data.length;
-  let bestScore = -1;
-  let bestTotal = 0;
-  let bestPercent = -1;
-
+  let bestPercent = -1,
+    bestScore = -1,
+    bestTotal = 0;
   for (const row of data) {
     if (
       row.percent > bestPercent ||
@@ -191,43 +185,30 @@ async function saveAttemptToSupabase(quizMeta, score, total) {
   }
 
   return {
-    attempts,
+    attempts: data.length,
+    bestPercent,
     bestScore,
     bestTotal,
-    bestPercent,
   };
 }
 
-async function fetchQuizStatsFromSupabase(quizMeta) {
-  if (!supabaseClient || !currentUser) return null;
 
-  const quizId = getQuizIdFromMeta(quizMeta);
+// Fetch quiz stats for logged-in user
+async function fetchStatsFromSupabase(quizMeta) {
+  if (!supabaseClient || !currentUser) return null;
+  const id = getQuizId(quizMeta);
 
   const { data, error } = await supabaseClient
     .from("quiz_attempts")
     .select("score, total, percent")
-    .eq("user_id", currentUser.id)
-    .eq("quiz_id", quizId);
+    .eq("quiz_id", id)
+    .eq("user_id", currentUser.id);
 
-  if (error || !data) {
-    console.error("Failed to fetch stats:", error?.message);
-    return null;
-  }
+  if (error || !data?.length) return null;
 
-  if (data.length === 0) {
-    return {
-      attempts: 0,
-      bestScore: null,
-      bestTotal: null,
-      bestPercent: null,
-    };
-  }
-
-  const attempts = data.length;
-  let bestScore = -1;
-  let bestTotal = 0;
-  let bestPercent = -1;
-
+  let bestPercent = -1,
+    bestScore = -1,
+    bestTotal = 0;
   for (const row of data) {
     if (
       row.percent > bestPercent ||
@@ -240,380 +221,269 @@ async function fetchQuizStatsFromSupabase(quizMeta) {
   }
 
   return {
-    attempts,
+    attempts: data.length,
+    bestPercent,
     bestScore,
     bestTotal,
-    bestPercent,
   };
 }
 
-// Simple in-memory cache so mastery doesn't re-query constantly
-const quizStatsCache = {};
 
-async function saveAttempt(quizMeta, score, total) {
+/* =========================================================
+   STATS CACHING
+   ========================================================= */
+const statsCache = {};
+
+// Decide whether to load stats from guest or Supabase
+async function getQuizStats(meta) {
+  const key = getQuizId(meta);
+  if (statsCache[key]) return statsCache[key];
+
   let result;
-  if (supabaseClient && currentUser) {
-    result = await saveAttemptToSupabase(quizMeta, score, total);
-  } else {
-    result = updateGuestQuizResults(quizMeta, score, total);
-  }
-  const key = getQuizIdFromMeta(quizMeta);
-  quizStatsCache[key] = result;
+  if (currentUser) result = await fetchStatsFromSupabase(meta);
+  else result = loadGuestQuizStats(meta);
+
+  statsCache[key] = result;
   return result;
 }
 
-async function getQuizStats(quizMeta) {
-  const key = getQuizIdFromMeta(quizMeta);
-  if (quizStatsCache[key]) {
-    return quizStatsCache[key];
-  }
 
-  let stats;
-  if (supabaseClient && currentUser) {
-    stats = await fetchQuizStatsFromSupabase(quizMeta);
-  } else {
-    stats = getGuestQuizResults(quizMeta);
-  }
-  quizStatsCache[key] = stats;
-  return stats;
+// Store an attempt (guest or logged-in)
+async function saveAttempt(meta, score, total) {
+  let result;
+  if (currentUser) result = await saveAttemptToSupabase(meta, score, total);
+  else result = updateGuest(meta, score, total);
+
+  statsCache[getQuizId(meta)] = result;
+  return result;
 }
 
-// Import guest results -> Supabase
-async function importGuestResultsToSupabase() {
+
+/* =========================================================
+   GUEST → ACCOUNT IMPORT
+   ========================================================= */
+async function importGuestToSupabase() {
   if (!supabaseClient || !currentUser) return;
 
-  const all = loadGuestResults();
-  const entries = Object.entries(all);
-  if (entries.length === 0) {
-    alert("No guest progress found on this device.");
-    return;
-  }
-
-  const rows = [];
-
-  for (const [quizId, stats] of entries) {
-    if (!stats || stats.bestScore == null || stats.bestTotal == null) continue;
-
-    rows.push({
+  const all = loadsGuest();
+  const rows = Object.entries(all)
+    .filter(([_, s]) => s && s.bestScore != null)
+    .map(([quiz_id, s]) => ({
       user_id: currentUser.id,
-      quiz_id: quizId,
-      score: stats.bestScore,
-      total: stats.bestTotal,
-      percent:
-        stats.bestPercent ??
-        Math.round((stats.bestScore / stats.bestTotal) * 100),
-    });
-  }
+      quiz_id,
+      score: s.bestScore,
+      total: s.bestTotal,
+      percent: s.bestPercent,
+    }));
 
-  if (rows.length === 0) {
-    alert("No usable guest progress found to import.");
+  if (!rows.length) {
+    alert("No guest progress to import.");
     return;
   }
 
   const { error } = await supabaseClient.from("quiz_attempts").insert(rows);
-
   if (error) {
-    console.error("Failed to import guest results:", error.message);
-    alert("Sorry, something went wrong while importing your guest progress.");
+    alert("Import failed.");
     return;
   }
 
   markGuestImported();
-  alert(
-    "Guest progress imported into your account! Your stats will now sync across devices."
-  );
+  alert("Guest progress imported successfully!");
 }
 
-// ================================
-// Auth panel / Supabase auth flow
-// ================================
 
-async function refreshAuthPanel() {
+/* =========================================================
+   SUPABASE AUTH UI
+   ========================================================= */
+async function refreshAuthUI() {
   const panel = document.getElementById("auth-panel");
   if (!panel) return;
 
   if (!supabaseClient) {
-    panel.innerHTML = `
-      <div class="sidebar-text">
-        Supabase is not configured. Using guest mode only (progress stays on this device).
-      </div>
-    `;
+    panel.innerHTML = `<p>Guest mode only – Supabase not configured.</p>`;
     return;
   }
 
+  // ----------------------
+  // NOT LOGGED IN (GUEST)
+  // ----------------------
   if (!currentUser) {
-    // Guest mode: login + signup
     panel.innerHTML = `
-      <div class="sidebar-text" style="margin-bottom:6px;">
-        <strong>Guest mode:</strong> your scores are saved on this device only.
-        Log in or create an account to sync progress across devices.
-      </div>
-      <input type="email" id="auth-email" placeholder="Email" class="sidebar-input" />
-      <input type="password" id="auth-password" placeholder="Password" class="sidebar-input" />
-      <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
-        <button class="primary-button" id="auth-login-btn">
-          Log in
-        </button>
-        <button class="secondary-button" id="auth-signup-btn">
-          Create account
-        </button>
-      </div>
+      <p><strong>Guest Mode:</strong> progress saved only on this device.</p>
+      <input id="auth-email" class="sidebar-input" type="email" placeholder="Email">
+      <input id="auth-password" class="sidebar-input" type="password" placeholder="Password">
+      <button class="primary-button" id="login-btn">Log in</button>
+      <button class="secondary-button" id="signup-btn">Create account</button>
     `;
 
-    const loginBtn = document.getElementById("auth-login-btn");
-    const signupBtn = document.getElementById("auth-signup-btn");
-
-    async function getAuthCredentials() {
-      const emailInput = /** @type {HTMLInputElement} */ (
-        document.getElementById("auth-email")
-      );
-      const passwordInput = /** @type {HTMLInputElement} */ (
-        document.getElementById("auth-password")
-      );
-      const email = (emailInput.value || "").trim();
-      const password = passwordInput.value;
-
+    const getCreds = () => {
+      const email = document.getElementById("auth-email").value.trim();
+      const password = document.getElementById("auth-password").value;
       if (!email || !password) {
-        alert("Please enter an email and password.");
+        alert("Enter email & password.");
         return null;
       }
       return { email, password };
-    }
+    };
 
-    if (loginBtn) {
-      loginBtn.addEventListener("click", async () => {
-        if (!supabaseClient) return;
-        const creds = await getAuthCredentials();
-        if (!creds) return;
+    document.getElementById("login-btn").addEventListener("click", async () => {
+      const creds = getCreds();
+      if (!creds) return;
 
-        const { email, password } = creds;
-        const { data, error } = await supabaseClient.auth.signInWithPassword({
-          email,
-          password,
-        });
+      const { data, error } = await supabaseClient.auth.signInWithPassword(
+        creds
+      );
+      if (error) return alert(error.message);
 
-        if (error) {
-          alert("Login failed: " + error.message);
-          return;
-        }
+      currentUser = data.user;
+      refreshAuthUI();
+    });
 
-        currentUser = data.user;
-        refreshAuthPanel();
-      });
-    }
+    document.getElementById("signup-btn").addEventListener("click", async () => {
+      const creds = getCreds();
+      if (!creds) return;
 
-    if (signupBtn) {
-      signupBtn.addEventListener("click", async () => {
-        if (!supabaseClient) return;
-        const creds = await getAuthCredentials();
-        if (!creds) return;
+      const { data, error } = await supabaseClient.auth.signUp(creds);
+      if (error) return alert(error.message);
 
-        const { email, password } = creds;
-        const { data, error } = await supabaseClient.auth.signUp({
-          email,
-          password,
-        });
+      alert("Account created. Check email if verification required.");
+      currentUser = data.user ?? null;
+      refreshAuthUI();
+    });
 
-        if (error) {
-          alert("Sign-up error: " + error.message);
-          return;
-        }
-
-        alert(
-          "Account created. If email confirmation is required, check your inbox, then come back and log in."
-        );
-        currentUser = data.user ?? null;
-        refreshAuthPanel();
-      });
-    }
-  } else {
-    // Logged-in UI + optional guest import
-    const guestHasData = Object.keys(loadGuestResults()).length > 0;
-    const showImportPrompt = guestHasData && !hasGuestBeenImported();
-
-    panel.innerHTML = `
-      <div class="sidebar-text">
-        Logged in as <strong>${currentUser.email}</strong><br />
-        Your quiz results are synced via Supabase.
-      </div>
-
-      ${
-        showImportPrompt
-          ? `<div class="sidebar-text" style="margin-top:6px;">
-               We found quiz progress saved in guest mode on this device.
-               You can import it into your account so it syncs across devices.
-             </div>
-             <button class="primary-button" id="import-guest-btn" style="margin-top:6px;">
-               Import guest progress
-             </button>`
-          : ""
-      }
-
-      <button class="secondary-button" id="auth-logout-btn" style="margin-top:8px;">
-        Log out
-      </button>
-    `;
-
-    const logoutBtn = document.getElementById("auth-logout-btn");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", async () => {
-        await supabaseClient.auth.signOut();
-        currentUser = null;
-        refreshAuthPanel();
-      });
-    }
-
-    const importBtn = document.getElementById("import-guest-btn");
-    if (importBtn) {
-      importBtn.addEventListener("click", async () => {
-        await importGuestResultsToSupabase();
-        refreshAuthPanel();
-      });
-    }
-  }
-}
-
-async function initAuth() {
-  if (!supabaseClient) {
-    currentUser = null;
-    refreshAuthPanel();
     return;
   }
 
-  const { data } = await supabaseClient.auth.getUser();
-  currentUser = data.user ?? null;
-  refreshAuthPanel();
+  // ----------------------
+  // LOGGED IN
+  // ----------------------
+  const hasGuest = Object.keys(loadsGuest()).length > 0;
 
-  supabaseClient.auth.onAuthStateChange((_event, session) => {
-    currentUser = session?.user ?? null;
-    refreshAuthPanel();
+  panel.innerHTML = `
+    <p>Logged in as <strong>${currentUser.email}</strong></p>
+    ${
+      hasGuest && !guestImported()
+        ? `<button class="primary-button" id="import-guest-btn">Import guest progress</button>`
+        : ""
+    }
+    <button class="secondary-button" id="logout-btn">Log out</button>
+  `;
+
+  if (hasGuest && !guestImported()) {
+    document
+      .getElementById("import-guest-btn")
+      .addEventListener("click", importGuestToSupabase);
+  }
+
+  document.getElementById("logout-btn").addEventListener("click", async () => {
+    await supabaseClient.auth.signOut();
+    currentUser = null;
+    refreshAuthUI();
   });
 }
 
-// ================================
-// Mastery calculations (unit & module)
-// ================================
 
-function getMasteryCategory(percent) {
-  if (percent == null || Number.isNaN(percent)) {
-    return null;
-  }
-  if (percent >= 70) {
-    return { label: "Strong", className: "mastery-badge bad-high" };
-  }
-  if (percent >= 40) {
-    return { label: "Developing", className: "mastery-badge bad-mid" };
-  }
-  return { label: "Needs work", className: "mastery-badge bad-low" };
+// Initialise auth on load
+async function initAuth() {
+  if (!supabaseClient) return refreshAuthUI();
+
+  const { data } = await supabaseClient.auth.getUser();
+  currentUser = data.user ?? null;
+  refreshAuthUI();
+
+  supabaseClient.auth.onAuthStateChange((_evt, session) => {
+    currentUser = session?.user ?? null;
+    refreshAuthUI();
+  });
 }
 
-async function calculateUnitMastery(unit) {
-  const quizzes = unit.quizzes || [];
-  if (!quizzes.length) {
-    return { percent: null, category: null, attempted: 0, total: 0 };
-  }
 
-  const percents = [];
-  let attemptedCount = 0;
+/* =========================================================
+   MASTERY CALCULATIONS
+   ========================================================= */
+
+// NOTE: “Needs Work”, “Developing”, “Strong” labels removed on request.
+// Colour only.
+
+function masteryCategory(percent) {
+  if (percent >= 70) return "bad-high";
+  if (percent >= 40) return "bad-mid";
+  return "bad-low";
+}
+
+async function calcUnitMastery(unit) {
+  const quizzes = unit.quizzes || [];
+  if (!quizzes.length) return { percent: null, attempted: 0, total: 0 };
+
+  let totalPercent = 0,
+    attempted = 0;
 
   for (const q of quizzes) {
     const stats = await getQuizStats(q);
-    const best =
-      stats && typeof stats.bestPercent === "number" ? stats.bestPercent : 0;
-    if (stats && stats.attempts > 0) {
-      attemptedCount++;
-    }
-    percents.push(best);
+    if (stats && stats.attempts > 0) attempted++;
+    totalPercent += stats?.bestPercent ?? 0;
   }
 
-  const avg = percents.length
-    ? Math.round(percents.reduce((a, b) => a + b, 0) / percents.length)
-    : 0;
-
-  return {
-    percent: avg,
-    category: getMasteryCategory(avg),
-    attempted: attemptedCount,
-    total: quizzes.length,
-  };
+  const avg = Math.round(totalPercent / quizzes.length);
+  return { percent: avg, attempted, total: quizzes.length };
 }
 
-async function calculateModuleMastery(module) {
+async function calcModuleMastery(module) {
   const units = module.units || [];
-  if (!units.length) {
-    return { percent: null, category: null, attempted: 0, total: 0 };
-  }
+  if (!units.length) return { percent: null, attempted: 0, total: 0 };
 
-  const unitPercents = [];
-  let totalQuizzes = 0;
-  let totalAttempted = 0;
+  let totalPercent = 0,
+    totalAttempted = 0,
+    total = 0;
 
   for (const u of units) {
-    const result = await calculateUnitMastery(u);
-    if (result.total > 0) {
-      unitPercents.push(result.percent ?? 0);
-      totalQuizzes += result.total;
-      totalAttempted += result.attempted;
-    }
+    const m = await calcUnitMastery(u);
+    totalPercent += m.percent ?? 0;
+    totalAttempted += m.attempted;
+    total += m.total;
   }
 
-  if (!unitPercents.length) {
-    return { percent: null, category: null, attempted: 0, total: 0 };
-  }
-
-  const avg = Math.round(
-    unitPercents.reduce((a, b) => a + b, 0) / unitPercents.length
-  );
-
-  return {
-    percent: avg,
-    category: getMasteryCategory(avg),
-    attempted: totalAttempted,
-    total: totalQuizzes,
-  };
+  const avg = Math.round(totalPercent / units.length);
+  return { percent: avg, attempted: totalAttempted, total };
 }
 
-// ================================
-// Random Quiz Selection
-// ================================
 
-function getAllQuizzesInUnit(unit) {
+/* =========================================================
+   RANDOM QUIZ HELPERS
+   ========================================================= */
+
+function quizzesInUnit(unit) {
   return unit.quizzes || [];
 }
 
-function getAllQuizzesInModule(module) {
-  let quizzes = [];
-  (module.units || []).forEach((u) => {
-    if (u.quizzes) quizzes = quizzes.concat(u.quizzes);
-  });
-  return quizzes;
+function quizzesInModule(module) {
+  let out = [];
+  for (const u of module.units || []) {
+    out = out.concat(quizzesInUnit(u));
+  }
+  return out;
 }
 
-function pickRandomQuiz(quizzes) {
-  if (!quizzes || quizzes.length === 0) return null;
-  const index = Math.floor(Math.random() * quizzes.length);
-  return quizzes[index];
+function randomFrom(list) {
+  if (!list.length) return null;
+  const i = Math.floor(Math.random() * list.length);
+  return list[i];
 }
 
-// Find which unit in a module contains a given quiz
-function findUnitForQuizInModule(module, quizMeta) {
-  if (!module || !module.units) return null;
-  const targetId = getQuizIdFromMeta(quizMeta);
-  for (const u of module.units) {
-    const quizzes = u.quizzes || [];
-    for (const q of quizzes) {
-      if (getQuizIdFromMeta(q) === targetId) {
-        return u;
-      }
+// Find which unit a quiz belongs to within a module
+function findUnitForQuiz(module, quizMeta) {
+  const id = getQuizId(quizMeta);
+  for (const u of module.units || []) {
+    for (const q of u.quizzes || []) {
+      if (getQuizId(q) === id) return u;
     }
   }
   return null;
 }
 
-// ================================
-// MCQ APP LOGIC
-// ================================
-
+/* -------------------------
+   GLOBAL STATE
+   ------------------------- */
 let modules = [];
 let currentModule = null;
 let currentUnit = null;
@@ -630,6 +500,18 @@ let hideFeedbackEnabled = false;
 let questionOrder = [];
 let currentOptionOrder = [];
 
+// remembers where the user came from before starting a quiz
+// view: "modules" | "units" | "quizzes"
+let lastView = {
+  view: "modules",
+  moduleId: null,
+  unitId: null,
+};
+
+
+/* -------------------------
+   DOM REFERENCES
+   ------------------------- */
 const quizContentEl = document.getElementById("quiz-content");
 const cardTitleEl = document.getElementById("card-title");
 const pillRightEl = document.getElementById("pill-right");
@@ -637,6 +519,10 @@ const progressContainerEl = document.getElementById("progress-container");
 const progressFillEl = document.getElementById("progress-fill");
 const breadcrumbsEl = document.getElementById("breadcrumbs");
 
+
+/* -------------------------
+   UTILS
+   ------------------------- */
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -644,6 +530,10 @@ function shuffleArray(arr) {
   }
 }
 
+
+/* =========================================================
+   LOAD MODULES FROM modules.json
+   ========================================================= */
 async function loadModules() {
   try {
     const res = await fetch("modules.json");
@@ -652,6 +542,7 @@ async function loadModules() {
     renderModuleList();
   } catch (err) {
     console.error(err);
+    cardTitleEl.textContent = "A Level Ancient History – Multiple Choice Quizzes";
     pillRightEl.textContent = "Error loading modules";
     progressContainerEl.style.display = "none";
     breadcrumbsEl.textContent = "";
@@ -666,18 +557,29 @@ async function loadModules() {
   }
 }
 
+
+/* =========================================================
+   BREADCRUMBS
+   ========================================================= */
 function setBreadcrumbs(level) {
   const bits = [];
+
+  // Modules root
   bits.push(`<span data-level="modules">Modules</span>`);
 
+  // Module level
   if (currentModule && level !== "modules") {
     bits.push("›");
     bits.push(`<span data-level="units">${currentModule.name}</span>`);
   }
+
+  // Unit level
   if (currentUnit && (level === "quizzes" || level === "quiz")) {
     bits.push("›");
     bits.push(`<span data-level="quizzes">${currentUnit.name}</span>`);
   }
+
+  // Quiz title
   if (currentQuizMeta && level === "quiz") {
     bits.push("›");
     bits.push(`<span>${currentQuizMeta.title}</span>`);
@@ -685,36 +587,42 @@ function setBreadcrumbs(level) {
 
   breadcrumbsEl.innerHTML = bits.join(" ");
 
-  Array.from(breadcrumbsEl.querySelectorAll("span[data-level]")).forEach(
-    (el) => {
+  // Clickable crumbs
+  breadcrumbsEl
+    .querySelectorAll("span[data-level]")
+    .forEach((el) => {
       el.addEventListener("click", () => {
         const lvl = el.getAttribute("data-level");
         if (lvl === "modules") {
           renderModuleList();
-        } else if (lvl === "units") {
+        } else if (lvl === "units" && currentModule) {
           renderUnitList(currentModule.id);
-        } else if (lvl === "quizzes") {
+        } else if (lvl === "quizzes" && currentModule && currentUnit) {
           renderQuizList(currentUnit.id);
         }
       });
-    }
-  );
+    });
 }
 
+
+/* =========================================================
+   MODULE LIST
+   ========================================================= */
 function renderModuleList() {
   currentModule = null;
   currentUnit = null;
   currentQuizMeta = null;
   currentQuizData = null;
   questionOrder = [];
+  lastView = { view: "modules", moduleId: null, unitId: null };
 
   cardTitleEl.textContent =
     "A Level Ancient History – Multiple Choice Quizzes";
   progressContainerEl.style.display = "none";
-  progressFillEl.style.width = "0";
+  progressFillEl.style.width = "0%";
   setBreadcrumbs("modules");
 
-  if (!modules || !modules.length) {
+  if (!modules.length) {
     pillRightEl.textContent = "0 modules";
     quizContentEl.innerHTML = `
       <p>No modules found in <code>modules.json</code>.</p>
@@ -728,12 +636,12 @@ function renderModuleList() {
   pillRightEl.textContent =
     modules.length === 1 ? "1 module" : `${modules.length} modules`;
 
-  const html = `
+  quizContentEl.innerHTML = `
     <div class="list">
       ${modules
         .map(
           (m) => `
-        <div class="list-item" data-id="${m.id}">
+        <div class="list-item" data-module-id="${m.id}">
           <div style="display:flex; width:100%; align-items:center;">
             <div style="flex:1;">
               <div class="list-title">${m.name}</div>
@@ -741,7 +649,7 @@ function renderModuleList() {
                 <span>${m.units?.length || 0} unit${
             (m.units?.length || 0) !== 1 ? "s" : ""
           }</span>
-                <span class="mastery-text" data-master-for-module="${m.id}"></span>
+                <span class="mastery-text" data-master-module="${m.id}"></span>
                 ${m.description ? `<span>• ${m.description}</span>` : ""}
               </div>
             </div>
@@ -760,74 +668,81 @@ function renderModuleList() {
     </p>
   `;
 
-  quizContentEl.innerHTML = html;
-
-  // Click card -> open unit list
-  document.querySelectorAll(".list-item").forEach((el) => {
-    el.addEventListener("click", () => {
-      const id = el.getAttribute("data-id");
-      renderUnitList(id);
+  // Click on a module card -> Unit list
+  quizContentEl
+    .querySelectorAll(".list-item[data-module-id]")
+    .forEach((card) => {
+      card.addEventListener("click", () => {
+        const modId = card.getAttribute("data-module-id");
+        renderUnitList(modId);
+      });
     });
-  });
 
   // Random quiz per module
-	document.querySelectorAll("[data-random-module]").forEach((btn) => {
-	  btn.addEventListener("click", (event) => {
-		event.stopPropagation();
-		const moduleId = btn.getAttribute("data-random-module");
-		const mod = modules.find((m) => m.id === moduleId);
-		if (!mod) return;
+  quizContentEl
+    .querySelectorAll("[data-random-module]")
+    .forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const moduleId = btn.getAttribute("data-random-module");
+        const mod = modules.find((m) => m.id === moduleId);
+        if (!mod) return;
 
-		const quizzes = getAllQuizzesInModule(mod);
-		const chosen = pickRandomQuiz(quizzes);
-		if (!chosen) {
-		  alert("This module has no quizzes.");
-		  return;
-		}
+        const allQuizzes = quizzesInModule(mod);
+        const chosen = randomFrom(allQuizzes);
+        if (!chosen) {
+          alert("This module has no quizzes.");
+          return;
+        }
 
-		// Try to locate which unit this quiz belongs to
-		const unit = findUnitForQuizInModule(mod, chosen);
-		currentModule = mod;
-		currentUnit = unit || null;
+        // Try to infer which unit this quiz belongs to
+        const u = findUnitForQuiz(mod, chosen);
+        currentModule = mod;
+        currentUnit = u || null;
 
-		// record where we came from (still treat as module-level start)
-		lastView = {
-		  moduleId: mod.id,
-		  unitId: unit ? unit.id : null,
-		  view: "modules"
-		};
+        lastView = {
+          view: "modules",
+          moduleId: mod.id,
+          unitId: u ? u.id : null,
+        };
 
-		startQuiz(chosen);
-	  });
-	});
+        startQuiz(chosen);
+      });
+    });
 
   // Mastery for each module
   modules.forEach(async (m) => {
-    const el = document.querySelector(
-      `.mastery-text[data-master-for-module="${m.id}"]`
+    const el = quizContentEl.querySelector(
+      `.mastery-text[data-master-module="${m.id}"]`
     );
     if (!el) return;
-    const result = await calculateModuleMastery(m);
-    if (!result || !result.total) {
+
+    const result = await calcModuleMastery(m);
+    if (!result || !result.total || result.percent == null) {
       el.textContent = "";
       return;
     }
-    const { percent, attempted, total, category } = result;
-    const badgeClass =
-      category && category.className ? category.className : "mastery-badge";
 
-    el.innerHTML =
-      `• <span class="mastery-tooltip">
-           <span class="${badgeClass}">Mastery: ${percent}%</span>
-           <span class="tooltip-text">
-             This represents your average best score across all quizzes in this module.
-             Unattempted quizzes count as 0% until you try them.
-           </span>
-         </span>
-         <span>• ${attempted}/${total} quizzes attempted</span>`;
+    const cls = masteryCategory(result.percent);
+    el.innerHTML = `
+      • <span class="mastery-tooltip">
+          <span class="mastery-badge ${cls}">
+            Mastery: ${result.percent}%
+          </span>
+          <span class="tooltip-text">
+            This represents your average best score across all quizzes in this module.
+            Unattempted quizzes count as 0% until you try them.
+          </span>
+        </span>
+        <span>• ${result.attempted}/${result.total} quizzes attempted</span>
+    `;
   });
 }
 
+
+/* =========================================================
+   UNIT LIST (WITH RANDOM QUIZ PER UNIT)
+   ========================================================= */
 function renderUnitList(moduleId) {
   const mod = modules.find((m) => m.id === moduleId);
   if (!mod) return;
@@ -837,10 +752,11 @@ function renderUnitList(moduleId) {
   currentQuizMeta = null;
   currentQuizData = null;
   questionOrder = [];
+  lastView = { view: "units", moduleId: mod.id, unitId: null };
 
   cardTitleEl.textContent = mod.name;
   progressContainerEl.style.display = "none";
-  progressFillEl.style.width = "0";
+  progressFillEl.style.width = "0%";
   setBreadcrumbs("units");
 
   const units = mod.units || [];
@@ -856,16 +772,16 @@ function renderUnitList(moduleId) {
     `;
     document
       .getElementById("back-modules")
-      .addEventListener("click", () => renderModuleList());
+      .addEventListener("click", renderModuleList);
     return;
   }
 
-  const html = `
+  quizContentEl.innerHTML = `
     <div class="list">
       ${units
         .map(
           (u) => `
-        <div class="list-item" data-id="${u.id}">
+        <div class="list-item" data-unit-id="${u.id}">
           <div style="display:flex; width:100%; align-items:center;">
             <div style="flex:1;">
               <div class="list-title">${u.name}</div>
@@ -873,7 +789,7 @@ function renderUnitList(moduleId) {
                 <span>${u.quizzes?.length || 0} quiz${
             (u.quizzes?.length || 0) !== 1 ? "zes" : ""
           }</span>
-                <span class="mastery-text" data-master-for-unit="${u.id}"></span>
+                <span class="mastery-text" data-master-unit="${u.id}"></span>
                 ${u.description ? `<span>• ${u.description}</span>` : ""}
               </div>
             </div>
@@ -891,64 +807,77 @@ function renderUnitList(moduleId) {
     </div>
   `;
 
-  quizContentEl.innerHTML = html;
-
-  document.querySelectorAll(".list-item").forEach((el) => {
-    el.addEventListener("click", () => {
-      const id = el.getAttribute("data-id");
-      renderQuizList(id);
+  // Click on a unit card -> Quiz list
+  quizContentEl
+    .querySelectorAll(".list-item[data-unit-id]")
+    .forEach((card) => {
+      card.addEventListener("click", () => {
+        const unitId = card.getAttribute("data-unit-id");
+        renderQuizList(unitId);
+      });
     });
-  });
 
+  // Back to modules
   document
     .getElementById("back-modules")
-    .addEventListener("click", () => renderModuleList());
+    .addEventListener("click", renderModuleList);
 
   // Random quiz per unit
-  document.querySelectorAll("[data-random-unit]").forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-      event.stopPropagation();
-      const unitId = btn.getAttribute("data-random-unit");
-      const unit = currentModule.units.find((u) => u.id === unitId);
-      if (!unit) return;
+  quizContentEl
+    .querySelectorAll("[data-random-unit]")
+    .forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const unitId = btn.getAttribute("data-random-unit");
+        const unit = (currentModule.units || []).find((u) => u.id === unitId);
+        if (!unit) return;
 
-      const quizzes = getAllQuizzesInUnit(unit);
-      const chosen = pickRandomQuiz(quizzes);
-      if (!chosen) {
-        alert("This unit has no quizzes.");
-        return;
-      }
-      startQuiz(chosen);
+        const qList = quizzesInUnit(unit);
+        const chosen = randomFrom(qList);
+        if (!chosen) {
+          alert("This unit has no quizzes.");
+          return;
+        }
+
+        currentUnit = unit;
+        lastView = { view: "units", moduleId: currentModule.id, unitId: unit.id };
+        startQuiz(chosen);
+      });
     });
-  });
 
-  // Mastery for each unit
+  // Mastery per unit
   units.forEach(async (u) => {
-    const el = document.querySelector(
-      `.mastery-text[data-master-for-unit="${u.id}"]`
+    const el = quizContentEl.querySelector(
+      `.mastery-text[data-master-unit="${u.id}"]`
     );
     if (!el) return;
-    const result = await calculateUnitMastery(u);
-    if (!result || !result.total) {
+
+    const result = await calcUnitMastery(u);
+    if (!result || !result.total || result.percent == null) {
       el.textContent = "";
       return;
     }
-    const { percent, attempted, total, category } = result;
-    const badgeClass =
-      category && category.className ? category.className : "mastery-badge";
 
-    el.innerHTML =
-      `• <span class="mastery-tooltip">
-           <span class="${badgeClass}">Mastery: ${percent}%</span>
-           <span class="tooltip-text">
-             This represents your average best score across all quizzes in this unit.
-             Unattempted quizzes count as 0% until you try them.
-           </span>
-         </span>
-         <span>• ${attempted}/${total} quizzes attempted</span>`;
+    const cls = masteryCategory(result.percent);
+    el.innerHTML = `
+      • <span class="mastery-tooltip">
+          <span class="mastery-badge ${cls}">
+            Mastery: ${result.percent}%
+          </span>
+          <span class="tooltip-text">
+            This represents your average best score across all quizzes in this unit.
+            Unattempted quizzes count as 0% until you try them.
+          </span>
+        </span>
+        <span>• ${result.attempted}/${result.total} quizzes attempted</span>
+    `;
   });
 }
 
+
+/* =========================================================
+   QUIZ LIST WITHIN A UNIT
+   ========================================================= */
 function renderQuizList(unitId) {
   if (!currentModule) return;
   const unit = (currentModule.units || []).find((u) => u.id === unitId);
@@ -958,10 +887,11 @@ function renderQuizList(unitId) {
   currentQuizMeta = null;
   currentQuizData = null;
   questionOrder = [];
+  lastView = { view: "quizzes", moduleId: currentModule.id, unitId: unit.id };
 
   cardTitleEl.textContent = unit.name;
   progressContainerEl.style.display = "none";
-  progressFillEl.style.width = "0";
+  progressFillEl.style.width = "0%";
   setBreadcrumbs("quizzes");
 
   const quizzes = unit.quizzes || [];
@@ -981,15 +911,19 @@ function renderQuizList(unitId) {
     return;
   }
 
-  const html = `
+  quizContentEl.innerHTML = `
     <div class="list">
       ${quizzes
         .map(
           (q) => `
-        <button class="list-item" data-id="${q.id}">
+        <button class="list-item" data-quiz-id="${q.id}">
           <div class="list-title">${q.title}</div>
           <div class="list-meta" data-stats-for="${q.id}">
-            <span>${currentUser ? "Loading stats…" : "Guest: progress saved on this device"}</span>
+            <span>${
+              currentUser
+                ? "Loading stats…"
+                : "Guest: progress saved on this device"
+            }</span>
           </div>
         </button>
       `
@@ -1001,441 +935,355 @@ function renderQuizList(unitId) {
     </div>
   `;
 
-  quizContentEl.innerHTML = html;
+  // Click quiz -> start quiz
+  quizContentEl
+    .querySelectorAll(".list-item[data-quiz-id]")
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-quiz-id");
+        const meta = (currentUnit.quizzes || []).find((q) => q.id === id);
+        if (!meta) return;
 
-  document.querySelectorAll(".list-item").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-id");
-      const meta = quizzes.find((q) => q.id === id);
-      if (meta) startQuiz(meta);
+        lastView = {
+          view: "quizzes",
+          moduleId: currentModule.id,
+          unitId: currentUnit.id,
+        };
+        startQuiz(meta);
+      });
     });
-  });
 
+  // Back to units
   document
     .getElementById("back-units")
     .addEventListener("click", () => renderUnitList(currentModule.id));
 
   // Populate quiz stats
   quizzes.forEach(async (q) => {
-    const metaEl = document.querySelector(
+    const el = quizContentEl.querySelector(
       `.list-meta[data-stats-for="${q.id}"]`
     );
-    if (!metaEl) return;
+    if (!el) return;
 
     const stats = await getQuizStats(q);
     if (!stats || !stats.attempts) {
-      metaEl.innerHTML = currentUser
-        ? `<span>Not attempted yet</span>`
-        : `<span>Guest: not attempted yet</span>`;
-    } else {
-      metaEl.innerHTML = `
-        <span>Attempts: ${stats.attempts}</span>
-        <span>•</span>
-        <span>Best: ${stats.bestScore}/${stats.bestTotal} (${stats.bestPercent}%)</span>
-      `;
+      el.innerHTML = `<span>${
+        currentUser ? "Not attempted yet" : "Guest: not attempted yet"
+      }</span>`;
+      return;
     }
+
+    el.innerHTML = `
+      <span>Attempts: ${stats.attempts}</span>
+      <span>•</span>
+      <span>Best: ${stats.bestScore}/${stats.bestTotal} (${stats.bestPercent}%)</span>
+    `;
   });
 }
 
-async function startQuiz(quizMeta) {
-  currentQuizMeta = quizMeta;
+/* =========================================================
+   PART 3 — QUIZ ENGINE, QUESTION VIEW, RESULTS, INIT
+   ========================================================= */
+
+
+/* =========================================================
+   EXIT QUIZ (RESPECTING lastView)
+   ========================================================= */
+function exitQuiz() {
+  // If for some reason lastView is not configured, go home
+  if (!lastView) {
+    renderModuleList();
+    return;
+  }
+
+  const { view, moduleId, unitId } = lastView;
+
+  if (view === "quizzes" && moduleId && unitId) {
+    renderQuizList(unitId);
+    return;
+  }
+
+  if (view === "units" && moduleId) {
+    renderUnitList(moduleId);
+    return;
+  }
+
+  renderModuleList();
+}
+
+
+/* =========================================================
+   START QUIZ
+   ========================================================= */
+async function startQuiz(meta) {
+  currentQuizMeta = meta;
   currentQuizData = null;
   currentQuestionIndex = 0;
   selectedOptionIndex = null;
   score = 0;
   answers.length = 0;
-  questionOrder = [];
 
+  cardTitleEl.textContent = meta.title;
   setBreadcrumbs("quiz");
-  pillRightEl.textContent = "Loading quiz…";
-  progressContainerEl.style.display = "none";
-  progressFillEl.style.width = "0";
 
-  quizContentEl.innerHTML = `
-    <p>Loading quiz <strong>${quizMeta.title}</strong>…</p>
-    <p class="helper-text">File: <code>${quizMeta.path}</code></p>
-  `;
-
+  // Load JSON
   try {
-    const res = await fetch(quizMeta.path);
-    if (!res.ok) throw new Error("Failed to load quiz JSON");
-    const data = await res.json();
-    currentQuizData = data;
-
-    const questions = currentQuizData.questions || [];
-    questionOrder = questions.map((_, i) => i);
-    if (shuffleQuestionsEnabled) {
-      shuffleArray(questionOrder);
+    const res = await fetch(meta.path);
+    if (!res.ok) {
+      throw new Error(`Could not load quiz file: ${meta.path}`);
     }
-
-    cardTitleEl.textContent = data.title || quizMeta.title;
-    progressContainerEl.style.display = "block";
-    renderQuestion();
+    currentQuizData = await res.json();
   } catch (err) {
     console.error(err);
-    pillRightEl.textContent = "Error loading quiz";
-    progressContainerEl.style.display = "none";
     quizContentEl.innerHTML = `
-      <p class="error-text">Could not load quiz file <code>${quizMeta.path}</code>.</p>
+      <p class="error-text">
+        Could not load <code>${meta.path}</code>. Check filename and JSON validity.
+      </p>
       <div class="controls" style="justify-content:flex-start;">
-        <button class="secondary-button" id="back-quizzes">Back to quizzes</button>
+        <button class="secondary-button" id="back-quizzes">Exit quiz</button>
       </div>
     `;
     document
       .getElementById("back-quizzes")
-      .addEventListener("click", () => renderQuizList(currentUnit.id));
+      .addEventListener("click", exitQuiz);
+    return;
   }
+
+  // Build question order
+  questionOrder = currentQuizData.questions.map((_, i) => i);
+  if (shuffleQuestionsEnabled) shuffleArray(questionOrder);
+
+  renderQuestion();
 }
 
-function renderQuestion() {
-  const questions = currentQuizData.questions || [];
-  const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
-  const q = questions[orderIndex];
-  if (!q) return;
 
-  selectedOptionIndex = null;
-  currentOptionOrder = q.options.map((_, i) => i);
+/* =========================================================
+   RENDER A QUESTION
+   ========================================================= */
+function renderQuestion() {
+  const total = currentQuizData.questions.length;
+  const qi = questionOrder[currentQuestionIndex];
+  const q = currentQuizData.questions[qi];
+
+  progressContainerEl.style.display = "block";
+  const pct = ((currentQuestionIndex + 1) / total) * 100;
+  progressFillEl.style.width = pct + "%";
+
+  // Shuffle options
+  const count = q.options.length;
+  currentOptionOrder = [...Array(count).keys()];
   shuffleArray(currentOptionOrder);
 
-  setBreadcrumbs("quiz");
-  pillRightEl.textContent = `Question ${
-    currentQuestionIndex + 1
-  } of ${questions.length}`;
-
-  const progressPercent = (currentQuestionIndex / questions.length) * 100;
-  progressFillEl.style.width = `${progressPercent}%`;
-
-  const optionLetters = ["A", "B", "C", "D", "E", "F", "G", "H"];
-
-  const optionsHtml = currentOptionOrder
-    .map((optIdx, displayIdx) => {
-      const label = optionLetters[displayIdx] ?? "";
-      const text = q.options[optIdx];
-      return `
-        <button class="option-btn" data-index="${optIdx}">
-          <span class="option-label">${label}.</span>
-          <span class="option-text">${text}</span>
-        </button>
-      `;
-    })
+  const optsHtml = currentOptionOrder
+    .map(
+      (optIndex, ii) => `
+    <button class="option-btn" data-opt="${ii}">
+      ${q.options[optIndex]}
+    </button>
+  `
+    )
     .join("");
 
+  pillRightEl.textContent = `Question ${currentQuestionIndex + 1} of ${total}`;
+
   quizContentEl.innerHTML = `
-    <div class="question-text">${q.question}</div>
-    <p class="question-meta">${
-      currentQuizData.description || "Choose one answer."
-    }</p>
-    <div class="options">
-      ${optionsHtml}
-    </div>
-    <div class="feedback" id="feedback"></div>
-    <div class="controls">
-      <button class="secondary-button" id="back-to-quizzes">Back to quizzes</button>
-      <button class="secondary-button" id="skip-btn">Skip</button>
-      <button class="primary-button" id="next-btn" disabled>
-        Next →
-      </button>
+    <div class="question-block">
+      <p class="question-text">${q.question}</p>
+      <div class="option-block">${optsHtml}</div>
+
+      <div class="nav-controls">
+        ${
+          currentQuestionIndex + 1 < total
+            ? `<button class="primary-button" id="next-btn" disabled>Next</button>`
+            : `<button class="primary-button" id="finish-btn" disabled>Finish</button>`
+        }
+      </div>
+
+      <div id="feedback"></div>
     </div>
   `;
 
-  document
+  // Option click
+  quizContentEl
     .querySelectorAll(".option-btn")
-    .forEach((btn) => btn.addEventListener("click", onOptionClick));
-  document.getElementById("next-btn").addEventListener("click", onNext);
-  document.getElementById("skip-btn").addEventListener("click", onSkip);
-  document
-    .getElementById("back-to-quizzes")
-    .addEventListener("click", () => renderQuizList(currentUnit.id));
-}
+    .forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (selectedOptionIndex != null) return;
 
-function onOptionClick(e) {
-  const btn = e.currentTarget;
-  const index = Number(btn.getAttribute("data-index"));
-  selectedOptionIndex = index;
+        const chosenIndex = parseInt(btn.getAttribute("data-opt"), 10);
+        selectedOptionIndex = chosenIndex;
 
-  document.querySelectorAll(".option-btn").forEach((b) => {
-    b.classList.remove("selected");
-  });
-  btn.classList.add("selected");
+        const optRealIndex = currentOptionOrder[chosenIndex];
+        const correctRealIndex = q.answer;
 
-  document.getElementById("next-btn").disabled = false;
-  const feedbackEl = document.getElementById("feedback");
-  feedbackEl.textContent = "Answer selected.";
-  feedbackEl.className = "feedback";
-}
+        const isCorrect = optRealIndex === correctRealIndex;
+        if (isCorrect) score++;
 
-function lockOptionsAndShowFeedback(isCorrect, correctIndex) {
-  const feedbackEl = document.getElementById("feedback");
-  feedbackEl.className = "feedback " + (isCorrect ? "correct" : "incorrect");
+        answers.push({
+          questionIndex: qi,
+          correct: isCorrect,
+        });
 
-  document.querySelectorAll(".option-btn").forEach((btn) => {
-    const idx = Number(btn.getAttribute("data-index"));
-    btn.disabled = true;
-    btn.classList.remove("selected");
+        if (!hideFeedbackEnabled) {
+          const fb = document.getElementById("feedback");
+          fb.textContent = isCorrect
+            ? "Correct!"
+            : `Incorrect. Correct answer: ${q.options[correctRealIndex]}`;
+          fb.classList.add(isCorrect ? "correct" : "incorrect");
+        }
 
-    if (idx === correctIndex) {
-      btn.classList.add("correct");
-    } else if (idx === selectedOptionIndex && !isCorrect) {
-      btn.classList.add("incorrect");
-    }
-  });
+        btn.classList.add(isCorrect ? "correct" : "incorrect");
 
-  if (isCorrect) {
-    feedbackEl.innerHTML = `<span>Correct!</span> Nice job.`;
-  } else if (selectedOptionIndex === null) {
-    feedbackEl.innerHTML = `<span>Skipped.</span> The correct answer is highlighted.`;
-  } else {
-    feedbackEl.innerHTML = `<span>Incorrect.</span> The correct answer is highlighted.`;
-  }
-}
+        const nextBtn = document.getElementById("next-btn");
+        const finishBtn = document.getElementById("finish-btn");
+        if (nextBtn) nextBtn.disabled = false;
+        if (finishBtn) finishBtn.disabled = false;
+      });
+    });
 
-function onNext() {
-  const questions = currentQuizData.questions;
-  const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
-  const q = questions[orderIndex];
-  const correctIndex = q.correctIndex;
-  const isCorrect = selectedOptionIndex === correctIndex;
-
-  if (selectedOptionIndex !== null && isCorrect) {
-    score++;
-  }
-
-  answers.push({
-    questionIndex: orderIndex,
-    selected: selectedOptionIndex,
-    correctIndex,
-    isCorrect,
-  });
-
-  if (hideFeedbackEnabled) {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-      renderQuestion();
-    } else {
-      renderResult();
-    }
-  } else {
-    lockOptionsAndShowFeedback(isCorrect, correctIndex);
-    setTimeout(() => {
+  // Next
+  const nextBtn = document.getElementById("next-btn");
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      selectedOptionIndex = null;
       currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        renderQuestion();
-      } else {
-        renderResult();
-      }
-    }, 650);
-  }
-}
-
-function onSkip() {
-  const questions = currentQuizData.questions;
-  const orderIndex = questionOrder[currentQuestionIndex] ?? currentQuestionIndex;
-  const q = questions[orderIndex];
-  const correctIndex = q.correctIndex;
-
-  answers.push({
-    questionIndex: orderIndex,
-    selected: null,
-    correctIndex,
-    isCorrect: false,
-  });
-
-  if (hideFeedbackEnabled) {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
       renderQuestion();
-    } else {
+    });
+  }
+
+  // Finish
+  const finishBtn = document.getElementById("finish-btn");
+  if (finishBtn) {
+    finishBtn.addEventListener("click", () => {
       renderResult();
-    }
-  } else {
-    lockOptionsAndShowFeedback(false, correctIndex);
-    setTimeout(() => {
-      currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        renderQuestion();
-      } else {
-        renderResult();
-      }
-    }, 650);
+    });
   }
 }
 
+
+/* =========================================================
+   RENDER RESULT SCREEN
+   ========================================================= */
 async function renderResult() {
-  const questions = currentQuizData.questions;
-  const total = questions.length;
+  const total = currentQuizData.questions.length;
   const percent = Math.round((score / total) * 100);
 
-  const stats = await saveAttempt(currentQuizMeta, score, total);
+  // Save attempt (guest or logged-in)
+  const updatedStats = await saveAttempt(currentQuizMeta, score, total);
 
-  progressFillEl.style.width = "100%";
-  pillRightEl.textContent = "Quiz complete";
-  setBreadcrumbs("quiz");
-
-  const summaryItemsHtml = answers
-    .map((ans, i) => {
-      const q = questions[ans.questionIndex];
-      const qNumber = i + 1;
-      const userAnswerText =
-        ans.selected === null ? "No answer" : q.options[ans.selected];
-      const correctAnswerText = q.options[ans.correctIndex];
-      const userClass = ans.isCorrect ? "correct" : "incorrect";
-
+  // Summary list
+  const summaryHtml = answers
+    .map((a, i) => {
+      const q = currentQuizData.questions[a.questionIndex];
+      const isCorrect = a.correct ? "correct" : "incorrect";
       return `
-        <div class="summary-item">
-          <div class="summary-question">
-            ${qNumber}. ${q.question}
-          </div>
-          <div class="summary-answer ${userClass}">
-            <span class="label">Your answer:</span>
-            <span class="value"> ${userAnswerText}</span>
-          </div>
-          <div class="summary-answer">
-            <span class="label">Correct answer:</span>
-            <span class="value"> ${correctAnswerText}</span>
-          </div>
+        <div class="summary-item ${isCorrect}">
+          <strong>Q${i + 1}:</strong> ${a.correct ? "Correct" : "Incorrect"} 
+          <span class="summary-question">${q.question}</span>
         </div>
       `;
     })
     .join("");
 
-  let statsLine = "";
-  if (stats) {
-    statsLine = "Attempts: <strong>" + stats.attempts + "</strong>";
-    if (stats.bestScore != null) {
-      statsLine +=
-        " • Best: <strong>" +
-        stats.bestScore +
-        "/" +
-        stats.bestTotal +
-        " (" +
-        stats.bestPercent +
-        "%)</strong>";
-    }
-  }
-
   quizContentEl.innerHTML = `
-    <div class="result-heading">
-      Your results for "${currentQuizData.title || currentQuizMeta.title}"
-    </div>
+    <div class="result-heading">Your results for "${currentQuizMeta.title}"</div>
     <p class="result-score">
-      You scored <strong>${score}</strong> out of <strong>${total}</strong> (${percent}%)
+      You scored <strong>${score}</strong> out of <strong>${total}</strong>
+      (${percent}%)
     </p>
+
     ${
-      statsLine
-        ? `<p class="result-detail">${statsLine}</p>`
-        : `<p class="result-detail">
-            Review your answers below, or go back to choose another quiz in this unit.
-          </p>`
+      updatedStats
+        ? `<p class="result-detail">
+             Attempts: ${updatedStats.attempts} • 
+             Best: ${updatedStats.bestScore}/${updatedStats.bestTotal} 
+             (${updatedStats.bestPercent}%)
+           </p>`
+        : `<p class="result-detail">Progress saved.</p>`
     }
 
-	<div class="controls" style="margin-bottom: 6px; flex-wrap:wrap;">
-	  <button class="secondary-button" id="back-quizzes">Exit quiz</button>
-	  <button class="secondary-button" id="next-quiz-btn">Next quiz in unit</button>
-	  <button class="secondary-button" id="random-unit-quiz-btn">Random quiz in unit</button>
-	  <button class="primary-button" id="restart-btn">Retake this quiz</button>
-	</div>
-
-    <div class="summary-list">
-      ${summaryItemsHtml}
+    <div class="controls" style="margin-bottom: 6px; flex-wrap:wrap;">
+      <button class="secondary-button" id="exit-btn">Exit quiz</button>
+      <button class="secondary-button" id="next-quiz-btn">Next quiz in unit</button>
+      <button class="secondary-button" id="random-unit-quiz-btn">Random quiz in unit</button>
+      <button class="primary-button" id="retake-btn">Retake this quiz</button>
     </div>
+
+    <div class="summary-list">${summaryHtml}</div>
   `;
 
-  document.getElementById("restart-btn").addEventListener("click", () => {
+  // Exit
+  document.getElementById("exit-btn").addEventListener("click", exitQuiz);
+
+  // Retake same quiz
+  document.getElementById("retake-btn").addEventListener("click", () => {
     startQuiz(currentQuizMeta);
   });
 
-  document
-    .getElementById("back-quizzes")
-    .addEventListener("click", () => renderQuizList(currentUnit.id));
-}
-
-  // Next quiz in unit
-  const nextQuizBtn = document.getElementById("next-quiz-btn");
-  const randomUnitBtn = document.getElementById("random-unit-quiz-btn");
+  /* -----------------------------------------
+     NEXT QUIZ IN UNIT
+     ----------------------------------------- */
+  const nextBtn = document.getElementById("next-quiz-btn");
+  const rndBtn = document.getElementById("random-unit-quiz-btn");
 
   const unit = currentUnit;
-  const moduleObj = currentModule;
+  const mod = currentModule;
 
   if (!unit || !unit.quizzes || unit.quizzes.length === 0) {
-    if (nextQuizBtn) nextQuizBtn.disabled = true;
-    if (randomUnitBtn) randomUnitBtn.disabled = true;
+    nextBtn.disabled = true;
+    rndBtn.disabled = true;
   } else {
-    // NEXT QUIZ
-    if (nextQuizBtn) {
-      nextQuizBtn.addEventListener("click", () => {
-        const quizzes = unit.quizzes || [];
-        const currentId = getQuizIdFromMeta(currentQuizMeta);
-        const idx = quizzes.findIndex(
-          (q) => getQuizIdFromMeta(q) === currentId
-        );
-        if (idx === -1 || idx === quizzes.length - 1) {
-          alert("There is no next quiz in this unit.");
-          return;
-        }
-        const nextMeta = quizzes[idx + 1];
+    nextBtn.addEventListener("click", () => {
+      const quizzes = unit.quizzes;
+      const currentId = getQuizId(currentQuizMeta);
+      const idx = quizzes.findIndex((q) => getQuizId(q) === currentId);
 
-        // We are effectively navigating as if from the quiz list
-        lastView = {
-          moduleId: moduleObj ? moduleObj.id : null,
-          unitId: unit.id,
-          view: "quizzes"
-        };
-        startQuiz(nextMeta);
-      });
-    }
+      if (idx === -1 || idx === quizzes.length - 1) {
+        alert("There is no next quiz in this unit.");
+        return;
+      }
 
-    // RANDOM QUIZ IN UNIT
-    if (randomUnitBtn) {
-      randomUnitBtn.addEventListener("click", () => {
-        const quizzes = unit.quizzes || [];
-        if (!quizzes.length) {
-          alert("This unit has no quizzes.");
-          return;
-        }
+      const nextMeta = quizzes[idx + 1];
+      lastView = { view: "quizzes", moduleId: mod.id, unitId: unit.id };
+      startQuiz(nextMeta);
+    });
 
-        const currentId = getQuizIdFromMeta(currentQuizMeta);
-        const pool = quizzes.filter(
-          (q) => getQuizIdFromMeta(q) !== currentId
-        );
-        const chosen = pool.length ? pickRandomQuiz(pool) : pickRandomQuiz(quizzes);
+    /* -----------------------------------------
+       RANDOM QUIZ IN UNIT
+       ----------------------------------------- */
+    rndBtn.addEventListener("click", () => {
+      const quizzes = unit.quizzes;
+      const currentId = getQuizId(currentQuizMeta);
 
-        if (!chosen) {
-          alert("This unit has no quizzes.");
-          return;
-        }
+      const pool = quizzes.filter((q) => getQuizId(q) !== currentId);
+      const chosen = pool.length ? randomFrom(pool) : randomFrom(quizzes);
 
-        lastView = {
-          moduleId: moduleObj ? moduleObj.id : null,
-          unitId: unit.id,
-          view: "quizzes"
-        };
-        startQuiz(chosen);
-      });
-    }
+      if (!chosen) {
+        alert("This unit has no quizzes.");
+        return;
+      }
+
+      lastView = { view: "quizzes", moduleId: mod.id, unitId: unit.id };
+      startQuiz(chosen);
+    });
   }
-
-// ================================
-// Sidebar toggles (shuffle, hide-feedback)
-// ================================
-
-const shuffleToggleEl = document.getElementById("toggle-shuffle");
-const hideFeedbackToggleEl = document.getElementById("toggle-hide-feedback");
-
-if (shuffleToggleEl) {
-  shuffleToggleEl.addEventListener("change", (e) => {
-    shuffleQuestionsEnabled = e.target.checked;
-  });
 }
 
-if (hideFeedbackToggleEl) {
-  hideFeedbackToggleEl.addEventListener("change", (e) => {
-    hideFeedbackEnabled = e.target.checked;
-  });
-}
 
-// ================================
-// Initialise
-// ================================
+/* =========================================================
+   SIDEBAR OPTIONS (SHUFFLE / HIDE FEEDBACK)
+   ========================================================= */
+document.getElementById("shuffleToggle").addEventListener("change", (e) => {
+  shuffleQuestionsEnabled = e.target.checked;
+});
 
-loadModules();
+document.getElementById("hideCorrectToggle").addEventListener("change", (e) => {
+  hideFeedbackEnabled = e.target.checked;
+});
+
+
+/* =========================================================
+   INITIALISATION
+   ========================================================= */
 initAuth();
+loadModules();
