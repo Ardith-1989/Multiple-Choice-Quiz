@@ -1,16 +1,16 @@
 /* =========================================================
    A LEVEL ANCIENT HISTORY — MULTIPLE CHOICE QUIZ ENGINE
-   Cleaned & Organised Version (Part 1/3)
+   CLEAN VERSION — PART 1/3
    ========================================================= */
 
-/* =========================================================
+/* ============================
    THEME TOGGLE
-   ========================================================= */
+   ============================ */
 const THEME_KEY = "revision-theme";
 
 function applyStoredTheme() {
-  const t = localStorage.getItem(THEME_KEY);
-  if (!t || t === "light") {
+  const stored = localStorage.getItem(THEME_KEY);
+  if (!stored || stored === "light") {
     document.body.classList.add("theme-light");
   } else {
     document.body.classList.remove("theme-light");
@@ -31,12 +31,13 @@ function toggleTheme() {
 applyStoredTheme();
 
 const themeBtn = document.getElementById("toggleThemeBtn");
-if (themeBtn) themeBtn.addEventListener("click", toggleTheme);
+if (themeBtn) {
+  themeBtn.addEventListener("click", toggleTheme);
+}
 
-
-/* =========================================================
+/* ============================
    SIDEBAR OPEN/CLOSE
-   ========================================================= */
+   ============================ */
 const sidebarEl = document.getElementById("optionsSidebar");
 const sidebarBackdropEl = document.getElementById("sidebarBackdrop");
 const openSidebarBtn = document.getElementById("openSidebarBtn");
@@ -44,22 +45,21 @@ const closeSidebarBtn = document.getElementById("closeSidebarBtn");
 
 function openSidebar() {
   sidebarEl.classList.add("open");
-  sidebarBackdropEl.style.display = "block";
+  if (sidebarBackdropEl) sidebarBackdropEl.style.display = "block";
 }
 
 function closeSidebar() {
   sidebarEl.classList.remove("open");
-  sidebarBackdropEl.style.display = "none";
+  if (sidebarBackdropEl) sidebarBackdropEl.style.display = "none";
 }
 
 if (openSidebarBtn) openSidebarBtn.addEventListener("click", openSidebar);
 if (closeSidebarBtn) closeSidebarBtn.addEventListener("click", closeSidebar);
 if (sidebarBackdropEl) sidebarBackdropEl.addEventListener("click", closeSidebar);
 
-
-/* =========================================================
+/* ============================
    SUPABASE INITIALISATION
-   ========================================================= */
+   ============================ */
 const SUPABASE_URL = "https://bzthteamkdbseartltsv.supabase.co";
 const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ6dGh0ZWFta2Ric2VhcnRsdHN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM3MjQ1MTksImV4cCI6MjA3OTMwMDUxOX0.ojZY5BKxa3ERTJsG-pieY64y6iOh3I4iJFPBJ5R1nCk";
@@ -68,29 +68,40 @@ let supabaseClient = null;
 let currentUser = null;
 
 if (window.supabase) {
-  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
 }
 
-
-/* =========================================================
-   GUEST STORAGE SYSTEM
-   ========================================================= */
+/* ============================
+   GUEST STORAGE
+   ============================ */
 const GUEST_RESULTS_KEY = "mcqGuestResults";
 const GUEST_IMPORTED_KEY = "mcqGuestResultsImported";
 
-function loadsGuest() {
+function getQuizIdFromMeta(quizMeta) {
+  return quizMeta && quizMeta.id ? quizMeta.id : quizMeta.path;
+}
+
+function loadGuestAll() {
   try {
-    return JSON.parse(localStorage.getItem(GUEST_RESULTS_KEY)) || {};
+    const raw = localStorage.getItem(GUEST_RESULTS_KEY);
+    return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
   }
 }
 
-function saveGuest(all) {
-  localStorage.setItem(GUEST_RESULTS_KEY, JSON.stringify(all));
+function saveGuestAll(all) {
+  try {
+    localStorage.setItem(GUEST_RESULTS_KEY, JSON.stringify(all));
+  } catch (e) {
+    console.warn("Failed to save guest results", e);
+  }
 }
 
-function guestImported() {
+function hasGuestBeenImported() {
   return localStorage.getItem(GUEST_IMPORTED_KEY) === "true";
 }
 
@@ -98,21 +109,15 @@ function markGuestImported() {
   localStorage.setItem(GUEST_IMPORTED_KEY, "true");
 }
 
-function getQuizId(quizMeta) {
-  return quizMeta.id || quizMeta.path;
-}
+function updateGuestQuizResults(quizMeta, score, total) {
+  const quizId = getQuizIdFromMeta(quizMeta);
+  const all = loadGuestAll();
+  const prev = all[quizId];
 
-
-// Update guest result after finishing a quiz
-function updateGuest(quizMeta, score, total) {
-  const id = getQuizId(quizMeta);
-  const all = loadsGuest();
-  const prev = all[id];
-
-  const percent = total ? Math.round((score / total) * 100) : 0;
+  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
   const attempts = prev ? prev.attempts + 1 : 1;
 
-  const isBetter =
+  const isBest =
     !prev ||
     percent > prev.bestPercent ||
     (percent === prev.bestPercent && score > prev.bestScore);
@@ -122,57 +127,63 @@ function updateGuest(quizMeta, score, total) {
     lastScore: score,
     lastTotal: total,
     lastPercent: percent,
-    bestScore: isBetter ? score : prev?.bestScore ?? score,
-    bestTotal: isBetter ? total : prev?.bestTotal ?? total,
-    bestPercent: isBetter ? percent : prev?.bestPercent ?? percent,
+    lastCompletedAt: new Date().toISOString(),
+    bestScore: isBest ? score : prev?.bestScore ?? score,
+    bestTotal: isBest ? total : prev?.bestTotal ?? total,
+    bestPercent: isBest ? percent : prev?.bestPercent ?? percent,
   };
 
-  all[id] = updated;
-  saveGuest(all);
+  all[quizId] = updated;
+  saveGuestAll(all);
   return updated;
 }
 
-function loadGuestQuizStats(quizMeta) {
-  const id = getQuizId(quizMeta);
-  const all = loadsGuest();
-  return all[id] || null;
+function getGuestQuizStats(quizMeta) {
+  const quizId = getQuizIdFromMeta(quizMeta);
+  const all = loadGuestAll();
+  return all[quizId] || null;
 }
 
-
-/* =========================================================
-   SUPABASE QUIZ STATS STORAGE
-   ========================================================= */
+/* ============================
+   SUPABASE QUIZ STATS
+   ============================ */
 async function saveAttemptToSupabase(quizMeta, score, total) {
   if (!supabaseClient || !currentUser) return null;
 
-  const id = getQuizId(quizMeta);
-  const percent = total ? Math.round((score / total) * 100) : 0;
+  const quizId = getQuizIdFromMeta(quizMeta);
+  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
 
+  // Insert this attempt
   const { error } = await supabaseClient.from("quiz_attempts").insert({
-    quiz_id: id,
     user_id: currentUser.id,
+    quiz_id: quizId,
     score,
     total,
     percent,
   });
 
   if (error) {
-    console.warn("Supabase insert failed:", error.message);
+    console.error("Failed to save quiz attempt:", error.message);
     return null;
   }
 
-  // Retrieve updated stats
-  const { data, error: readErr } = await supabaseClient
+  // Fetch all attempts for updated stats
+  const { data, error: statsError } = await supabaseClient
     .from("quiz_attempts")
     .select("score, total, percent")
-    .eq("quiz_id", id)
-    .eq("user_id", currentUser.id);
+    .eq("user_id", currentUser.id)
+    .eq("quiz_id", quizId);
 
-  if (readErr || !data) return null;
+  if (statsError || !data) {
+    console.error("Failed to fetch updated stats:", statsError?.message);
+    return null;
+  }
 
-  let bestPercent = -1,
-    bestScore = -1,
-    bestTotal = 0;
+  const attempts = data.length;
+  let bestScore = -1;
+  let bestTotal = 0;
+  let bestPercent = -1;
+
   for (const row of data) {
     if (
       row.percent > bestPercent ||
@@ -185,30 +196,43 @@ async function saveAttemptToSupabase(quizMeta, score, total) {
   }
 
   return {
-    attempts: data.length,
-    bestPercent,
+    attempts,
     bestScore,
     bestTotal,
+    bestPercent,
   };
 }
 
-
-// Fetch quiz stats for logged-in user
-async function fetchStatsFromSupabase(quizMeta) {
+async function fetchQuizStatsFromSupabase(quizMeta) {
   if (!supabaseClient || !currentUser) return null;
-  const id = getQuizId(quizMeta);
+
+  const quizId = getQuizIdFromMeta(quizMeta);
 
   const { data, error } = await supabaseClient
     .from("quiz_attempts")
     .select("score, total, percent")
-    .eq("quiz_id", id)
-    .eq("user_id", currentUser.id);
+    .eq("user_id", currentUser.id)
+    .eq("quiz_id", quizId);
 
-  if (error || !data?.length) return null;
+  if (error || !data) {
+    console.error("Failed to fetch stats:", error?.message);
+    return null;
+  }
 
-  let bestPercent = -1,
-    bestScore = -1,
-    bestTotal = 0;
+  if (data.length === 0) {
+    return {
+      attempts: 0,
+      bestScore: null,
+      bestTotal: null,
+      bestPercent: null,
+    };
+  }
+
+  const attempts = data.length;
+  let bestScore = -1;
+  let bestTotal = 0;
+  let bestPercent = -1;
+
   for (const row of data) {
     if (
       row.percent > bestPercent ||
@@ -221,269 +245,348 @@ async function fetchStatsFromSupabase(quizMeta) {
   }
 
   return {
-    attempts: data.length,
-    bestPercent,
+    attempts,
     bestScore,
     bestTotal,
+    bestPercent,
   };
 }
 
+/* ============================
+   STATS CACHE + DISPATCH
+   ============================ */
+const quizStatsCache = {};
 
-/* =========================================================
-   STATS CACHING
-   ========================================================= */
-const statsCache = {};
-
-// Decide whether to load stats from guest or Supabase
-async function getQuizStats(meta) {
-  const key = getQuizId(meta);
-  if (statsCache[key]) return statsCache[key];
-
+async function saveAttempt(quizMeta, score, total) {
   let result;
-  if (currentUser) result = await fetchStatsFromSupabase(meta);
-  else result = loadGuestQuizStats(meta);
-
-  statsCache[key] = result;
+  if (supabaseClient && currentUser) {
+    result = await saveAttemptToSupabase(quizMeta, score, total);
+  } else {
+    result = updateGuestQuizResults(quizMeta, score, total);
+  }
+  const key = getQuizIdFromMeta(quizMeta);
+  quizStatsCache[key] = result;
   return result;
 }
 
+async function getQuizStats(quizMeta) {
+  const key = getQuizIdFromMeta(quizMeta);
+  if (quizStatsCache[key]) return quizStatsCache[key];
 
-// Store an attempt (guest or logged-in)
-async function saveAttempt(meta, score, total) {
-  let result;
-  if (currentUser) result = await saveAttemptToSupabase(meta, score, total);
-  else result = updateGuest(meta, score, total);
-
-  statsCache[getQuizId(meta)] = result;
-  return result;
+  let stats;
+  if (supabaseClient && currentUser) {
+    stats = await fetchQuizStatsFromSupabase(quizMeta);
+  } else {
+    stats = getGuestQuizStats(quizMeta);
+  }
+  quizStatsCache[key] = stats;
+  return stats;
 }
 
-
-/* =========================================================
-   GUEST → ACCOUNT IMPORT
-   ========================================================= */
-async function importGuestToSupabase() {
+/* ============================
+   IMPORT GUEST → SUPABASE
+   ============================ */
+async function importGuestResultsToSupabase() {
   if (!supabaseClient || !currentUser) return;
 
-  const all = loadsGuest();
-  const rows = Object.entries(all)
-    .filter(([_, s]) => s && s.bestScore != null)
-    .map(([quiz_id, s]) => ({
+  const all = loadGuestAll();
+  const entries = Object.entries(all);
+  if (entries.length === 0) {
+    alert("No guest progress found on this device.");
+    return;
+  }
+
+  const rows = [];
+
+  for (const [quizId, stats] of entries) {
+    if (!stats || stats.bestScore == null || stats.bestTotal == null) continue;
+
+    rows.push({
       user_id: currentUser.id,
-      quiz_id,
-      score: s.bestScore,
-      total: s.bestTotal,
-      percent: s.bestPercent,
-    }));
+      quiz_id: quizId,
+      score: stats.bestScore,
+      total: stats.bestTotal,
+      percent:
+        stats.bestPercent ??
+        Math.round((stats.bestScore / stats.bestTotal) * 100),
+    });
+  }
 
   if (!rows.length) {
-    alert("No guest progress to import.");
+    alert("No usable guest progress found to import.");
     return;
   }
 
   const { error } = await supabaseClient.from("quiz_attempts").insert(rows);
+
   if (error) {
-    alert("Import failed.");
+    console.error("Failed to import guest results:", error.message);
+    alert("Sorry, something went wrong while importing your guest progress.");
     return;
   }
 
   markGuestImported();
-  alert("Guest progress imported successfully!");
+  alert(
+    "Guest progress imported into your account! Your stats will now sync across devices."
+  );
 }
 
-
-/* =========================================================
-   SUPABASE AUTH UI
-   ========================================================= */
-async function refreshAuthUI() {
+/* ============================
+   AUTH UI
+   ============================ */
+async function refreshAuthPanel() {
   const panel = document.getElementById("auth-panel");
   if (!panel) return;
 
   if (!supabaseClient) {
-    panel.innerHTML = `<p>Guest mode only – Supabase not configured.</p>`;
+    panel.innerHTML = `
+      <div class="sidebar-text">
+        Supabase is not configured. Using guest mode only (progress stays on this device).
+      </div>
+    `;
     return;
   }
 
-  // ----------------------
-  // NOT LOGGED IN (GUEST)
-  // ----------------------
+  // GUEST MODE
   if (!currentUser) {
     panel.innerHTML = `
-      <p><strong>Guest Mode:</strong> progress saved only on this device.</p>
-      <input id="auth-email" class="sidebar-input" type="email" placeholder="Email">
-      <input id="auth-password" class="sidebar-input" type="password" placeholder="Password">
-      <button class="primary-button" id="login-btn">Log in</button>
-      <button class="secondary-button" id="signup-btn">Create account</button>
+      <div class="sidebar-text" style="margin-bottom:6px;">
+        <strong>Guest mode:</strong> your scores are saved on this device only.
+        Log in or create an account to sync progress across devices.
+      </div>
+      <input type="email" id="auth-email" placeholder="Email" class="sidebar-input" />
+      <input type="password" id="auth-password" placeholder="Password" class="sidebar-input" />
+      <div style="display:flex; gap:6px; margin-top:6px; flex-wrap:wrap;">
+        <button class="primary-button" id="auth-login-btn">
+          Log in
+        </button>
+        <button class="secondary-button" id="auth-signup-btn">
+          Create account
+        </button>
+      </div>
     `;
 
-    const getCreds = () => {
-      const email = document.getElementById("auth-email").value.trim();
-      const password = document.getElementById("auth-password").value;
+    const loginBtn = document.getElementById("auth-login-btn");
+    const signupBtn = document.getElementById("auth-signup-btn");
+
+    function getCreds() {
+      const emailEl = document.getElementById("auth-email");
+      const passEl = document.getElementById("auth-password");
+      const email = emailEl.value.trim();
+      const password = passEl.value;
       if (!email || !password) {
-        alert("Enter email & password.");
+        alert("Please enter an email and password.");
         return null;
       }
       return { email, password };
-    };
+    }
 
-    document.getElementById("login-btn").addEventListener("click", async () => {
-      const creds = getCreds();
-      if (!creds) return;
+    if (loginBtn) {
+      loginBtn.addEventListener("click", async () => {
+        const creds = getCreds();
+        if (!creds) return;
 
-      const { data, error } = await supabaseClient.auth.signInWithPassword(
-        creds
-      );
-      if (error) return alert(error.message);
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email: creds.email,
+          password: creds.password,
+        });
 
-      currentUser = data.user;
-      refreshAuthUI();
-    });
+        if (error) {
+          alert("Login failed: " + error.message);
+          return;
+        }
 
-    document.getElementById("signup-btn").addEventListener("click", async () => {
-      const creds = getCreds();
-      if (!creds) return;
+        currentUser = data.user;
+        refreshAuthPanel();
+      });
+    }
 
-      const { data, error } = await supabaseClient.auth.signUp(creds);
-      if (error) return alert(error.message);
+    if (signupBtn) {
+      signupBtn.addEventListener("click", async () => {
+        const creds = getCreds();
+        if (!creds) return;
 
-      alert("Account created. Check email if verification required.");
-      currentUser = data.user ?? null;
-      refreshAuthUI();
-    });
+        const { data, error } = await supabaseClient.auth.signUp({
+          email: creds.email,
+          password: creds.password,
+        });
+
+        if (error) {
+          alert("Sign-up error: " + error.message);
+          return;
+        }
+
+        alert(
+          "Account created. If email confirmation is required, check your inbox, then come back and log in."
+        );
+        currentUser = data.user ?? null;
+        refreshAuthPanel();
+      });
+    }
 
     return;
   }
 
-  // ----------------------
   // LOGGED IN
-  // ----------------------
-  const hasGuest = Object.keys(loadsGuest()).length > 0;
+  const guestHasData = Object.keys(loadGuestAll()).length > 0;
+  const showImportPrompt = guestHasData && !hasGuestBeenImported();
 
   panel.innerHTML = `
-    <p>Logged in as <strong>${currentUser.email}</strong></p>
+    <div class="sidebar-text">
+      Logged in as <strong>${currentUser.email}</strong><br />
+      Your quiz results are synced via Supabase.
+    </div>
+
     ${
-      hasGuest && !guestImported()
-        ? `<button class="primary-button" id="import-guest-btn">Import guest progress</button>`
+      showImportPrompt
+        ? `<div class="sidebar-text" style="margin-top:6px;">
+             We found quiz progress saved in guest mode on this device.
+             You can import it into your account so it syncs across devices.
+           </div>
+           <button class="primary-button" id="import-guest-btn" style="margin-top:6px;">
+             Import guest progress
+           </button>`
         : ""
     }
-    <button class="secondary-button" id="logout-btn">Log out</button>
+
+    <button class="secondary-button" id="auth-logout-btn" style="margin-top:8px;">
+      Log out
+    </button>
   `;
 
-  if (hasGuest && !guestImported()) {
-    document
-      .getElementById("import-guest-btn")
-      .addEventListener("click", importGuestToSupabase);
+  const logoutBtn = document.getElementById("auth-logout-btn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      await supabaseClient.auth.signOut();
+      currentUser = null;
+      refreshAuthPanel();
+    });
   }
 
-  document.getElementById("logout-btn").addEventListener("click", async () => {
-    await supabaseClient.auth.signOut();
-    currentUser = null;
-    refreshAuthUI();
-  });
+  const importBtn = document.getElementById("import-guest-btn");
+  if (importBtn) {
+    importBtn.addEventListener("click", async () => {
+      await importGuestResultsToSupabase();
+      refreshAuthPanel();
+    });
+  }
 }
 
-
-// Initialise auth on load
 async function initAuth() {
-  if (!supabaseClient) return refreshAuthUI();
+  if (!supabaseClient) {
+    currentUser = null;
+    refreshAuthPanel();
+    return;
+  }
 
   const { data } = await supabaseClient.auth.getUser();
   currentUser = data.user ?? null;
-  refreshAuthUI();
+  refreshAuthPanel();
 
-  supabaseClient.auth.onAuthStateChange((_evt, session) => {
+  supabaseClient.auth.onAuthStateChange((_event, session) => {
     currentUser = session?.user ?? null;
-    refreshAuthUI();
+    refreshAuthPanel();
   });
 }
 
-
-/* =========================================================
+/* ============================
    MASTERY CALCULATIONS
-   ========================================================= */
+   ============================ */
 
-// NOTE: “Needs Work”, “Developing”, “Strong” labels removed on request.
-// Colour only.
+// NOTE: You asked to remove the labels ("Needs work", etc.) but keep colouring.
 
-function masteryCategory(percent) {
+function getMasteryClass(percent) {
+  if (percent == null || Number.isNaN(percent)) return "";
   if (percent >= 70) return "bad-high";
   if (percent >= 40) return "bad-mid";
   return "bad-low";
 }
 
-async function calcUnitMastery(unit) {
+async function calculateUnitMastery(unit) {
   const quizzes = unit.quizzes || [];
-  if (!quizzes.length) return { percent: null, attempted: 0, total: 0 };
+  if (!quizzes.length) {
+    return { percent: null, attempted: 0, total: 0 };
+  }
 
-  let totalPercent = 0,
-    attempted = 0;
+  let sumPercent = 0;
+  let attempted = 0;
 
   for (const q of quizzes) {
     const stats = await getQuizStats(q);
     if (stats && stats.attempts > 0) attempted++;
-    totalPercent += stats?.bestPercent ?? 0;
+    sumPercent += stats?.bestPercent ?? 0;
   }
 
-  const avg = Math.round(totalPercent / quizzes.length);
+  const avg = Math.round(sumPercent / quizzes.length);
   return { percent: avg, attempted, total: quizzes.length };
 }
 
-async function calcModuleMastery(module) {
+async function calculateModuleMastery(module) {
   const units = module.units || [];
-  if (!units.length) return { percent: null, attempted: 0, total: 0 };
-
-  let totalPercent = 0,
-    totalAttempted = 0,
-    total = 0;
-
-  for (const u of units) {
-    const m = await calcUnitMastery(u);
-    totalPercent += m.percent ?? 0;
-    totalAttempted += m.attempted;
-    total += m.total;
+  if (!units.length) {
+    return { percent: null, attempted: 0, total: 0 };
   }
 
-  const avg = Math.round(totalPercent / units.length);
-  return { percent: avg, attempted: totalAttempted, total };
+  let sumPercent = 0;
+  let totalAttempted = 0;
+  let totalQuizzes = 0;
+
+  for (const u of units) {
+    const result = await calculateUnitMastery(u);
+    sumPercent += result.percent ?? 0;
+    totalAttempted += result.attempted;
+    totalQuizzes += result.total;
+  }
+
+  const avg = Math.round(sumPercent / units.length);
+  return { percent: avg, attempted: totalAttempted, total: totalQuizzes };
 }
 
-
-/* =========================================================
+/* ============================
    RANDOM QUIZ HELPERS
-   ========================================================= */
-
-function quizzesInUnit(unit) {
+   ============================ */
+function getAllQuizzesInUnit(unit) {
   return unit.quizzes || [];
 }
 
-function quizzesInModule(module) {
-  let out = [];
-  for (const u of module.units || []) {
-    out = out.concat(quizzesInUnit(u));
-  }
-  return out;
+function getAllQuizzesInModule(module) {
+  let quizzes = [];
+  (module.units || []).forEach((u) => {
+    if (u.quizzes) quizzes = quizzes.concat(u.quizzes);
+  });
+  return quizzes;
 }
 
-function randomFrom(list) {
-  if (!list.length) return null;
-  const i = Math.floor(Math.random() * list.length);
-  return list[i];
+function pickRandomQuiz(quizzes) {
+  if (!quizzes || quizzes.length === 0) return null;
+  const index = Math.floor(Math.random() * quizzes.length);
+  return quizzes[index];
 }
 
 // Find which unit a quiz belongs to within a module
-function findUnitForQuiz(module, quizMeta) {
-  const id = getQuizId(quizMeta);
-  for (const u of module.units || []) {
-    for (const q of u.quizzes || []) {
-      if (getQuizId(q) === id) return u;
+function findUnitForQuizInModule(module, quizMeta) {
+  if (!module || !module.units) return null;
+  const targetId = getQuizIdFromMeta(quizMeta);
+  for (const u of module.units) {
+    const qs = u.quizzes || [];
+    for (const q of qs) {
+      if (getQuizIdFromMeta(q) === targetId) return u;
     }
   }
   return null;
 }
 
-/* -------------------------
+/* ============================
+   END OF PART 1
+   (State, rendering, quiz engine in Parts 2 & 3)
+   ============================ */
+/* =========================================================
+   PART 2 — STATE, NAVIGATION, MODULE / UNIT / QUIZ LISTS
+   ========================================================= */
+
+/* ============================
    GLOBAL STATE
-   ------------------------- */
+   ============================ */
 let modules = [];
 let currentModule = null;
 let currentUnit = null;
@@ -500,7 +603,7 @@ let hideFeedbackEnabled = false;
 let questionOrder = [];
 let currentOptionOrder = [];
 
-// remembers where the user came from before starting a quiz
+// remembers where we came from before starting a quiz
 // view: "modules" | "units" | "quizzes"
 let lastView = {
   view: "modules",
@@ -508,10 +611,9 @@ let lastView = {
   unitId: null,
 };
 
-
-/* -------------------------
+/* ============================
    DOM REFERENCES
-   ------------------------- */
+   ============================ */
 const quizContentEl = document.getElementById("quiz-content");
 const cardTitleEl = document.getElementById("card-title");
 const pillRightEl = document.getElementById("pill-right");
@@ -519,10 +621,9 @@ const progressContainerEl = document.getElementById("progress-container");
 const progressFillEl = document.getElementById("progress-fill");
 const breadcrumbsEl = document.getElementById("breadcrumbs");
 
-
-/* -------------------------
-   UTILS
-   ------------------------- */
+/* ============================
+   GENERIC UTILS
+   ============================ */
 function shuffleArray(arr) {
   for (let i = arr.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -530,10 +631,9 @@ function shuffleArray(arr) {
   }
 }
 
-
-/* =========================================================
-   LOAD MODULES FROM modules.json
-   ========================================================= */
+/* ============================
+   LOAD MODULES.JSON
+   ============================ */
 async function loadModules() {
   try {
     const res = await fetch("modules.json");
@@ -542,7 +642,8 @@ async function loadModules() {
     renderModuleList();
   } catch (err) {
     console.error(err);
-    cardTitleEl.textContent = "A Level Ancient History – Multiple Choice Quizzes";
+    cardTitleEl.textContent =
+      "A Level Ancient History – Multiple Choice Quizzes";
     pillRightEl.textContent = "Error loading modules";
     progressContainerEl.style.display = "none";
     breadcrumbsEl.textContent = "";
@@ -557,29 +658,28 @@ async function loadModules() {
   }
 }
 
-
-/* =========================================================
+/* ============================
    BREADCRUMBS
-   ========================================================= */
+   ============================ */
 function setBreadcrumbs(level) {
   const bits = [];
 
-  // Modules root
+  // Root
   bits.push(`<span data-level="modules">Modules</span>`);
 
-  // Module level
+  // Module
   if (currentModule && level !== "modules") {
     bits.push("›");
     bits.push(`<span data-level="units">${currentModule.name}</span>`);
   }
 
-  // Unit level
+  // Unit
   if (currentUnit && (level === "quizzes" || level === "quiz")) {
     bits.push("›");
     bits.push(`<span data-level="quizzes">${currentUnit.name}</span>`);
   }
 
-  // Quiz title
+  // Quiz
   if (currentQuizMeta && level === "quiz") {
     bits.push("›");
     bits.push(`<span>${currentQuizMeta.title}</span>`);
@@ -587,7 +687,7 @@ function setBreadcrumbs(level) {
 
   breadcrumbsEl.innerHTML = bits.join(" ");
 
-  // Clickable crumbs
+  // Clickable crumb behaviour
   breadcrumbsEl
     .querySelectorAll("span[data-level]")
     .forEach((el) => {
@@ -604,10 +704,9 @@ function setBreadcrumbs(level) {
     });
 }
 
-
-/* =========================================================
+/* ============================
    MODULE LIST
-   ========================================================= */
+   ============================ */
 function renderModuleList() {
   currentModule = null;
   currentUnit = null;
@@ -622,7 +721,7 @@ function renderModuleList() {
   progressFillEl.style.width = "0%";
   setBreadcrumbs("modules");
 
-  if (!modules.length) {
+  if (!modules || !modules.length) {
     pillRightEl.textContent = "0 modules";
     quizContentEl.innerHTML = `
       <p>No modules found in <code>modules.json</code>.</p>
@@ -649,7 +748,7 @@ function renderModuleList() {
                 <span>${m.units?.length || 0} unit${
             (m.units?.length || 0) !== 1 ? "s" : ""
           }</span>
-                <span class="mastery-text" data-master-module="${m.id}"></span>
+                <span class="mastery-text" data-master-for-module="${m.id}"></span>
                 ${m.description ? `<span>• ${m.description}</span>` : ""}
               </div>
             </div>
@@ -668,13 +767,13 @@ function renderModuleList() {
     </p>
   `;
 
-  // Click on a module card -> Unit list
+  // Click module card -> unit list
   quizContentEl
     .querySelectorAll(".list-item[data-module-id]")
-    .forEach((card) => {
-      card.addEventListener("click", () => {
-        const modId = card.getAttribute("data-module-id");
-        renderUnitList(modId);
+    .forEach((el) => {
+      el.addEventListener("click", () => {
+        const id = el.getAttribute("data-module-id");
+        renderUnitList(id);
       });
     });
 
@@ -682,28 +781,29 @@ function renderModuleList() {
   quizContentEl
     .querySelectorAll("[data-random-module]")
     .forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
         const moduleId = btn.getAttribute("data-random-module");
         const mod = modules.find((m) => m.id === moduleId);
         if (!mod) return;
 
-        const allQuizzes = quizzesInModule(mod);
-        const chosen = randomFrom(allQuizzes);
+        const quizzes = getAllQuizzesInModule(mod);
+        const chosen = pickRandomQuiz(quizzes);
         if (!chosen) {
           alert("This module has no quizzes.");
           return;
         }
 
-        // Try to infer which unit this quiz belongs to
-        const u = findUnitForQuiz(mod, chosen);
+        // Try to locate which unit this quiz belongs to
+        const unit = findUnitForQuizInModule(mod, chosen);
         currentModule = mod;
-        currentUnit = u || null;
+        currentUnit = unit || null;
 
+        // lastView: module level origin
         lastView = {
           view: "modules",
           moduleId: mod.id,
-          unitId: u ? u.id : null,
+          unitId: unit ? unit.id : null,
         };
 
         startQuiz(chosen);
@@ -713,17 +813,15 @@ function renderModuleList() {
   // Mastery for each module
   modules.forEach(async (m) => {
     const el = quizContentEl.querySelector(
-      `.mastery-text[data-master-module="${m.id}"]`
+      `.mastery-text[data-master-for-module="${m.id}"]`
     );
     if (!el) return;
-
-    const result = await calcModuleMastery(m);
+    const result = await calculateModuleMastery(m);
     if (!result || !result.total || result.percent == null) {
       el.textContent = "";
       return;
     }
-
-    const cls = masteryCategory(result.percent);
+    const cls = getMasteryClass(result.percent);
     el.innerHTML = `
       • <span class="mastery-tooltip">
           <span class="mastery-badge ${cls}">
@@ -739,10 +837,9 @@ function renderModuleList() {
   });
 }
 
-
-/* =========================================================
+/* ============================
    UNIT LIST (WITH RANDOM QUIZ PER UNIT)
-   ========================================================= */
+   ============================ */
 function renderUnitList(moduleId) {
   const mod = modules.find((m) => m.id === moduleId);
   if (!mod) return;
@@ -789,7 +886,7 @@ function renderUnitList(moduleId) {
                 <span>${u.quizzes?.length || 0} quiz${
             (u.quizzes?.length || 0) !== 1 ? "zes" : ""
           }</span>
-                <span class="mastery-text" data-master-unit="${u.id}"></span>
+                <span class="mastery-text" data-master-for-unit="${u.id}"></span>
                 ${u.description ? `<span>• ${u.description}</span>` : ""}
               </div>
             </div>
@@ -807,13 +904,13 @@ function renderUnitList(moduleId) {
     </div>
   `;
 
-  // Click on a unit card -> Quiz list
+  // Click unit card -> quiz list
   quizContentEl
     .querySelectorAll(".list-item[data-unit-id]")
-    .forEach((card) => {
-      card.addEventListener("click", () => {
-        const unitId = card.getAttribute("data-unit-id");
-        renderQuizList(unitId);
+    .forEach((el) => {
+      el.addEventListener("click", () => {
+        const id = el.getAttribute("data-unit-id");
+        renderQuizList(id);
       });
     });
 
@@ -826,39 +923,42 @@ function renderUnitList(moduleId) {
   quizContentEl
     .querySelectorAll("[data-random-unit]")
     .forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        e.stopPropagation();
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
         const unitId = btn.getAttribute("data-random-unit");
         const unit = (currentModule.units || []).find((u) => u.id === unitId);
         if (!unit) return;
 
-        const qList = quizzesInUnit(unit);
-        const chosen = randomFrom(qList);
+        const quizzes = getAllQuizzesInUnit(unit);
+        const chosen = pickRandomQuiz(quizzes);
         if (!chosen) {
           alert("This unit has no quizzes.");
           return;
         }
 
         currentUnit = unit;
-        lastView = { view: "units", moduleId: currentModule.id, unitId: unit.id };
+        lastView = {
+          view: "units",
+          moduleId: currentModule.id,
+          unitId: unit.id,
+        };
+
         startQuiz(chosen);
       });
     });
 
-  // Mastery per unit
+  // Mastery for each unit
   units.forEach(async (u) => {
     const el = quizContentEl.querySelector(
-      `.mastery-text[data-master-unit="${u.id}"]`
+      `.mastery-text[data-master-for-unit="${u.id}"]`
     );
     if (!el) return;
-
-    const result = await calcUnitMastery(u);
+    const result = await calculateUnitMastery(u);
     if (!result || !result.total || result.percent == null) {
       el.textContent = "";
       return;
     }
-
-    const cls = masteryCategory(result.percent);
+    const cls = getMasteryClass(result.percent);
     el.innerHTML = `
       • <span class="mastery-tooltip">
           <span class="mastery-badge ${cls}">
@@ -874,10 +974,9 @@ function renderUnitList(moduleId) {
   });
 }
 
-
-/* =========================================================
+/* ============================
    QUIZ LIST WITHIN A UNIT
-   ========================================================= */
+   ============================ */
 function renderQuizList(unitId) {
   if (!currentModule) return;
   const unit = (currentModule.units || []).find((u) => u.id === unitId);
@@ -887,7 +986,11 @@ function renderQuizList(unitId) {
   currentQuizMeta = null;
   currentQuizData = null;
   questionOrder = [];
-  lastView = { view: "quizzes", moduleId: currentModule.id, unitId: unit.id };
+  lastView = {
+    view: "quizzes",
+    moduleId: currentModule.id,
+    unitId: unit.id,
+  };
 
   cardTitleEl.textContent = unit.name;
   progressContainerEl.style.display = "none";
@@ -935,7 +1038,7 @@ function renderQuizList(unitId) {
     </div>
   `;
 
-  // Click quiz -> start quiz
+  // Click quiz card -> start quiz
   quizContentEl
     .querySelectorAll(".list-item[data-quiz-id]")
     .forEach((btn) => {
@@ -958,7 +1061,7 @@ function renderQuizList(unitId) {
     .getElementById("back-units")
     .addEventListener("click", () => renderUnitList(currentModule.id));
 
-  // Populate quiz stats
+  // Populate stats
   quizzes.forEach(async (q) => {
     const el = quizContentEl.querySelector(
       `.list-meta[data-stats-for="${q.id}"]`
@@ -981,16 +1084,18 @@ function renderQuizList(unitId) {
   });
 }
 
+/* ============================
+   END OF PART 2
+   (Quiz engine, result screen, toggles, init in Part 3)
+   ============================ */
 /* =========================================================
-   PART 3 — QUIZ ENGINE, QUESTION VIEW, RESULTS, INIT
+   PART 3 — QUIZ ENGINE, RESULT SCREEN, TOGGLES, INIT
    ========================================================= */
 
-
-/* =========================================================
-   EXIT QUIZ (RESPECTING lastView)
-   ========================================================= */
+/* ============================
+   EXIT QUIZ (USES lastView)
+   ============================ */
 function exitQuiz() {
-  // If for some reason lastView is not configured, go home
   if (!lastView) {
     renderModuleList();
     return;
@@ -998,7 +1103,7 @@ function exitQuiz() {
 
   const { view, moduleId, unitId } = lastView;
 
-  if (view === "quizzes" && moduleId && unitId) {
+  if (view === "quizzes" && unitId) {
     renderQuizList(unitId);
     return;
   }
@@ -1008,198 +1113,300 @@ function exitQuiz() {
     return;
   }
 
+  // Fallback
   renderModuleList();
 }
 
-
-/* =========================================================
+/* ============================
    START QUIZ
-   ========================================================= */
-async function startQuiz(meta) {
-  currentQuizMeta = meta;
+   ============================ */
+async function startQuiz(quizMeta) {
+  currentQuizMeta = quizMeta;
   currentQuizData = null;
   currentQuestionIndex = 0;
   selectedOptionIndex = null;
   score = 0;
   answers.length = 0;
+  questionOrder = [];
+  currentOptionOrder = [];
 
-  cardTitleEl.textContent = meta.title;
+  cardTitleEl.textContent = quizMeta.title || "Quiz";
   setBreadcrumbs("quiz");
+  pillRightEl.textContent = "Loading quiz…";
+  progressContainerEl.style.display = "none";
+  progressFillEl.style.width = "0%";
 
-  // Load JSON
+  quizContentEl.innerHTML = `
+    <p>Loading quiz <strong>${quizMeta.title}</strong>…</p>
+    <p class="helper-text">File: <code>${quizMeta.path}</code></p>
+  `;
+
   try {
-    const res = await fetch(meta.path);
-    if (!res.ok) {
-      throw new Error(`Could not load quiz file: ${meta.path}`);
-    }
-    currentQuizData = await res.json();
+    const res = await fetch(quizMeta.path);
+    if (!res.ok) throw new Error("Failed to load quiz JSON");
+    const data = await res.json();
+    currentQuizData = data;
   } catch (err) {
     console.error(err);
+    pillRightEl.textContent = "Error loading quiz";
+    progressContainerEl.style.display = "none";
     quizContentEl.innerHTML = `
-      <p class="error-text">
-        Could not load <code>${meta.path}</code>. Check filename and JSON validity.
-      </p>
+      <p class="error-text">Could not load quiz file <code>${quizMeta.path}</code>.</p>
       <div class="controls" style="justify-content:flex-start;">
         <button class="secondary-button" id="back-quizzes">Exit quiz</button>
       </div>
     `;
-    document
-      .getElementById("back-quizzes")
-      .addEventListener("click", exitQuiz);
+    const backBtn = document.getElementById("back-quizzes");
+    if (backBtn) backBtn.addEventListener("click", exitQuiz);
     return;
   }
 
-  // Build question order
-  questionOrder = currentQuizData.questions.map((_, i) => i);
+  const questions = currentQuizData.questions || [];
+  if (!questions.length) {
+    pillRightEl.textContent = "No questions";
+    progressContainerEl.style.display = "none";
+    quizContentEl.innerHTML = `
+      <p class="error-text">This quiz has no questions.</p>
+      <div class="controls" style="justify-content:flex-start;">
+        <button class="secondary-button" id="back-quizzes">Exit quiz</button>
+      </div>
+    `;
+    const backBtn = document.getElementById("back-quizzes");
+    if (backBtn) backBtn.addEventListener("click", exitQuiz);
+    return;
+  }
+
+  // Build question order (0..n-1) and maybe shuffle
+  questionOrder = questions.map((_, i) => i);
   if (shuffleQuestionsEnabled) shuffleArray(questionOrder);
 
+  progressContainerEl.style.display = "block";
   renderQuestion();
 }
 
-
-/* =========================================================
-   RENDER A QUESTION
-   ========================================================= */
+/* ============================
+   RENDER QUESTION
+   ============================ */
 function renderQuestion() {
-  const total = currentQuizData.questions.length;
-  const qi = questionOrder[currentQuestionIndex];
-  const q = currentQuizData.questions[qi];
+  const questions = currentQuizData.questions || [];
+  const total = questions.length;
 
-  progressContainerEl.style.display = "block";
-  const pct = ((currentQuestionIndex + 1) / total) * 100;
-  progressFillEl.style.width = pct + "%";
+  const realIndex = questionOrder[currentQuestionIndex];
+  const q = questions[realIndex];
 
-  // Shuffle options
-  const count = q.options.length;
-  currentOptionOrder = [...Array(count).keys()];
+  selectedOptionIndex = null;
+
+  // Build & shuffle option order
+  currentOptionOrder = q.options.map((_, i) => i);
   shuffleArray(currentOptionOrder);
 
-  const optsHtml = currentOptionOrder
+  const optionsHtml = currentOptionOrder
     .map(
-      (optIndex, ii) => `
-    <button class="option-btn" data-opt="${ii}">
-      ${q.options[optIndex]}
-    </button>
-  `
+      (optIdx, displayIdx) => `
+      <button class="option-btn" data-index="${optIdx}">
+        <span class="option-label">${String.fromCharCode(
+          65 + displayIdx
+        )}.</span>
+        <span class="option-text">${q.options[optIdx]}</span>
+      </button>
+    `
     )
     .join("");
 
-  pillRightEl.textContent = `Question ${currentQuestionIndex + 1} of ${total}`;
+  const description =
+    currentQuizData.description || "Choose the best answer for each question.";
+
+  const questionNumber = currentQuestionIndex + 1;
+  const progressPercent = (currentQuestionIndex / total) * 100;
+
+  pillRightEl.textContent = `Question ${questionNumber} of ${total}`;
+  progressFillEl.style.width = `${progressPercent}%`;
+  setBreadcrumbs("quiz");
 
   quizContentEl.innerHTML = `
-    <div class="question-block">
-      <p class="question-text">${q.question}</p>
-      <div class="option-block">${optsHtml}</div>
-
-      <div class="nav-controls">
-        ${
-          currentQuestionIndex + 1 < total
-            ? `<button class="primary-button" id="next-btn" disabled>Next</button>`
-            : `<button class="primary-button" id="finish-btn" disabled>Finish</button>`
-        }
-      </div>
-
-      <div id="feedback"></div>
+    <div class="question-text">${q.question}</div>
+    <p class="question-meta">${description}</p>
+    <div class="options">
+      ${optionsHtml}
+    </div>
+    <div class="feedback" id="feedback"></div>
+    <div class="controls">
+      <button class="secondary-button" id="exit-btn">Exit quiz</button>
+      <button class="secondary-button" id="skip-btn">Skip</button>
+      <button class="primary-button" id="next-btn" disabled>
+        ${questionNumber < total ? "Next →" : "Finish quiz"}
+      </button>
     </div>
   `;
 
-  // Option click
-  quizContentEl
-    .querySelectorAll(".option-btn")
-    .forEach((btn) => {
-      btn.addEventListener("click", () => {
-        if (selectedOptionIndex != null) return;
+  const optionButtons = Array.from(
+    quizContentEl.querySelectorAll(".option-btn")
+  );
+  const feedbackEl = document.getElementById("feedback");
+  const nextBtn = document.getElementById("next-btn");
+  const skipBtn = document.getElementById("skip-btn");
+  const exitBtn = document.getElementById("exit-btn");
 
-        const chosenIndex = parseInt(btn.getAttribute("data-opt"), 10);
-        selectedOptionIndex = chosenIndex;
+  // Option click handler
+  optionButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (selectedOptionIndex !== null) return; // lock after pick
+      const idx = Number(btn.getAttribute("data-index"));
+      selectedOptionIndex = idx;
 
-        const optRealIndex = currentOptionOrder[chosenIndex];
-        const correctRealIndex = q.answer;
+      const correctIndex = q.correctIndex;
+      const isCorrect = selectedOptionIndex === correctIndex;
 
-        const isCorrect = optRealIndex === correctRealIndex;
-        if (isCorrect) score++;
+      if (isCorrect) score++;
 
-        answers.push({
-          questionIndex: qi,
-          correct: isCorrect,
+      answers.push({
+        questionIndex: realIndex,
+        selected: selectedOptionIndex,
+        correctIndex,
+        isCorrect,
+      });
+
+      // Visual + text feedback only if not hiding feedback
+      if (!hideFeedbackEnabled) {
+        optionButtons.forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+
+        optionButtons.forEach((b) => {
+          const bIdx = Number(b.getAttribute("data-index"));
+          b.disabled = true;
+          if (bIdx === correctIndex) {
+            b.classList.add("correct");
+          } else if (bIdx === selectedOptionIndex && !isCorrect) {
+            b.classList.add("incorrect");
+          }
         });
 
-        if (!hideFeedbackEnabled) {
-          const fb = document.getElementById("feedback");
-          fb.textContent = isCorrect
-            ? "Correct!"
-            : `Incorrect. Correct answer: ${q.options[correctRealIndex]}`;
-          fb.classList.add(isCorrect ? "correct" : "incorrect");
-        }
+        feedbackEl.className =
+          "feedback " + (isCorrect ? "correct" : "incorrect");
+        feedbackEl.textContent = isCorrect
+          ? "Correct!"
+          : "Incorrect – the correct answer is highlighted.";
+      } else {
+        // Just acknowledge selection
+        feedbackEl.className = "feedback";
+        feedbackEl.textContent = "Answer selected.";
+      }
 
-        btn.classList.add(isCorrect ? "correct" : "incorrect");
-
-        const nextBtn = document.getElementById("next-btn");
-        const finishBtn = document.getElementById("finish-btn");
-        if (nextBtn) nextBtn.disabled = false;
-        if (finishBtn) finishBtn.disabled = false;
-      });
+      nextBtn.disabled = false;
     });
+  });
 
-  // Next
-  const nextBtn = document.getElementById("next-btn");
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      selectedOptionIndex = null;
+  // Skip handler: records no answer, moves on
+  if (skipBtn) {
+    skipBtn.addEventListener("click", () => {
+      const correctIndex = q.correctIndex;
+      answers.push({
+        questionIndex: realIndex,
+        selected: null,
+        correctIndex,
+        isCorrect: false,
+      });
+
       currentQuestionIndex++;
-      renderQuestion();
+      if (currentQuestionIndex < total) {
+        renderQuestion();
+      } else {
+        renderResult();
+      }
     });
   }
 
-  // Finish
-  const finishBtn = document.getElementById("finish-btn");
-  if (finishBtn) {
-    finishBtn.addEventListener("click", () => {
-      renderResult();
+  // Next / Finish handler
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      if (selectedOptionIndex === null) {
+        // No selection made – treat as skipped
+        const correctIndex = q.correctIndex;
+        answers.push({
+          questionIndex: realIndex,
+          selected: null,
+          correctIndex,
+          isCorrect: false,
+        });
+      }
+
+      currentQuestionIndex++;
+      if (currentQuestionIndex < total) {
+        renderQuestion();
+      } else {
+        renderResult();
+      }
     });
+  }
+
+  if (exitBtn) {
+    exitBtn.addEventListener("click", exitQuiz);
   }
 }
 
-
-/* =========================================================
+/* ============================
    RENDER RESULT SCREEN
-   ========================================================= */
+   ============================ */
 async function renderResult() {
-  const total = currentQuizData.questions.length;
-  const percent = Math.round((score / total) * 100);
+  const questions = currentQuizData.questions || [];
+  const total = questions.length;
+  const percent = total > 0 ? Math.round((score / total) * 100) : 0;
 
-  // Save attempt (guest or logged-in)
-  const updatedStats = await saveAttempt(currentQuizMeta, score, total);
+  // Save attempt to guest or Supabase
+  const stats = await saveAttempt(currentQuizMeta, score, total);
 
-  // Summary list
+  progressFillEl.style.width = "100%";
+  pillRightEl.textContent = "Quiz complete";
+  setBreadcrumbs("quiz");
+
+  // Build summary
   const summaryHtml = answers
-    .map((a, i) => {
-      const q = currentQuizData.questions[a.questionIndex];
-      const isCorrect = a.correct ? "correct" : "incorrect";
+    .map((ans, i) => {
+      const q = questions[ans.questionIndex];
+      const user =
+        ans.selected === null ? "No answer" : q.options[ans.selected];
+      const correct = q.options[ans.correctIndex];
+      const rowClass = ans.isCorrect ? "correct" : "incorrect";
+
       return `
-        <div class="summary-item ${isCorrect}">
-          <strong>Q${i + 1}:</strong> ${a.correct ? "Correct" : "Incorrect"} 
-          <span class="summary-question">${q.question}</span>
+        <div class="summary-item ${rowClass}">
+          <div class="summary-question">
+            ${i + 1}. ${q.question}
+          </div>
+          <div class="summary-answer">
+            <span class="label">Your answer:</span>
+            <span class="value">${user}</span>
+          </div>
+          <div class="summary-answer">
+            <span class="label">Correct answer:</span>
+            <span class="value">${correct}</span>
+          </div>
         </div>
       `;
     })
     .join("");
 
-  quizContentEl.innerHTML = `
-    <div class="result-heading">Your results for "${currentQuizMeta.title}"</div>
-    <p class="result-score">
-      You scored <strong>${score}</strong> out of <strong>${total}</strong>
-      (${percent}%)
-    </p>
+  let statsLine = "";
+  if (stats) {
+    statsLine = `Attempts: <strong>${stats.attempts}</strong>`;
+    if (stats.bestScore != null) {
+      statsLine += ` • Best: <strong>${stats.bestScore}/${stats.bestTotal} (${stats.bestPercent}%)</strong>`;
+    }
+  }
 
+  quizContentEl.innerHTML = `
+    <div class="result-heading">
+      Your results for "${currentQuizData.title || currentQuizMeta.title}"
+    </div>
+    <p class="result-score">
+      You scored <strong>${score}</strong> out of <strong>${total}</strong> (${percent}%)
+    </p>
     ${
-      updatedStats
-        ? `<p class="result-detail">
-             Attempts: ${updatedStats.attempts} • 
-             Best: ${updatedStats.bestScore}/${updatedStats.bestTotal} 
-             (${updatedStats.bestPercent}%)
+      statsLine
+        ? `<p class="result-detail">${statsLine}</p>`
+        : `<p class="result-detail">
+             Review your answers below, or go back to choose another quiz.
            </p>`
-        : `<p class="result-detail">Progress saved.</p>`
     }
 
     <div class="controls" style="margin-bottom: 6px; flex-wrap:wrap;">
@@ -1209,81 +1416,104 @@ async function renderResult() {
       <button class="primary-button" id="retake-btn">Retake this quiz</button>
     </div>
 
-    <div class="summary-list">${summaryHtml}</div>
+    <div class="summary-list">
+      ${summaryHtml}
+    </div>
   `;
 
-  // Exit
-  document.getElementById("exit-btn").addEventListener("click", exitQuiz);
-
-  // Retake same quiz
-  document.getElementById("retake-btn").addEventListener("click", () => {
-    startQuiz(currentQuizMeta);
-  });
-
-  /* -----------------------------------------
-     NEXT QUIZ IN UNIT
-     ----------------------------------------- */
+  const exitBtn = document.getElementById("exit-btn");
+  const retakeBtn = document.getElementById("retake-btn");
   const nextBtn = document.getElementById("next-quiz-btn");
-  const rndBtn = document.getElementById("random-unit-quiz-btn");
+  const randomBtn = document.getElementById("random-unit-quiz-btn");
+
+  if (exitBtn) exitBtn.addEventListener("click", exitQuiz);
+
+  if (retakeBtn) {
+    retakeBtn.addEventListener("click", () => {
+      startQuiz(currentQuizMeta);
+    });
+  }
 
   const unit = currentUnit;
   const mod = currentModule;
 
   if (!unit || !unit.quizzes || unit.quizzes.length === 0) {
-    nextBtn.disabled = true;
-    rndBtn.disabled = true;
+    if (nextBtn) nextBtn.disabled = true;
+    if (randomBtn) randomBtn.disabled = true;
   } else {
-    nextBtn.addEventListener("click", () => {
-      const quizzes = unit.quizzes;
-      const currentId = getQuizId(currentQuizMeta);
-      const idx = quizzes.findIndex((q) => getQuizId(q) === currentId);
+    // Next quiz in unit
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        const quizzes = unit.quizzes || [];
+        const currentId = getQuizIdFromMeta(currentQuizMeta);
+        const idx = quizzes.findIndex(
+          (q) => getQuizIdFromMeta(q) === currentId
+        );
+        if (idx === -1 || idx === quizzes.length - 1) {
+          alert("There is no next quiz in this unit.");
+          return;
+        }
+        const nextMeta = quizzes[idx + 1];
 
-      if (idx === -1 || idx === quizzes.length - 1) {
-        alert("There is no next quiz in this unit.");
-        return;
-      }
+        lastView = {
+          view: "quizzes",
+          moduleId: mod ? mod.id : null,
+          unitId: unit.id,
+        };
+        startQuiz(nextMeta);
+      });
+    }
 
-      const nextMeta = quizzes[idx + 1];
-      lastView = { view: "quizzes", moduleId: mod.id, unitId: unit.id };
-      startQuiz(nextMeta);
-    });
+    // Random quiz in unit
+    if (randomBtn) {
+      randomBtn.addEventListener("click", () => {
+        const quizzes = unit.quizzes || [];
+        if (!quizzes.length) {
+          alert("This unit has no quizzes.");
+          return;
+        }
 
-    /* -----------------------------------------
-       RANDOM QUIZ IN UNIT
-       ----------------------------------------- */
-    rndBtn.addEventListener("click", () => {
-      const quizzes = unit.quizzes;
-      const currentId = getQuizId(currentQuizMeta);
+        const currentId = getQuizIdFromMeta(currentQuizMeta);
+        const pool = quizzes.filter(
+          (q) => getQuizIdFromMeta(q) !== currentId
+        );
+        const chosen = pool.length ? pickRandomQuiz(pool) : pickRandomQuiz(quizzes);
 
-      const pool = quizzes.filter((q) => getQuizId(q) !== currentId);
-      const chosen = pool.length ? randomFrom(pool) : randomFrom(quizzes);
+        if (!chosen) {
+          alert("This unit has no quizzes.");
+          return;
+        }
 
-      if (!chosen) {
-        alert("This unit has no quizzes.");
-        return;
-      }
-
-      lastView = { view: "quizzes", moduleId: mod.id, unitId: unit.id };
-      startQuiz(chosen);
-    });
+        lastView = {
+          view: "quizzes",
+          moduleId: mod ? mod.id : null,
+          unitId: unit.id,
+        };
+        startQuiz(chosen);
+      });
+    }
   }
 }
 
+/* ============================
+   SIDEBAR TOGGLES
+   ============================ */
+const shuffleToggleEl = document.getElementById("toggle-shuffle");
+if (shuffleToggleEl) {
+  shuffleToggleEl.addEventListener("change", (e) => {
+    shuffleQuestionsEnabled = e.target.checked;
+  });
+}
 
-/* =========================================================
-   SIDEBAR OPTIONS (SHUFFLE / HIDE FEEDBACK)
-   ========================================================= */
-document.getElementById("shuffleToggle").addEventListener("change", (e) => {
-  shuffleQuestionsEnabled = e.target.checked;
-});
+const hideFeedbackToggleEl = document.getElementById("toggle-hide-feedback");
+if (hideFeedbackToggleEl) {
+  hideFeedbackToggleEl.addEventListener("change", (e) => {
+    hideFeedbackEnabled = e.target.checked;
+  });
+}
 
-document.getElementById("hideCorrectToggle").addEventListener("change", (e) => {
-  hideFeedbackEnabled = e.target.checked;
-});
-
-
-/* =========================================================
+/* ============================
    INITIALISATION
-   ========================================================= */
+   ============================ */
 initAuth();
 loadModules();
