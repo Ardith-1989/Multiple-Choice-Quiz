@@ -1228,12 +1228,12 @@
           ${modules
               .map(
                   (m) => `
-			<button class="list-item" data-id="${m.id}">
+			<div class="list-item" data-id="${m.id}">
 			  <div style="display:flex; width:100%; align-items:center;">
 			    <div style="flex:1;">
 			      <div class="list-title">${m.name}</div>
 			      <div class="list-meta">
-			        <span>${m.units?.length || 0} unit${(m.units?.length || 0) !== 1 ? "s" : ""}</span>
+			        <span>${m.units?.length || 0} units</span>
 			        <span class="mastery-text" data-master-for-module="${m.id}"></span>
 			        ${m.description ? `<span>• ${m.description}</span>` : ""}
 			      </div>
@@ -1242,7 +1242,7 @@
 			      Random quiz
 			    </button>
 			  </div>
-			</button>
+			</div>
           `
               )
               .join("")}
@@ -1342,17 +1342,21 @@
           ${units
               .map(
                   (u) => `
-			<button class="list-item" data-id="${u.id}">
-			  <div style="display:flex; width:100%; align-items:center;">
-			    <div style="flex:1;">
-			      <div class="list-title">${u.name}</div>
-			      <div class="list-meta">
-			        <span>${u.quizzes?.length || 0} quiz${(u.quizzes?.length || 0) !== 1 ? "zes" : ""}</span>
-			        <span class="mastery-text" data-master-for-unit="${u.id}"></span>
-			        ${u.description ? `<span>• ${u.description}</span>` : ""}
-			      </div>
-			    </div>
-			    <button class="random-btn" data-random-unit="${u.id}">
+				<div class="list-item" data-id="${u.id}">
+				  <div style="display:flex; width:100%; align-items:center;">
+					<div style="flex:1;">
+					  <div class="list-title">${u.name}</div>
+					  <div class="list-meta">
+						<span>${u.quizzes?.length || 0} quizzes</span>
+						<span class="mastery-text" data-master-for-unit="${u.id}"></span>
+						${u.description ? `<span>• ${u.description}</span>` : ""}
+					  </div>
+					</div>
+					<button class="random-btn" data-random-unit="${u.id}">
+					  Random quiz
+					</button>
+				  </div>
+				</div>
 			      Random quiz
 			    </button>
 			  </div>
@@ -1844,6 +1848,7 @@
     </script>
 </body>
 </html>
+
 
 
 
