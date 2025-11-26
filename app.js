@@ -615,6 +615,13 @@ let hideFeedbackEnabled = false;
 let questionOrder = [];
 let currentOptionOrder = [];
 
+// remembers where we came from before starting a quiz
+let lastView = {
+  moduleId: null, // string | null
+  unitId: null,   // string | null
+  view: "modules" // "modules" | "units" | "quizzes"
+};
+
 const quizContentEl = document.getElementById("quiz-content");
 const cardTitleEl = document.getElementById("card-title");
 const pillRightEl = document.getElementById("pill-right");
@@ -769,6 +776,14 @@ function renderModuleList() {
         alert("This module has no quizzes.");
         return;
       }
+
+      // record where we came from
+      lastView = {
+        moduleId: mod.id,
+        unitId: null,
+        view: "modules"
+      };
+
       startQuiz(chosen);
     });
   });
@@ -890,6 +905,14 @@ function renderUnitList(moduleId) {
         alert("This unit has no quizzes.");
         return;
       }
+
+      // record where we came from
+      lastView = {
+        moduleId: currentModule.id,
+        unitId: unit.id,
+        view: "units"
+      };
+
       startQuiz(chosen);
     });
   });
@@ -979,7 +1002,15 @@ function renderQuizList(unitId) {
     btn.addEventListener("click", () => {
       const id = btn.getAttribute("data-id");
       const meta = quizzes.find((q) => q.id === id);
-      if (meta) startQuiz(meta);
+      if (meta) {
+        // record that we came from the quiz list
+        lastView = {
+          moduleId: currentModule.id,
+          unitId: currentUnit.id,
+          view: "quizzes"
+        };
+        startQuiz(meta);
+      }
     });
   });
 
@@ -1050,13 +1081,39 @@ async function startQuiz(quizMeta) {
     quizContentEl.innerHTML = `
       <p class="error-text">Could not load quiz file <code>${quizMeta.path}</code>.</p>
       <div class="controls" style="justify-content:flex-start;">
-        <button class="secondary-button" id="back-quizzes">Back to quizzes</button>
+        <button class="secondary-button" id="back-quizzes">Exit quiz</button>
       </div>
     `;
     document
       .getElementById("back-quizzes")
-      .addEventListener("click", () => renderQuizList(currentUnit.id));
+      .addEventListener("click", () => exitQuiz());
   }
+}
+
+// Decide where to go when "Exit quiz" / "Back to quizzes" is clicked
+function exitQuiz() {
+  if (!lastView) {
+    renderModuleList();
+    return;
+  }
+
+  if (lastView.view === "quizzes" && lastView.unitId) {
+    renderQuizList(lastView.unitId);
+    return;
+  }
+
+  if (lastView.view === "units" && lastView.moduleId) {
+    renderUnitList(lastView.moduleId);
+    return;
+  }
+
+  if (lastView.view === "modules") {
+    renderModuleList();
+    return;
+  }
+
+  // Fallback
+  renderModuleList();
 }
 
 function renderQuestion() {
@@ -1102,7 +1159,7 @@ function renderQuestion() {
     </div>
     <div class="feedback" id="feedback"></div>
     <div class="controls">
-      <button class="secondary-button" id="back-to-quizzes">Back to quizzes</button>
+      <button class="secondary-button" id="back-to-quizzes">Exit quiz</button>
       <button class="secondary-button" id="skip-btn">Skip</button>
       <button class="primary-button" id="next-btn" disabled>
         Next →
@@ -1117,7 +1174,7 @@ function renderQuestion() {
   document.getElementById("skip-btn").addEventListener("click", onSkip);
   document
     .getElementById("back-to-quizzes")
-    .addEventListener("click", () => renderQuizList(currentUnit.id));
+    .addEventListener("click", () => exitQuiz());
 }
 
 function onOptionClick(e) {
@@ -1301,7 +1358,7 @@ async function renderResult() {
     }
 
     <div class="controls" style="margin-bottom: 6px;">
-      <button class="secondary-button" id="back-quizzes">Back to quizzes</button>
+      <button class="secondary-button" id="back-quizzes">Exit quiz</button>
       <button class="primary-button" id="restart-btn">Retake this quiz</button>
     </div>
 
@@ -1316,7 +1373,7 @@ async function renderResult() {
 
   document
     .getElementById("back-quizzes")
-    .addEventListener("click", () => renderQuizList(currentUnit.id));
+    .addEventListener("click", () => exitQuiz());
 }
 
 // ================================
